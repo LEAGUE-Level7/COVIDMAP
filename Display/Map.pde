@@ -10,7 +10,7 @@ import java.io.IOException;
 void covidStats() {
   final Gson gson = new Gson();
   try {
-    String requestURL = "https://api.covid19api.com/united-states";
+    String requestURL = "curl --location --request GET 'https://api.covid19api.com/country/united-states/status/confirmed/live'";
     URL url = new URL(requestURL);
     HttpURLConnection con = (HttpURLConnection) url.openConnection();
     con.setRequestMethod("GET");
@@ -20,7 +20,7 @@ void covidStats() {
     
     MapRequest request = gson.fromJson(userJSON.toString(), MapRequest.class);
     
-    request.getData().getCountry
+    request.getData().getCountryCode();
     
   } 
   catch (MalformedURLException e) {
