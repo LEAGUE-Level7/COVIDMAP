@@ -10,8 +10,9 @@ void setup() {
   display.headers();
   display.baseText();
   display.californiaImage();
-  //map.covidStats();
+  map.covidStats();
   display.circles();
+  display.graph();
 }
 
 void draw() {

@@ -31,7 +31,7 @@ public class Map {
         Datum request = gson.fromJson(userJSON.toString(), Datum.class);
         //jsonData[i] = request.toString();
         positiveIncreases[i] = request.getPositiveIncrease();
-        System.out.println(positiveIncreases[i]);
+        //System.out.println(positiveIncreases[i]);
       }
       //saveStrings("data.txt", jsonData);
     } 

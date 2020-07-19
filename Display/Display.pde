@@ -55,8 +55,14 @@ public class MainDisplay {
     Map map = new Map();
     for (int i = 0; i < 50; i++) {
       fill (255, 0, 0);
-     // System.out.println(map.positiveIncreases[i]);
-      circle(xValues[i], yValues[i], 5);//map.positiveIncreases[i]/100);
+      //System.out.println(map.positiveIncreases[i]);
+      //circle(xValues[i], yValues[i], 5);//map.positiveIncreases[i]/100);
     }
+  }
+  
+  void graph() {
+    Graph graph = new Graph();
+    graph.initialize();
+    graph.display();
   }
 }
