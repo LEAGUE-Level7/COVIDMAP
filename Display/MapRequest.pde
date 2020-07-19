@@ -2,17 +2,18 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
 public class MapRequest {
 
   @SerializedName("data")
   @Expose
-  private List<Datum> data = null;
+  private Datum data = null;
 
-  public List<Datum> getData() {
+  public Datum getData() {
     return data;
   }
 
-  public void setData(List<Datum> data) {
+  public void setData(Datum data) {
     this.data = data;
   }
 
