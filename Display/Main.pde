@@ -12,6 +12,9 @@ void setup() {
   display.californiaImage();
   //map.covidStats();
   display.circles();
+  News news = new News();
+  display.showNews();
+  
 }
 
 void draw() {
