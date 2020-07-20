@@ -127,6 +127,15 @@ public class Datum {
     @Expose
     private String grade;
 
+  public String toString() {
+    String stateInfo = "{";
+    stateInfo += "\"date\": " + date + ",";
+    stateInfo += "\"state\": " + state + ",";
+    
+    stateInfo += "}";
+    return stateInfo;
+  }
+
   public Integer getDate() {
     return date;
   }
