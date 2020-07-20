@@ -10,8 +10,8 @@ void setup() {
   display.headers();
   display.baseText();
   display.californiaImage();
-  map.checkSavedData();
-  display.circles();
+  int[] positiveIncreases = map.checkSavedData();
+  display.circles(positiveIncreases);
 }
 
 void draw() {

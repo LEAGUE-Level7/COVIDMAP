@@ -130,8 +130,45 @@ public class Datum {
   public String toString() {
     String stateInfo = "{";
     stateInfo += "\"date\": " + date + ",";
-    stateInfo += "\"state\": " + state + ",";
-    
+    stateInfo += "\"positive\": " + positive + ",";
+    stateInfo += "\"negative\": " + negative + ",";
+    stateInfo += "\"pending\": " + pending + ",";
+    stateInfo += "\"hospitalizedCurrently\": " + hospitalizedCurrently + ",";
+    stateInfo += "\"hospitalizedCumulative\": " + hospitalizedCurrently + ",";
+    stateInfo += "\"inIcuCurrently\": " + inIcuCurrently + ",";
+    stateInfo += "\"inIcuCumulative\": " + inIcuCumulative + ",";
+    stateInfo += "\"onVentilatorCurrently\": " + onVentilatorCurrently + ",";
+    stateInfo += "\"onVentilatorCumulative\": " + onVentilatorCumulative + ",";
+    stateInfo += "\"recovered\": " + recovered + ",";
+    stateInfo += "\"dataQualityGrade\": " + dataQualityGrade + ","; 
+    stateInfo += "\"lastUpdateEt\": " + lastUpdateEt + ",";
+    stateInfo += "\"dateModified\": " + dateModified + ",";
+    stateInfo += "\"checkTimeEt\": " + checkTimeEt + ",";
+    stateInfo += "\"death\": " + death + ",";
+    stateInfo += "\"hospitalized\": " + hospitalized + ",";
+    stateInfo += "\"dateChecked\": " + dateChecked + ",";
+    stateInfo += "\"totalTestsViral\": " + totalTestsViral + ",";
+    stateInfo += "\"positiveTestsViral\": " + positiveTestsViral + ",";
+    stateInfo += "\"negativeTestsViral\": " + negativeTestsViral + ",";
+    stateInfo += "\"positiveCasesViral\": " + positiveCasesViral + ",";
+    stateInfo += "\"deathConfirmed\": " + deathConfirmed + ",";
+    stateInfo += "\"deathProbable\": " + deathProbable + ",";
+    stateInfo += "\"fips\": " + fips + ",";
+    stateInfo += "\"positiveIncrease\": " + positiveIncrease + ",";
+    stateInfo += "\"negativeIncrease\": " + negativeIncrease + ",";
+    stateInfo += "\"total\": " + total + ",";
+    stateInfo += "\"totalTestResults\": " + totalTestResults + ",";
+    stateInfo += "\"totalTestResultsIncrease\": " + totalTestResultsIncrease + ",";
+    stateInfo += "\"posNeg\": " + posNeg + ",";
+    stateInfo += "\"deathIncrease\": " + deathIncrease + ",";
+    stateInfo += "\"hospitalizedIncrease\": " + hospitalizedIncrease + ",";
+    stateInfo += "\"hash\": " + hash + ",";
+    stateInfo += "\"commercialScore\": " + commercialScore + ",";
+    stateInfo += "\"negativeRegularScore\": " + negativeRegularScore + ",";
+    stateInfo += "\"negativeScore\": " + negativeScore + ",";
+    stateInfo += "\"positiveScore\": " + positiveScore + ",";
+    stateInfo += "\"score\": " + score + ",";
+    stateInfo += "\"grade\": " + grade;
     stateInfo += "}";
     return stateInfo;
   }

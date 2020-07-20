@@ -6,8 +6,8 @@ import com.google.gson.annotations.SerializedName;
 public class MapRequest {
 
   @SerializedName("data")
-  @Expose
-  private Datum data = null;
+    @Expose
+    private Datum data = null;
 
   public Datum getData() {
     return data;
@@ -16,5 +16,4 @@ public class MapRequest {
   public void setData(Datum data) {
     this.data = data;
   }
-
 }

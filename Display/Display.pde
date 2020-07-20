@@ -11,8 +11,8 @@ public class MainDisplay {
     217, 314, 123, 592, 576, 233, 561, 541, 308, 488, 335, 103, 538, 599, 
     525, 303, 456, 312, 177, 578, 541, 121, 510, 413, 231};
   int[] yValues = {318, 372, 292, 298, 243, 236, 171, 217, 381, 316, 417, 
-    155, 223, 218, 196, 246, 250, 341, 112, 212, 157, 178, 145, 322, 250,
-    120, 207, 208, 141, 198, 301, 159, 270, 118, 211, 290, 141, 199, 168,
+    155, 223, 218, 196, 246, 250, 341, 112, 212, 157, 178, 145, 322, 250, 
+    120, 207, 208, 141, 198, 301, 159, 270, 118, 211, 290, 141, 199, 168, 
     298, 162, 280, 344, 226, 134, 239, 97, 235, 163, 178};
 
   public void grid() {
@@ -51,12 +51,12 @@ public class MainDisplay {
     image(californiaMap, 40, 60, 600, 400);
   }
 
-  void circles() {
+  void circles(int[] positiveIncreases) {
     Map map = new Map();
     for (int i = 0; i < 50; i++) {
       fill (255, 0, 0);
-     // System.out.println(map.positiveIncreases[i]);
-      circle(xValues[i], yValues[i], 5);//map.positiveIncreases[i]/100);
+      System.out.println(i + ": " + positiveIncreases[i]);
+      circle(xValues[i], yValues[i], (float)(Math.log(positiveIncreases[i])/Math.log(1.5)));
     }
   }
 }
