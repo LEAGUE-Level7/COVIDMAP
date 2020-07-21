@@ -77,10 +77,10 @@ public class MainDisplay {
       String description = newsInfo.getArticles().get(i).getDescription();
       String author = newsInfo.getArticles().get(i).getAuthor();
       String publishedAt = newsInfo.getArticles().get(i).getPublishedAt();
-      title = title.substring(0, 50) + "...";
+      title = title.substring(0, 45) + "...";
       textSize(10);
       fill(0, 0, 255);
-      text(title, WIDTH*3/4 + 3, 56 + (83*i), WIDTH, 65 + (83*i));
+      text(title, 1 + WIDTH*3/4 + 3, 56 + (83*i), WIDTH, 65 + (83*i));
       fill(50, 50, 50);
       textSize(9);
       String firstDescription;
@@ -95,12 +95,20 @@ public class MainDisplay {
       }catch(Exception e){
         secondDescription = "";
       }
-      text(firstDescription, WIDTH*3/4 + 3, 70 + (83*i), WIDTH, 80 + (83*i));
-      text(secondDescription, WIDTH*3/4 + 3, 80 + (83*i), WIDTH, 90 + (83*i));
+      text(firstDescription, 1 + WIDTH*3/4 + 3, 70 + (83*i), WIDTH, 80 + (83*i));
+      text(secondDescription, 1 + WIDTH*3/4 + 3, 80 + (83*i), WIDTH, 90 + (83*i));
       publishedAt = "Date: " + publishedAt;
-      text(publishedAt, WIDTH*3/4 + 3, 95 + (83*i), WIDTH, 105 + (83*i));
+      text(publishedAt, 1 + WIDTH*3/4 + 3, 97 + (83*i), WIDTH, 107 + (83*i));
       author = "Author: " + author;
-      text(author, WIDTH*3/4 + 3, 110 + (83*i), WIDTH, 120 + (83*i));
+      text(author, 1 + WIDTH*3/4 + 3, 115 + (83*i), WIDTH, 125 + (83*i));
+      if (!title.equals("")){
+        textSize(9);
+        fill(170, 170, 100);
+        text("CLICK for more info", 1 + WIDTH*3/4 + 160, 120 + (83*i), WIDTH, 130 + (83*i));
+      }
     }
+  }
+  NewsDatum getCurrentNews(){
+    return newsInfo;
   }
 }
