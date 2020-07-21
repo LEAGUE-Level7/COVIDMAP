@@ -1,6 +1,3 @@
-//PFont mono;
-
-
 public class MainDisplay {
 
   PImage californiaMap;
@@ -25,8 +22,6 @@ public class MainDisplay {
   void headers() {
     textSize(25);
     fill(179, 0, 0);
-    //mono = createFont("andalemo.ttf", 32);
-    //textFont(mono);
     text("Symptoms", 900, 435);
     text("Regulations", 890, 335);
     text("News Updates", 880, 35);
@@ -56,7 +51,7 @@ public class MainDisplay {
     for (int i = 0; i < 50; i++) {
       fill (255, 0, 0);
       System.out.println(i + ": " + positiveIncreases[i]);
-      circle(xValues[i], yValues[i], (float)(Math.log(positiveIncreases[i])/Math.log(1.5)));
+      circle(xValues[i], yValues[i], (float)(Math.sqrt(positiveIncreases[i])));
     }
   }
 }
