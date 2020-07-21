@@ -11,11 +11,10 @@ void setup() {
   display.headers();
   display.baseText();
   display.californiaImage();
-  //map.covidStats();
-  display.circles();
+  int[] positiveIncreases = map.checkSavedData();
+  display.circles(positiveIncreases);
   News news = new News();
   display.showNews();
-  
 }
 
 void draw() {
