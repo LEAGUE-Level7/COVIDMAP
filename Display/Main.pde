@@ -11,7 +11,6 @@ public void settings() {
 }
 
 void setup() {
-  size(1100, 700);
   display.grid();
   display.headers();
   display.baseText();
@@ -26,7 +25,7 @@ void redraw() {
   background(#D6D6D6);
   display.grid();
   display.headers();
-  //display.baseText();
+  display.baseText();
   display.usMap();
   posIncreaseButton.display();
   deathIncreaseButton.display();
