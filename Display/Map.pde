@@ -13,6 +13,7 @@ public class Map {
   final Gson gson = new Gson();
   String[] lines = new String[50];
   int[] positiveIncreases = new int[50];
+  int[] deathIncreases = new int[50];
   String[] states = {"al", "ak", "az", "ar", "ca", "co", "ct", "de", "fl", 
     "ga", "hi", "id", "il", "in", "ia", "ks", "ky", "la", "me", "md", "ma", 
     "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", "ny", "nc", 
@@ -27,8 +28,6 @@ public class Map {
       Datum request = gson.fromJson(userJSON.toString(), Datum.class);
       data[i] = request;
       jsonData[i] = userJSON;
-      System.out.print(i);
-      //System.out.println(positiveIncreases[i]);
       stringJsonData[i] = jsonData[i].toString();
     }
     saveStrings("data.txt", stringJsonData);
@@ -64,13 +63,12 @@ public class Map {
 
     return lines[0];
   }
-  int[] checkSavedData() {
+  void checkSavedData() {
     Datum savedData;
     Datum apiData;
     String savedJSON;
     JsonObject apiJSON;
-    boolean indexAtComma = false;
-    int commaIndex = 0;
+
 
     apiJSON = pullState("al");
     savedJSON = loadState();
@@ -80,28 +78,57 @@ public class Map {
 
     if (!apiData.getDate().equals(savedData.getDate())) {
       pullAllStates();
-    } else {
-      int positiveIndex = 0;
-      for (String c : lines) {
-        for (int i = 0; i < c.length(); i++) {
-          if (i <= c.length()-16) {
-            if (c.substring(i, i+16).equals("positiveIncrease")) {
-              commaIndex = i+17;
-              while (!indexAtComma) {
-                if (c.charAt(commaIndex) == ',') {
-                  break;
-                }
-                commaIndex++;
+    }
+  } 
+
+  int[] positiveIncreaseMap() {
+    boolean indexAtComma = false;
+    int commaIndex = 0;
+    int positiveIndex = 0;
+    
+    for (String c : lines) {
+      for (int i = 0; i < c.length(); i++) {
+        if (i <= c.length()-16) {
+          if (c.substring(i, i+16).equals("positiveIncrease")) {
+            commaIndex = i+17;
+            while (!indexAtComma) {
+              if (c.charAt(commaIndex) == ',') {
+                break;
               }
-              positiveIncreases[positiveIndex] = Integer.parseInt(c.substring(i+18, commaIndex));
-              System.out.println(positiveIncreases[positiveIndex]);
-              positiveIndex++;
+              commaIndex++;
             }
+            positiveIncreases[positiveIndex] = Integer.parseInt(c.substring(i+18, commaIndex));
+            positiveIndex++;
           }
         }
       }
     }
-
     return positiveIncreases;
+  }
+  
+  int[] deathIncreaseMap() {
+   boolean indexAtComma = false;
+    int commaIndex = 0;
+    int positiveIndex = 0;
+    
+    for (String c : lines) {
+      for (int i = 0; i < c.length(); i++) {
+        if (i <= c.length()-13) {
+          if (c.substring(i, i+13).equals("deathIncrease")) {
+            commaIndex = i+14;
+            while (!indexAtComma) {
+              if (c.charAt(commaIndex) == ',') {
+                break;
+              }
+              commaIndex++;
+            }
+            deathIncreases[positiveIndex] = Integer.parseInt(c.substring(i+15, commaIndex));
+            positiveIndex++;
+          }
+        }
+      }
+    }
+    
+    return deathIncreases;
   }
 }
