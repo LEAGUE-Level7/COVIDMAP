@@ -15,6 +15,7 @@ void setup() {
   display.circles(positiveIncreases);
   News news = new News();
   display.showNews();
+  display.graph(positiveIncreases);
 }
 
 void draw() {

@@ -61,9 +61,9 @@ public class MainDisplay {
     }
   }
   
-   void graph() {
+  void graph(int[] pI) {
     Graph graph = new Graph();
-    graph.initialize();
+    graph.initialize(pI);
     graph.display();
   }
   
