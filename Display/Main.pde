@@ -3,6 +3,8 @@ MainDisplay display = new MainDisplay();
 Map map = new Map();
 Button posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
 Button deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
+Button hospitalizedButton = new Button("Hospitalized", 675, 120, 130, 30);
+Button totalRecoveredButton = new Button("Total Recovered", 675, 160, 130, 30);
 final int WIDTH = 1100;
 NewsDatum newsInfo = display.getCurrentNews();
 
@@ -18,6 +20,8 @@ void setup() {
   display.usMap();
   posIncreaseButton.display();
   deathIncreaseButton.display();
+  hospitalizedButton.display();
+  totalRecoveredButton.display();
   map.checkSavedData();
   display.showNews();
 }
@@ -30,6 +34,8 @@ void redraw() {
   display.usMap();
   posIncreaseButton.display();
   deathIncreaseButton.display();
+  hospitalizedButton.display();
+  totalRecoveredButton.display();
   display.showNews();
 }
 
@@ -64,5 +70,13 @@ void mousePressed() {
     int[] deathIncreases = map.deathIncreaseMap();
     redraw();
     display.circles(deathIncreases, 0, 0, 255);
+  } else if (hospitalizedButton.mouseIsOver()) {
+    int[] hospitalized = map.hospitalizedMap();
+    redraw();
+    display.circles(hospitalized, 0, 255, 0);
+  } else if (totalRecoveredButton.mouseIsOver()) {
+    int[] recovered = map.recoveredMap();
+    redraw();
+    display.circles(recovered, 255, 255, 0);
   }
 }

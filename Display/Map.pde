@@ -14,6 +14,8 @@ public class Map {
   String[] lines = new String[50];
   int[] positiveIncreases = new int[50];
   int[] deathIncreases = new int[50];
+  int[] hospitalized = new int[50];
+  int[] recovered = new int[50];
   String[] states = {"al", "ak", "az", "ar", "ca", "co", "ct", "de", "fl", 
     "ga", "hi", "id", "il", "in", "ia", "ks", "ky", "la", "me", "md", "ma", 
     "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", "ny", "nc", 
@@ -21,6 +23,7 @@ public class Map {
     "va", "wa", "wv", "wi", "wy"};
 
   void pullAllStates() {
+    //text("Retrieving data...", 530, 350);
     String[] stringJsonData = new String[50];
     for (int i = 0; i < states.length; i++) {
       JsonObject userJSON = pullState(states[i]);
@@ -85,7 +88,7 @@ public class Map {
     boolean indexAtComma = false;
     int commaIndex = 0;
     int positiveIndex = 0;
-    
+
     for (String c : lines) {
       for (int i = 0; i < c.length(); i++) {
         if (i <= c.length()-16) {
@@ -105,12 +108,12 @@ public class Map {
     }
     return positiveIncreases;
   }
-  
+
   int[] deathIncreaseMap() {
-   boolean indexAtComma = false;
+    boolean indexAtComma = false;
     int commaIndex = 0;
     int positiveIndex = 0;
-    
+
     for (String c : lines) {
       for (int i = 0; i < c.length(); i++) {
         if (i <= c.length()-13) {
@@ -122,13 +125,72 @@ public class Map {
               }
               commaIndex++;
             }
-            deathIncreases[positiveIndex] = Integer.parseInt(c.substring(i+15, commaIndex));
+            deathIncreases[positiveIndex] = (Integer.parseInt(c.substring(i+15, commaIndex))) * 10;
             positiveIndex++;
           }
         }
       }
     }
-    
+
     return deathIncreases;
+  }
+
+  int[] hospitalizedMap() {
+    boolean indexAtComma = false;
+    int commaIndex = 0;
+    int positiveIndex = 0;
+
+    for (String c : lines) {
+      for (int i = 0; i < c.length(); i++) {
+        if (i <= c.length()-21) {
+          if (c.substring(i, i+21).equals("hospitalizedCurrently")) {
+            commaIndex = i+22;
+            while (!indexAtComma) {
+              if (c.charAt(commaIndex) == ',') {
+                break;
+              }
+              commaIndex++;
+            }
+            if (!c.substring(i+23, commaIndex).equals("null")) {
+              hospitalized[positiveIndex] = Integer.parseInt(c.substring(i+23, commaIndex));
+            } else {
+              hospitalized[positiveIndex] = 0;
+            }
+            positiveIndex++;
+          }
+        }
+      }
+    }
+
+    return hospitalized;
+  }
+
+  int[] recoveredMap() {
+    boolean indexAtComma = false;
+    int commaIndex = 0;
+    int positiveIndex = 0;
+
+    for (String c : lines) {
+      for (int i = 0; i < c.length(); i++) {
+        if (i <= c.length()-9) {
+          if (c.substring(i, i+9).equals("recovered")) {
+            commaIndex = i+10;
+            while (!indexAtComma) {
+              if (c.charAt(commaIndex) == ',') {
+                break;
+              }
+              commaIndex++;
+            }
+            if (!c.substring(i+11, commaIndex).equals("null")) {
+              recovered[positiveIndex] = (Integer.parseInt(c.substring(i+11, commaIndex)))/25;
+            } else {
+              recovered[positiveIndex] = 0;
+            }
+            positiveIndex++;
+          }
+        }
+      }
+    }
+    return recovered;
   }
 }
