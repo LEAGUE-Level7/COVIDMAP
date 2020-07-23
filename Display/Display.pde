@@ -15,11 +15,12 @@ public class MainDisplay {
 
   public void grid() {
     strokeWeight(4);
+    stroke(0);
     line(0, HEIGHT*2/3, WIDTH*3/4, HEIGHT*2/3);
     line(WIDTH*3/4, 300, WIDTH, 300);//300 //50
     line(WIDTH*3/4, 400, WIDTH, 400);
     line(WIDTH*3/4, 0, WIDTH*3/4, HEIGHT);
-    strokeWeight(0);
+    strokeWeight(1);
   }
 
   void headers() {
@@ -103,7 +104,7 @@ public class MainDisplay {
         text("CLICK for more info", 1 + WIDTH*3/4 + 160, 120 + (83*i), WIDTH, 130 + (83*i));
       }
     }
-    strokeWeight(0);
+    strokeWeight(1);
   }
   NewsDatum getCurrentNews() {
     return newsInfo;

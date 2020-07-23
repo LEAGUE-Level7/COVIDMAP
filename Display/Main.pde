@@ -23,13 +23,13 @@ void setup() {
 }
 
 void redraw() {
-  size(1100, 700);
+  background(#D6D6D6);
   display.grid();
   display.headers();
-  display.baseText();
+  //display.baseText();
   display.usMap();
-  //posIncreaseButton.display();
-  //deathIncreaseButton.display();
+  posIncreaseButton.display();
+  deathIncreaseButton.display();
   //display.showNews();
 }
 

@@ -17,6 +17,7 @@ class Button {
     fill(218);
     stroke(141);
     rect(x, y, w, h, 10);
+    textSize(14.5);
     textAlign(CENTER, CENTER);
     fill(0);
     text(label, x + (w / 2), y + (h / 2));
