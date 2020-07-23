@@ -9,7 +9,7 @@ To create an app that gives a summarized display of the COVID-19 updates across 
 - Synchronous to the selected map
 ### Map
 - Concentration map defined by data from each state
-- Three modes: positive increase, death increase, and hospitalized
+- Four modes: positive increase, death increase, currently hospitalized, total recovered
 ### News Updates
 - Top three news related to COVID-19
 ### Regulations
