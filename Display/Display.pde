@@ -58,6 +58,7 @@ public class MainDisplay {
 
   void showNews() {//51 //300 //83 spacing
     strokeWeight(1);
+    stroke(0);
     line(WIDTH*3/4, 51, WIDTH, 51);
     line(WIDTH*3/4, 134, WIDTH, 134);//300 //50
     line(WIDTH*3/4, 217, WIDTH, 217);
