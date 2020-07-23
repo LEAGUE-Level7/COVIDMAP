@@ -11,6 +11,7 @@ public void settings() {
 }
 
 void setup() {
+  background(#D6D6D6);
   display.grid();
   display.headers();
   display.baseText();
@@ -18,7 +19,7 @@ void setup() {
   posIncreaseButton.display();
   deathIncreaseButton.display();
   map.checkSavedData();
-  //display.showNews();
+  display.showNews();
 }
 
 void redraw() {
@@ -29,7 +30,7 @@ void redraw() {
   display.usMap();
   posIncreaseButton.display();
   deathIncreaseButton.display();
-  //display.showNews();
+  display.showNews();
 }
 
 void draw() {
