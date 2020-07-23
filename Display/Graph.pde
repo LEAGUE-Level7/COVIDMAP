@@ -14,6 +14,8 @@ public class Graph {
   
   void display() {
     organizeData();
+    strokeWeight(5);
+    fill(0, 0, 0);
     line(50, 525, 50, 650);
     for (int i = 0; i < 5; i++) {
       text("50", 25, 510 + 28*(i+1));
@@ -24,7 +26,7 @@ public class Graph {
     sortedData = sort(positiveIncreases);
     System.out.println("yikes");
     for (int i: sortedData) {
-      System.out.println(i);
+      //System.out.println(i);
     }
   }
   
