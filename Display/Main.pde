@@ -62,6 +62,11 @@ void mousePressed() {
     catch(Exception e) {
     }
   }
+  
+  if (mouseX >= WIDTH*3/4 && mouseX <= WIDTH && mouseY > 305 && mouseY < 400) {
+    link("https://www.osha.gov/SLTC/covid-19/");
+  }
+  
   if (posIncreaseButton.mouseIsOver()) {
     int[] positiveIncreases = map.positiveIncreaseMap();
     redraw();

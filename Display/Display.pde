@@ -12,19 +12,19 @@ public class MainDisplay {
     155, 223, 218, 196, 246, 250, 341, 112, 212, 157, 178, 145, 322, 250, 
     120, 207, 208, 141, 198, 301, 159, 270, 118, 211, 290, 141, 199, 168, 
     298, 162, 280, 344, 226, 134, 239, 97, 235, 163, 178};
-   Button feverButton = new Button("Fever/chills", 860, 450, 90, 30);
-   Button coughButton = new Button("Cough", 860, 490, 90, 30);
-   Button fatigueButton = new Button("Fatigue", 860, 530, 90, 30);
-   Button breathingButton = new Button("Short breath", 860, 570, 90, 30);
-   Button headacheButton = new Button("Headache", 860, 610, 90, 30);
-   Button lossOfTasteButton = new Button("Loss of taste", 860, 650, 90, 30);
+   Button feverButton = new Button("Fever/chills", 850, 450, 100, 30);
+   Button coughButton = new Button("Cough", 850, 490, 100, 30);
+   Button fatigueButton = new Button("Fatigue", 850, 530, 100, 30);
+   Button breathingButton = new Button("Short breath", 850, 570, 100, 30);
+   Button headacheButton = new Button("Headache", 850, 610, 100, 30);
+   Button lossOfTasteButton = new Button("Loss of taste", 850, 650, 100, 30);
    
-   Button soreThroatButton = new Button("Sore throat", 980, 450, 90, 30);
-   Button congestionButton = new Button("Congestion", 980, 490, 90, 30);
-   Button runnyNoseButton = new Button("Runny nose", 980, 530, 90, 30);
-   Button nauseaButton = new Button("Nausea", 980, 570, 90, 30);
-   Button vomitingButton = new Button("Vomiting", 980, 610, 90, 30);
-   Button diarrheaButton = new Button("Diarrhea", 980, 650, 90, 30);
+   Button soreThroatButton = new Button("Sore throat", 980, 450, 100, 30);
+   Button congestionButton = new Button("Congestion", 980, 490, 100, 30);
+   Button runnyNoseButton = new Button("Runny nose", 980, 530, 100, 30);
+   Button nauseaButton = new Button("Nausea", 980, 570, 100, 30);
+   Button vomitingButton = new Button("Vomiting", 980, 610, 100, 30);
+   Button diarrheaButton = new Button("Diarrhea", 980, 650, 100, 30);
 
   public void grid() {
     strokeWeight(4);
@@ -59,14 +59,12 @@ public class MainDisplay {
     vomitingButton.display(232, 232, 232);
     diarrheaButton.display(232, 232, 232);
     
-    String symptoms = "~ Fever/chills\n~ Cough\n~ Difficulty breathing"
-      + "\n~ Fatigue\n~ Muscle/body aches\n~ Headache\n~ "
-      + "New loss of taste or smell\n~ Sore throat"
-      + "\n~ Congestion/runny nose\n~ Nausea/vomiting\n~ Diarrhea";
     String rules = "Wear a mask. Wash your hands. Keep your distance!";
+    textSize(9);
+    fill(170, 170, 100);
+    text("CLICK for more info",  1 + WIDTH*3/4 + 160, 395);
     textSize(14.5);
     fill(0, 0, 0);
-    //text(symptoms, 855, 445, 1050, 680);
     text(rules, 855, 345, 225, 680);
   }
 
