@@ -13,15 +13,16 @@ class Button {
     h = heightB;
   }
 
-  void display() {
-    fill(218);
+  void display(int r, int g, int b) {
+    push();
+    textSize(14.5);
+    fill(r, g, b, 150);
     stroke(141);
     rect(x, y, w, h, 10);
-    textSize(14.5);
     textAlign(CENTER, CENTER);
     fill(0);
     text(label, x + (w / 2), y + (h / 2));
-    textAlign(0);
+    pop();
   }
 
   boolean mouseIsOver() {
