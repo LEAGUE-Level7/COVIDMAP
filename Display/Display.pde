@@ -1,6 +1,6 @@
 public class MainDisplay {
-  News news = new News();
-  NewsDatum newsInfo = news.fetchTopNews();
+  News news;
+  NewsDatum newsInfo;
   PImage californiaMap;
   final int WIDTH = 1100;
   final int HEIGHT = 700;
@@ -12,20 +12,19 @@ public class MainDisplay {
     155, 223, 218, 196, 246, 250, 341, 112, 212, 157, 178, 145, 322, 250, 
     120, 207, 208, 141, 198, 301, 159, 270, 118, 211, 290, 141, 199, 168, 
     298, 162, 280, 344, 226, 134, 239, 97, 235, 163, 178};
-   Button feverButton = new Button("Fever/chills", 850, 450, 100, 30);
-   Button coughButton = new Button("Cough", 850, 490, 100, 30);
-   Button fatigueButton = new Button("Fatigue", 850, 530, 100, 30);
-   Button breathingButton = new Button("Short breath", 850, 570, 100, 30);
-   Button headacheButton = new Button("Headache", 850, 610, 100, 30);
-   Button lossOfTasteButton = new Button("Loss of taste", 850, 650, 100, 30);
+   Button feverButton;
+   Button coughButton;
+   Button fatigueButton;
+   Button breathingButton;
+   Button headacheButton;
+   Button lossOfTasteButton;
    
-   Button soreThroatButton = new Button("Sore throat", 980, 450, 100, 30);
-   Button congestionButton = new Button("Congestion", 980, 490, 100, 30);
-   Button runnyNoseButton = new Button("Runny nose", 980, 530, 100, 30);
-   Button nauseaButton = new Button("Nausea", 980, 570, 100, 30);
-   Button vomitingButton = new Button("Vomiting", 980, 610, 100, 30);
-   Button diarrheaButton = new Button("Diarrhea", 980, 650, 100, 30);
-
+   Button soreThroatButton;
+   Button congestionButton;
+   Button runnyNoseButton;
+   Button nauseaButton;
+   Button vomitingButton;
+   Button diarrheaButton;
   public void grid() {
     strokeWeight(4);
     stroke(0);
@@ -46,6 +45,19 @@ public class MainDisplay {
     text("Graph", 375, 500);
   }
   void baseText() {
+    feverButton = new Button("Fever/chills", 850, 450, 100, 30);
+    coughButton = new Button("Cough", 850, 490, 100, 30);
+    fatigueButton = new Button("Fatigue", 850, 530, 100, 30);
+    breathingButton = new Button("Short breath", 850, 570, 100, 30);
+    headacheButton = new Button("Headache", 850, 610, 100, 30);
+    lossOfTasteButton = new Button("Loss of taste", 850, 650, 100, 30);
+   
+    soreThroatButton = new Button("Sore throat", 980, 450, 100, 30);
+    congestionButton = new Button("Congestion", 980, 490, 100, 30);
+    runnyNoseButton = new Button("Runny nose", 980, 530, 100, 30);
+    nauseaButton = new Button("Nausea", 980, 570, 100, 30);
+    vomitingButton = new Button("Vomiting", 980, 610, 100, 30);
+    diarrheaButton = new Button("Diarrhea", 980, 650, 100, 30);
     feverButton.display(232, 232, 232);
     coughButton.display(232, 232, 232);
     fatigueButton.display(232, 232, 232);
@@ -125,7 +137,7 @@ public class MainDisplay {
       publishedAt = "Date: " + publishedAt;
       text(publishedAt, 1 + WIDTH*3/4 + 3, 97 + (83*i), WIDTH, 107 + (83*i));
       author = "Author: " + author;
-      text(author, 1 + WIDTH*3/4 + 3, 115 + (83*i), WIDTH, 125 + (83*i));
+      text(author, 1 + WIDTH*3/4 + 3, 110 + (83*i), WIDTH, 125 + (83*i));
       if (!title.equals("")) {
         textSize(9);
         fill(170, 170, 100);
@@ -135,6 +147,16 @@ public class MainDisplay {
     strokeWeight(1);
   }
   NewsDatum getCurrentNews() {
+    news = new News();
+    if (newsInfo == null){
+      newsInfo = news.fetchTopNews();
+    }
     return newsInfo;
+  }
+  void pleaseWait(){
+    fill(0,0,0);
+    textSize(24);
+    String fetchText = "Please wait ... Proccess may take up to 6 seconds";
+    text(fetchText, 300, 350);
   }
 }

@@ -21,7 +21,6 @@ public class Map {
     "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", "ny", "nc", 
     "nd", "oh", "ok", "or", "pa", "ri", "sc", "sd", "tn", "tx", "ut", "vt", 
     "va", "wa", "wv", "wi", "wy"};
-
   void pullAllStates() {
     //text("Retrieving data...", 530, 350);
     String[] stringJsonData = new String[50];
@@ -71,7 +70,6 @@ public class Map {
     Datum apiData;
     String savedJSON;
     JsonObject apiJSON;
-
 
     apiJSON = pullState("al");
     savedJSON = loadState();

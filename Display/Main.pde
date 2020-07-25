@@ -1,45 +1,45 @@
 
-MainDisplay display = new MainDisplay();
-Map map = new Map();
-Button posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
-Button deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
-Button hospitalizedButton = new Button("Hospitalized", 675, 120, 130, 30);
-Button totalRecoveredButton = new Button("Total Recovered", 675, 160, 130, 30);
+MainDisplay display;
+Button posIncreaseButton;
+Button deathIncreaseButton;
+Button hospitalizedButton;
+Button totalRecoveredButton;
 final int WIDTH = 1100;
-NewsDatum newsInfo = display.getCurrentNews();
+NewsDatum newsInfo;
+Map map;
 
 public void settings() {
   size(1100, 700);
+
 }
 
 void setup() {
-  background(#D6D6D6);
-  display.grid();
-  display.headers();
-  display.baseText();
-  display.usMap();
-  posIncreaseButton.display(232, 232, 232);
-  deathIncreaseButton.display(232, 232, 232);
-  hospitalizedButton.display(232, 232, 232);
-  totalRecoveredButton.display(232, 232, 232);
-  map.checkSavedData();
-  display.showNews();
-}
-
-void redraw() {
-  background(#D6D6D6);
-  display.grid();
-  display.headers();
-  display.baseText();
-  display.usMap();
-  posIncreaseButton.display(232, 232, 232);
-  deathIncreaseButton.display(232, 232, 232);
-  hospitalizedButton.display(232, 232, 232);
-  totalRecoveredButton.display(232, 232, 232);
-  display.showNews();
+  fill(0,0,0);
+  textSize(24);
+  String fetchText = "Please wait ... Proccess may take up to 6 seconds";
+  text(fetchText, 300, 350);
+  
 }
 
 void draw() {
+  display = new MainDisplay();                                      
+  Map map= new Map();
+  map.checkSavedData();
+  newsInfo = display.getCurrentNews();
+  posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
+  deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
+  hospitalizedButton = new Button("Hospitalized", 675, 120, 130, 30);
+  totalRecoveredButton = new Button("Total Recovered", 675, 160, 130, 30);
+  background(#D6D6D6);
+  display.grid();
+  display.headers();
+  display.baseText();
+  display.usMap();
+  posIncreaseButton.display(232, 232, 232);
+  deathIncreaseButton.display(232, 232, 232);
+  hospitalizedButton.display(232, 232, 232);
+  totalRecoveredButton.display(232, 232, 232);
+  display.showNews();
 }
 
 void mousePressed() {
