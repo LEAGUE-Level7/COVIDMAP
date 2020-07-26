@@ -22,7 +22,6 @@ public class Map {
     "nd", "oh", "ok", "or", "pa", "ri", "sc", "sd", "tn", "tx", "ut", "vt", 
     "va", "wa", "wv", "wi", "wy"};
   void pullAllStates() {
-    //text("Retrieving data...", 530, 350);
     String[] stringJsonData = new String[50];
     for (int i = 0; i < states.length; i++) {
       JsonObject userJSON = pullState(states[i]);
@@ -65,6 +64,7 @@ public class Map {
 
     return lines[0];
   }
+
   void checkSavedData() {
     Datum savedData;
     Datum apiData;
@@ -79,6 +79,7 @@ public class Map {
 
     if (!apiData.getDate().equals(savedData.getDate())) {
       pullAllStates();
+
     }
   } 
 
@@ -100,10 +101,30 @@ public class Map {
             }
             positiveIncreases[positiveIndex] = Integer.parseInt(c.substring(i+18, commaIndex));
             positiveIndex++;
+
+    } else {
+      int positiveIndex = 0;
+      for (String c : lines) {
+        for (int i = 0; i < c.length(); i++) {
+          if (i <= c.length()-16) {
+            if (c.substring(i, i+16).equals("positiveIncrease")) {
+              commaIndex = i+17;
+              while (!indexAtComma) {
+                if (c.charAt(commaIndex) == ',') {
+                  break;
+                }
+                commaIndex++;
+              }
+              positiveIncreases[positiveIndex] = Integer.parseInt(c.substring(i+18, commaIndex));
+              //System.out.println(positiveIncreases[positiveIndex]);
+              positiveIndex++;
+            }
+
           }
         }
       }
     }
+
     return positiveIncreases;
   }
 
@@ -190,5 +211,6 @@ public class Map {
       }
     }
     return recovered;
+
   }
 }
