@@ -79,14 +79,13 @@ public class Map {
 
     if (!apiData.getDate().equals(savedData.getDate())) {
       pullAllStates();
-
     }
   } 
 
   int[] positiveIncreaseMap() {
     boolean indexAtComma = false;
     int commaIndex = 0;
-    int positiveIndex = 0;
+    int positiveIndex;
 
     for (String c : lines) {
       for (int i = 0; i < c.length(); i++) {
@@ -101,116 +100,116 @@ public class Map {
             }
             positiveIncreases[positiveIndex] = Integer.parseInt(c.substring(i+18, commaIndex));
             positiveIndex++;
-
-    } else {
-      int positiveIndex = 0;
-      for (String c : lines) {
-        for (int i = 0; i < c.length(); i++) {
-          if (i <= c.length()-16) {
-            if (c.substring(i, i+16).equals("positiveIncrease")) {
-              commaIndex = i+17;
-              while (!indexAtComma) {
-                if (c.charAt(commaIndex) == ',') {
-                  break;
+          } else {
+            positiveIndex = 0;
+            for (String d : lines) {
+              for (int j = 0; i < d.length(); i++) {
+                if (j <= d.length()-16) {
+                  if (d.substring(j, j+16).equals("positiveIncrease")) {
+                    commaIndex = i+17;
+                    while (!indexAtComma) {
+                      if (d.charAt(commaIndex) == ',') {
+                        break;
+                      }
+                      commaIndex++;
+                    }
+                    positiveIncreases[positiveIndex] = Integer.parseInt(d.substring(i+18, commaIndex));
+                    //System.out.println(positiveIncreases[positiveIndex]);
+                    positiveIndex++;
+                  }
                 }
-                commaIndex++;
               }
-              positiveIncreases[positiveIndex] = Integer.parseInt(c.substring(i+18, commaIndex));
-              //System.out.println(positiveIncreases[positiveIndex]);
-              positiveIndex++;
             }
-
           }
+
+          return positiveIncreases;
         }
       }
     }
-
-    return positiveIncreases;
   }
 
-  int[] deathIncreaseMap() {
-    boolean indexAtComma = false;
-    int commaIndex = 0;
-    int positiveIndex = 0;
+        int[] deathIncreaseMap() {
+          boolean indexAtComma = false;
+          int commaIndex = 0;
+          int positiveIndex = 0;
 
-    for (String c : lines) {
-      for (int i = 0; i < c.length(); i++) {
-        if (i <= c.length()-13) {
-          if (c.substring(i, i+13).equals("deathIncrease")) {
-            commaIndex = i+14;
-            while (!indexAtComma) {
-              if (c.charAt(commaIndex) == ',') {
-                break;
+          for (String c : lines) {
+            for (int i = 0; i < c.length(); i++) {
+              if (i <= c.length()-13) {
+                if (c.substring(i, i+13).equals("deathIncrease")) {
+                  commaIndex = i+14;
+                  while (!indexAtComma) {
+                    if (c.charAt(commaIndex) == ',') {
+                      break;
+                    }
+                    commaIndex++;
+                  }
+                  deathIncreases[positiveIndex] = (Integer.parseInt(c.substring(i+15, commaIndex))) * 10;
+                  positiveIndex++;
+                }
               }
-              commaIndex++;
             }
-            deathIncreases[positiveIndex] = (Integer.parseInt(c.substring(i+15, commaIndex))) * 10;
-            positiveIndex++;
           }
+
+          return deathIncreases;
+        }
+
+        int[] hospitalizedMap() {
+          boolean indexAtComma = false;
+          int commaIndex = 0;
+          int positiveIndex = 0;
+
+          for (String c : lines) {
+            for (int i = 0; i < c.length(); i++) {
+              if (i <= c.length()-21) {
+                if (c.substring(i, i+21).equals("hospitalizedCurrently")) {
+                  commaIndex = i+22;
+                  while (!indexAtComma) {
+                    if (c.charAt(commaIndex) == ',') {
+                      break;
+                    }
+                    commaIndex++;
+                  }
+                  if (!c.substring(i+23, commaIndex).equals("null")) {
+                    hospitalized[positiveIndex] = Integer.parseInt(c.substring(i+23, commaIndex));
+                  } else {
+                    hospitalized[positiveIndex] = 0;
+                  }
+                  positiveIndex++;
+                }
+              }
+            }
+          }
+
+          return hospitalized;
+        }
+
+        int[] recoveredMap() {
+          boolean indexAtComma = false;
+          int commaIndex = 0;
+          int positiveIndex = 0;
+
+          for (String c : lines) {
+            for (int i = 0; i < c.length(); i++) {
+              if (i <= c.length()-9) {
+                if (c.substring(i, i+9).equals("recovered")) {
+                  commaIndex = i+10;
+                  while (!indexAtComma) {
+                    if (c.charAt(commaIndex) == ',') {
+                      break;
+                    }
+                    commaIndex++;
+                  }
+                  if (!c.substring(i+11, commaIndex).equals("null")) {
+                    recovered[positiveIndex] = (Integer.parseInt(c.substring(i+11, commaIndex)))/25;
+                  } else {
+                    recovered[positiveIndex] = 0;
+                  }
+                  positiveIndex++;
+                }
+              }
+            }
+          }
+          return recovered;
         }
       }
-    }
-
-    return deathIncreases;
-  }
-
-  int[] hospitalizedMap() {
-    boolean indexAtComma = false;
-    int commaIndex = 0;
-    int positiveIndex = 0;
-
-    for (String c : lines) {
-      for (int i = 0; i < c.length(); i++) {
-        if (i <= c.length()-21) {
-          if (c.substring(i, i+21).equals("hospitalizedCurrently")) {
-            commaIndex = i+22;
-            while (!indexAtComma) {
-              if (c.charAt(commaIndex) == ',') {
-                break;
-              }
-              commaIndex++;
-            }
-            if (!c.substring(i+23, commaIndex).equals("null")) {
-              hospitalized[positiveIndex] = Integer.parseInt(c.substring(i+23, commaIndex));
-            } else {
-              hospitalized[positiveIndex] = 0;
-            }
-            positiveIndex++;
-          }
-        }
-      }
-    }
-
-    return hospitalized;
-  }
-
-  int[] recoveredMap() {
-    boolean indexAtComma = false;
-    int commaIndex = 0;
-    int positiveIndex = 0;
-
-    for (String c : lines) {
-      for (int i = 0; i < c.length(); i++) {
-        if (i <= c.length()-9) {
-          if (c.substring(i, i+9).equals("recovered")) {
-            commaIndex = i+10;
-            while (!indexAtComma) {
-              if (c.charAt(commaIndex) == ',') {
-                break;
-              }
-              commaIndex++;
-            }
-            if (!c.substring(i+11, commaIndex).equals("null")) {
-              recovered[positiveIndex] = (Integer.parseInt(c.substring(i+11, commaIndex)))/25;
-            } else {
-              recovered[positiveIndex] = 0;
-            }
-            positiveIndex++;
-          }
-        }
-      }
-    }
-    return recovered;
-
-  }
-}

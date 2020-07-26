@@ -87,11 +87,12 @@ public class MainDisplay {
 
 
   void circles(int[] data, int r, int g, int b) {
-    push();
+    pushMatrix();
     noStroke();
     for (int i = 0; i < 50; i++) {
       fill(r, g, b, 150);
-      circle(xValues[i], yValues[i], (float)(Math.sqrt(data[i])));
+      //circle(xValues[i], yValues[i], (float)(Math.sqrt(data[i])));
+    }
   }
   
   void graph(int[] pI) {
@@ -146,58 +147,7 @@ public class MainDisplay {
       }
 
     }
-    pop();
-  }
-
-  void showNews() {//51 //300 //83 spacing
-    strokeWeight(1);
-    stroke(0);
-    line(WIDTH*3/4, 51, WIDTH, 51);
-    line(WIDTH*3/4, 134, WIDTH, 134);//300 //50
-    line(WIDTH*3/4, 217, WIDTH, 217);
-    for (int i = 0; i < 3; i++) {
-      try {
-        newsInfo.getArticles().get(i);
-      }
-      catch(Exception e) {
-        continue;
-      }
-      String title = newsInfo.getArticles().get(i).getTitle();
-      String description = newsInfo.getArticles().get(i).getDescription();
-      String author = newsInfo.getArticles().get(i).getAuthor();
-      String publishedAt = newsInfo.getArticles().get(i).getPublishedAt();
-      title = title.substring(0, 45) + "...";
-      textSize(10);
-      fill(0, 0, 255);
-      text(title, 1 + WIDTH*3/4 + 3, 56 + (83*i), WIDTH, 65 + (83*i));
-      fill(50, 50, 50);
-      textSize(9);
-      String firstDescription;
-      try {
-        firstDescription = description.substring(0, 55);
-      }
-      catch(Exception e) {
-        firstDescription = description + "...";
-      }
-      String secondDescription;
-      try {
-        secondDescription = description.substring(55, 110) + "...";
-      }
-      catch(Exception e) {
-        secondDescription = "";
-      }
-      text(firstDescription, 1 + WIDTH*3/4 + 3, 70 + (83*i), WIDTH, 80 + (83*i));
-      text(secondDescription, 1 + WIDTH*3/4 + 3, 80 + (83*i), WIDTH, 90 + (83*i));
-      publishedAt = "Date: " + publishedAt;
-      text(publishedAt, 1 + WIDTH*3/4 + 3, 97 + (83*i), WIDTH, 107 + (83*i));
-      author = "Author: " + author;
-      text(author, 1 + WIDTH*3/4 + 3, 110 + (83*i), WIDTH, 125 + (83*i));
-      if (!title.equals("")) {
-        textSize(9);
-        fill(170, 170, 100);
-        text("CLICK for more info", 1 + WIDTH*3/4 + 160, 120 + (83*i), WIDTH, 130 + (83*i));
-      }
-    }
+    popMatrix();
     strokeWeight(1);
   }
   NewsDatum getCurrentNews() {
@@ -212,8 +162,5 @@ public class MainDisplay {
     textSize(24);
     String fetchText = "Please wait ... Proccess may take up to 6 seconds";
     text(fetchText, 300, 350);
-  }
-  NewsDatum getCurrentNews(){
-    return newsInfo;
   }
 }
