@@ -1,12 +1,14 @@
 
-MainDisplay display;
-Button posIncreaseButton;
-Button deathIncreaseButton;
-Button hospitalizedButton;
-Button totalRecoveredButton;
+MainDisplay display = new MainDisplay(); ;
+Button posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
+Button deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
+Button hospitalizedButton = new Button("Hospitalized", 675, 120, 130, 30);
+Button totalRecoveredButton = new Button("Total Recovered", 675, 160, 130, 30);
 final int WIDTH = 1100;
 NewsDatum newsInfo;
-Map map;
+Map map = new Map();
+boolean hasGottenData = false;
+boolean [] buttons = {false,false,false,false};
 
 public void settings() {
   size(1100, 700);
@@ -14,22 +16,28 @@ public void settings() {
 }
 
 void setup() {
-  fill(0,0,0);
-  textSize(24);
-  String fetchText = "Please wait ... Proccess may take up to 6 seconds";
-  text(fetchText, 300, 350);
-  
+ 
 }
 
-void draw() {
-  display = new MainDisplay();                                      
-  Map map= new Map();
+void draw() {                                      
+  if (hasGottenData){
+    updateGraphics();
+  }else{
+    fill(0,0,0);
+    textSize(24);
+    String fetchText = "Please wait ... Proccess may take up to 6 seconds";
+    text(fetchText, 300, 350);
+    println("hello");
+    updateData();
+    hasGottenData = true;
+  }
+}
+void updateData(){
   map.checkSavedData();
   newsInfo = display.getCurrentNews();
-  posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
-  deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
-  hospitalizedButton = new Button("Hospitalized", 675, 120, 130, 30);
-  totalRecoveredButton = new Button("Total Recovered", 675, 160, 130, 30);
+}
+
+void updateGraphics(){
   background(#D6D6D6);
   display.grid();
   display.headers();
@@ -40,7 +48,29 @@ void draw() {
   hospitalizedButton.display(232, 232, 232);
   totalRecoveredButton.display(232, 232, 232);
   display.showNews();
+  if(buttons[0]){
+    int[] positiveIncreases = map.positiveIncreaseMap();
+    posIncreaseButton.display(255, 0, 0);
+    display.circles(positiveIncreases, 255, 0, 0);
+  }else if(buttons[1]){
+    int[] deathIncreases = map.deathIncreaseMap();
+    deathIncreaseButton.display(0, 0, 255);
+    display.circles(deathIncreases, 0, 0, 255);
+  }else if(buttons[2]){
+    int[] hospitalized = map.hospitalizedMap();
+    hospitalizedButton.display(0, 255, 0);
+    display.circles(hospitalized, 0, 255, 0);
+  }else if(buttons[3]){
+    int[] recovered = map.recoveredMap();
+    totalRecoveredButton.display(255, 255, 0);
+    display.circles(recovered, 255, 255, 0);
+  }
+  
 }
+
+void drawOver(){
+}
+
 
 void mousePressed() {
   if (mouseX >= WIDTH*3/4 && mouseX <= WIDTH && mouseY >= 51 && mouseY <= 134) {
@@ -68,25 +98,25 @@ void mousePressed() {
   }
   
   if (posIncreaseButton.mouseIsOver()) {
-    int[] positiveIncreases = map.positiveIncreaseMap();
-    redraw();
-    posIncreaseButton.display(255, 0, 0);
-    display.circles(positiveIncreases, 255, 0, 0);
+    buttons[0] = true;
+    buttons[1] = false;
+    buttons[2] = false;
+    buttons[3] = false;
   } else if (deathIncreaseButton.mouseIsOver()) {
-    int[] deathIncreases = map.deathIncreaseMap();
-    redraw();
-    deathIncreaseButton.display(0, 0, 255);
-    display.circles(deathIncreases, 0, 0, 255);
+    buttons[0] = false;
+    buttons[1] = true;
+    buttons[2] = false;
+    buttons[3] = false;
   } else if (hospitalizedButton.mouseIsOver()) {
-    int[] hospitalized = map.hospitalizedMap();
-    redraw();
-    hospitalizedButton.display(0, 255, 0);
-    display.circles(hospitalized, 0, 255, 0);
+    buttons[0] = false;
+    buttons[1] = false;
+    buttons[2] = true;
+    buttons[3] = false;
   } else if (totalRecoveredButton.mouseIsOver()) {
-    int[] recovered = map.recoveredMap();
-    redraw();
-    totalRecoveredButton.display(255, 255, 0);
-    display.circles(recovered, 255, 255, 0);
+    buttons[0] = false;
+    buttons[1] = false;
+    buttons[2] = false;
+    buttons[3] = true;
   } 
 
   if (display.feverButton.mouseIsOver()) {

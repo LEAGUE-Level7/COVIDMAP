@@ -153,10 +153,5 @@ public class MainDisplay {
     }
     return newsInfo;
   }
-  void pleaseWait(){
-    fill(0,0,0);
-    textSize(24);
-    String fetchText = "Please wait ... Proccess may take up to 6 seconds";
-    text(fetchText, 300, 350);
-  }
+  
 }

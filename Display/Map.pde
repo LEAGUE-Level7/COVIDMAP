@@ -86,8 +86,10 @@ public class Map {
     boolean indexAtComma = false;
     int commaIndex = 0;
     int positiveIndex = 0;
-
+  
     for (String c : lines) {
+      if(c!=null){
+        System.out.println("Good:");
       for (int i = 0; i < c.length(); i++) {
         if (i <= c.length()-16) {
           if (c.substring(i, i+16).equals("positiveIncrease")) {
@@ -102,6 +104,7 @@ public class Map {
             positiveIndex++;
           }
         }
+      }
       }
     }
     return positiveIncreases;
