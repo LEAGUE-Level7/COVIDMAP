@@ -16,18 +16,16 @@ public void settings() {
 }
 
 void setup() {
- 
+  fill(0,0,0);
+  textSize(24);
+  String fetchText = "Please wait ... Proccess may take up to 15 seconds";
+  text(fetchText, 300, 350);
 }
 
-void draw() {                                      
+void draw() { 
   if (hasGottenData){
     updateGraphics();
   }else{
-    fill(0,0,0);
-    textSize(24);
-    String fetchText = "Please wait ... Proccess may take up to 6 seconds";
-    text(fetchText, 300, 350);
-    println("hello");
     updateData();
     hasGottenData = true;
   }
