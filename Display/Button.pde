@@ -23,6 +23,7 @@ class Button {
     fill(0);
     text(label, x + (w / 2), y + (h / 2));
     popMatrix();
+    textAlign(0);
   }
 
   boolean mouseIsOver() {
