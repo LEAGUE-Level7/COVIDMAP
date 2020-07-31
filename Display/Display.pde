@@ -101,15 +101,17 @@ public class MainDisplay {
     graph.display();
   }
   
-  void showNews(){//51 //300 //83 spacing
+   void showNews() {//51 //300 //83 spacing
     strokeWeight(1);
+    stroke(0);
     line(WIDTH*3/4, 51, WIDTH, 51);
     line(WIDTH*3/4, 134, WIDTH, 134);//300 //50
     line(WIDTH*3/4, 217, WIDTH, 217);
-    for(int i = 0; i < 3; i++){
+    for (int i = 0; i < 3; i++) {
       try {
         newsInfo.getArticles().get(i);
-      } catch(Exception e){
+      }
+      catch(Exception e) {
         continue;
       }
       String title = newsInfo.getArticles().get(i).getTitle();
@@ -125,13 +127,15 @@ public class MainDisplay {
       String firstDescription;
       try {
         firstDescription = description.substring(0, 55);
-      } catch (Exception e){
+      }
+      catch(Exception e) {
         firstDescription = description + "...";
       }
       String secondDescription;
       try {
         secondDescription = description.substring(55, 110) + "...";
-      } catch (Exception e){
+      }
+      catch(Exception e) {
         secondDescription = "";
       }
       text(firstDescription, 1 + WIDTH*3/4 + 3, 70 + (83*i), WIDTH, 80 + (83*i));
@@ -139,15 +143,13 @@ public class MainDisplay {
       publishedAt = "Date: " + publishedAt;
       text(publishedAt, 1 + WIDTH*3/4 + 3, 97 + (83*i), WIDTH, 107 + (83*i));
       author = "Author: " + author;
-      text(author, 1 + WIDTH*3/4 + 3, 115 + (83*i), WIDTH, 125 + (83*i));
-      if (!title.equals("")){
+      text(author, 1 + WIDTH*3/4 + 3, 110 + (83*i), WIDTH, 125 + (83*i));
+      if (!title.equals("")) {
         textSize(9);
         fill(170, 170, 100);
         text("CLICK for more info", 1 + WIDTH*3/4 + 160, 120 + (83*i), WIDTH, 130 + (83*i));
       }
-
     }
-    popMatrix();
     strokeWeight(1);
   }
   NewsDatum getCurrentNews() {
