@@ -74,10 +74,11 @@ public class MainDisplay {
     String rules = "Wear a mask. Wash your hands. Keep your distance!";
     textSize(9);
     fill(170, 170, 100);
-    text("CLICK for more info",  1 + WIDTH*3/4 + 160, 395);
+    text("CLICK for more info", WIDTH*3/4 + 160, 395);
     textSize(14.5);
     fill(0, 0, 0);
-    text(rules, 855, 345, 225, 680);
+    text(rules.substring(0, 29), 830, 345, WIDTH, 700);
+    text(rules.substring(30), 830, 365, WIDTH, 700);
   }
 
   void usMap() {
@@ -87,11 +88,10 @@ public class MainDisplay {
 
 
   void circles(int[] data, int r, int g, int b) {
-    pushMatrix();
     noStroke();
     for (int i = 0; i < 50; i++) {
       fill(r, g, b, 150);
-      //circle(xValues[i], yValues[i], (float)(Math.sqrt(data[i])));
+      circle(xValues[i], yValues[i], (float)(Math.sqrt(data[i])));
     }
   }
   
@@ -99,6 +99,10 @@ public class MainDisplay {
     Graph graph = new Graph();
     graph.initialize(pI);
     graph.display();
+    textAlign(0);
+    String[] fontList = PFont.list();
+    PFont font = createFont(fontList[168], 32);
+    textFont(font);
   }
   
    void showNews() {//51 //300 //83 spacing

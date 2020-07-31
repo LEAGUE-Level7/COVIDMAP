@@ -15,7 +15,7 @@ public class Graph {
   
   void display() {
     for (int i: positiveIncreases) {
-      System.out.println(i);
+      //System.out.println(i);
     }
     strokeWeight(2);
     fill(0, 0, 0);

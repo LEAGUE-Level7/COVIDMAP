@@ -16,6 +16,10 @@ public void settings() {
 
 void setup() {
   fill(0,0,0);
+  textAlign(0);
+  String[] fontList = PFont.list();
+  PFont font = createFont(fontList[168], 32);
+  textFont(font);
   textSize(24);
   String fetchText = "Please wait ... Proccess may take up to 15 seconds";
   text(fetchText, 300, 350);
@@ -91,6 +95,9 @@ void mousePressed() {
     }
     catch(Exception e) {
     }
+  }
+  if(mouseX >= WIDTH*3/4 && mouseX <= WIDTH && mouseY > 300 && mouseY <= 400){
+    link("https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html");
   }
   if (posIncreaseButton.mouseIsOver()) {
     buttons[0] = true;
