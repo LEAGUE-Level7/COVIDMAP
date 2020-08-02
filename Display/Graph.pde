@@ -66,15 +66,13 @@ public class Graph {
       }
     }
     //y axis
-    System.out.println("hee hoo");
-    System.out.println(rectY);
     textFont(mono, 12);
     fill(0, 0, 0);
-    text(unsortedData[index], 20, rectY);
-    text((unsortedData[index]/2), 20, (rectY + rectHeight/2));
+    text(unsortedData[index] + " -", 25, rectY);
+    text((unsortedData[index]/2) + " -", 25, (rectY + rectHeight/2));
   }
 
-  void organizeData(int[] pI) { //also need to sort the states?
+  void organizeData(int[] pI) { /
     int highest = sort(pI);
     index = search(unsortedData, highest);
   }
