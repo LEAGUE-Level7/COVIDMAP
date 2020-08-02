@@ -91,14 +91,14 @@ public class MainDisplay {
     noStroke();
     for (int i = 0; i < 50; i++) {
       fill(r, g, b, 150);
-      circle(xValues[i], yValues[i], (float)(Math.sqrt(data[i])));
+      ellipse(xValues[i], yValues[i], (float)(Math.sqrt(data[i])), (float)(Math.sqrt(data[i])));
     }
   }
   
-  void graph(int[] pI) {
+  void graph(int[] pI, int scale) {
     Graph graph = new Graph();
     graph.initialize(pI);
-    graph.display();
+    graph.display(scale);
     textAlign(0);
     String[] fontList = PFont.list();
     PFont font = createFont(fontList[168], 32);
@@ -166,7 +166,7 @@ public class MainDisplay {
   void pleaseWait(){
     fill(0,0,0);
     textSize(24);
-    String fetchText = "Please wait ... Proccess may take up to 6 seconds";
+    String fetchText = "Please wait ... Process may take up to 6 seconds";
     text(fetchText, 300, 350);
   }
 }

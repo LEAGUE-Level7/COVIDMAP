@@ -21,7 +21,7 @@ void setup() {
   PFont font = createFont(fontList[168], 32);
   textFont(font);
   textSize(24);
-  String fetchText = "Please wait ... Proccess may take up to 15 seconds";
+  String fetchText = "Please wait ... Process may take up to 15 seconds";
   text(fetchText, 300, 350);
 }
 
@@ -53,22 +53,26 @@ void updateGraphics(){
     int[] positiveIncreases = map.positiveIncreaseMap();
     posIncreaseButton.display(255, 0, 0);
     display.circles(positiveIncreases, 255, 0, 0);
-    display.graph(positiveIncreases);
+    display.graph(positiveIncreases, 0);
   }else if(buttons[1]){
     int[] deathIncreases = map.deathIncreaseMap();
     deathIncreaseButton.display(0, 0, 255);
     display.circles(deathIncreases, 0, 0, 255);
-    display.graph(deathIncreases);
+    display.graph(deathIncreases, 1);
   }else if(buttons[2]){
     int[] hospitalized = map.hospitalizedMap();
     hospitalizedButton.display(0, 255, 0);
     display.circles(hospitalized, 0, 255, 0);
-    display.graph(hospitalized);
+    display.graph(hospitalized, 2);
   }else if(buttons[3]){
     int[] recovered = map.recoveredMap();
     totalRecoveredButton.display(255, 255, 0);
     display.circles(recovered, 255, 255, 0);
-    display.graph(recovered);
+    display.graph(recovered, 3);
+  } else {
+    textSize(16);
+    fill(0, 0, 0);
+    text("Select a button above to view a graph.", 275, 600);
   }
   
 }
