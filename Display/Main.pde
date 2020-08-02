@@ -4,6 +4,11 @@ Button posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
 Button deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
 Button hospitalizedButton = new Button("Hospitalized", 675, 120, 130, 30);
 Button totalRecoveredButton = new Button("Total Recovered", 675, 160, 130, 30);
+
+Button nextPage = new Button("->", 750, 425, 60, 30);
+Button previousPage = new Button("<-", 685, 425, 60, 30);
+int currentPage = 1;
+
 final int WIDTH = 1100;
 NewsDatum newsInfo;
 Map map = new Map();
@@ -40,35 +45,60 @@ void updateGraphics(){
   display.grid();
   display.headers();
   display.baseText();
-  display.usMap();
-  posIncreaseButton.display(232, 232, 232);
-  deathIncreaseButton.display(232, 232, 232);
-  hospitalizedButton.display(232, 232, 232);
-  totalRecoveredButton.display(232, 232, 232);
-  display.showNews();
-  if(buttons[0]){
-    int[] positiveIncreases = map.positiveIncreaseMap();
-    posIncreaseButton.display(255, 0, 0);
-    display.circles(positiveIncreases, 255, 0, 0);
-  }else if(buttons[1]){
-    int[] deathIncreases = map.deathIncreaseMap();
-    deathIncreaseButton.display(0, 0, 255);
-    display.circles(deathIncreases, 0, 0, 255);
-  }else if(buttons[2]){
-    int[] hospitalized = map.hospitalizedMap();
-    hospitalizedButton.display(0, 255, 0);
-    display.circles(hospitalized, 0, 255, 0);
-  }else if(buttons[3]){
-    int[] recovered = map.recoveredMap();
-    totalRecoveredButton.display(255, 255, 0);
-    display.circles(recovered, 255, 255, 0);
+  
+  if (currentPage == 1){
+    textSize(25);
+    fill(179, 0, 0);
+    text("Map", 380, 35);
+    //don't forget to reset the color and textSize
+    nextPage.display(300, 300, 300);
+    previousPage.display(150, 150, 150);
+    display.usMap();
+    posIncreaseButton.display(232, 232, 232);
+    deathIncreaseButton.display(232, 232, 232);
+    hospitalizedButton.display(232, 232, 232);
+    totalRecoveredButton.display(232, 232, 232);
+    if(buttons[0]){
+      int[] positiveIncreases = map.positiveIncreaseMap();
+      posIncreaseButton.display(255, 0, 0);
+      display.circles(positiveIncreases, 255, 0, 0);
+    }else if(buttons[1]){
+      int[] deathIncreases = map.deathIncreaseMap();
+      deathIncreaseButton.display(0, 0, 255);
+      display.circles(deathIncreases, 0, 0, 255);
+    }else if(buttons[2]){
+      int[] hospitalized = map.hospitalizedMap();
+      hospitalizedButton.display(0, 255, 0);
+      display.circles(hospitalized, 0, 255, 0);
+    }else if(buttons[3]){
+      int[] recovered = map.recoveredMap();
+      totalRecoveredButton.display(255, 255, 0);
+      display.circles(recovered, 255, 255, 0);
+    }
   }
   
+  if (currentPage == 2){
+    nextPage.display(300, 300, 300);
+    previousPage.display(300, 300, 300);
+    //do something
+  }
+  
+  if (currentPage == 3){
+    nextPage.display(300, 300, 300);
+    previousPage.display(300, 300, 300);
+    //do something
+  }
+  
+  if (currentPage == 4){
+    nextPage.display(150, 150, 150);
+    previousPage.display(300, 300, 300);
+    //do something
+  }
+  
+  display.showNews();
+  
+  
 }
-
-void drawOver(){
-}
-
 
 void mousePressed() {
   if (mouseX >= WIDTH*3/4 && mouseX <= WIDTH && mouseY >= 51 && mouseY <= 134) {
@@ -88,6 +118,16 @@ void mousePressed() {
       link(newsInfo.getArticles().get(2).getURL());
     }
     catch(Exception e) {
+    }
+  }
+  if (nextPage.mouseIsOver()) {
+    if(currentPage!=4){
+      currentPage++;
+    }
+  }
+  if (previousPage.mouseIsOver()) {
+    if(currentPage!=1){
+      currentPage--;
     }
   }
   if (posIncreaseButton.mouseIsOver()) {

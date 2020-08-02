@@ -27,6 +27,8 @@ public class MainDisplay {
    Button vomitingButton = new Button("Vomiting", 980, 610, 90, 30);
    Button diarrheaButton = new Button("Diarrhea", 980, 650, 90, 30);
    
+
+   
   public void grid() {
     strokeWeight(4);
     stroke(0);
@@ -43,7 +45,6 @@ public class MainDisplay {
     text("Symptoms", 900, 435);
     text("Regulations", 890, 335);
     text("News Updates", 880, 35);
-    text("Map", 380, 35);
     text("Graph", 375, 500);
   }
   void baseText() {
