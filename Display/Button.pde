@@ -14,7 +14,7 @@ class Button {
   }
 
   void display(int r, int g, int b) {
-    push();
+    pushMatrix();
     textSize(14.5);
     fill(r, g, b, 150);
     stroke(141);
@@ -22,7 +22,8 @@ class Button {
     textAlign(CENTER, CENTER);
     fill(0);
     text(label, x + (w / 2), y + (h / 2));
-    pop();
+    popMatrix();
+    textAlign(0);
   }
 
   boolean mouseIsOver() {

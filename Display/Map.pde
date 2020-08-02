@@ -103,10 +103,11 @@ public class Map {
           }
         }
       }
-      }
-    
+
+    }
     return positiveIncreases;
   }
+
 
   int[] deathIncreaseMap() {
     boolean indexAtComma = false;

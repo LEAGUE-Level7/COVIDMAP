@@ -78,10 +78,14 @@ public class MainDisplay {
       + "New loss of taste or smell\n~ Sore throat"
       + "\n~ Congestion/runny nose\n~ Nausea/vomiting\n~ Diarrhea";
     String rules = "Wear a mask. Wash your hands. Keep your distance!";
+
+    textSize(9);
+    fill(170, 170, 100);
+    text("CLICK for more info", WIDTH*3/4 + 160, 395);
     textSize(14.5);
     fill(0, 0, 0);
-    //text(symptoms, 855, 445, 1050, 680);
-    text(rules, 855, 345, 225, 680);
+    text(rules.substring(0, 29), 830, 345, WIDTH, 700);
+    text(rules.substring(30), 830, 365, WIDTH, 700);
   }
 
   void usMap() {
@@ -89,17 +93,27 @@ public class MainDisplay {
     image(californiaMap, 40, 60, 600, 400);
   }
 
+
   void circles(int[] data, int r, int g, int b) {
-    push();
     noStroke();
     for (int i = 0; i < 50; i++) {
       fill(r, g, b, 150);
-      circle(xValues[i], yValues[i], (float)(Math.sqrt(data[i])));
+      ellipse(xValues[i], yValues[i], (float)(Math.sqrt(data[i])), (float)(Math.sqrt(data[i])));
     }
-    pop();
   }
-
-  void showNews() {//51 //300 //83 spacing
+  
+  void graph(int[] pI, int scale) {
+    Graph graph = new Graph();
+    graph.initialize(pI);
+    graph.organizeData(pI);
+    graph.display(scale);
+    textAlign(0);
+    String[] fontList = PFont.list();
+    PFont font = createFont(fontList[168], 32);
+    textFont(font);
+  }
+  
+   void showNews() {//51 //300 //83 spacing
     strokeWeight(1);
     stroke(0);
     line(WIDTH*3/4, 51, WIDTH, 51);
@@ -157,5 +171,4 @@ public class MainDisplay {
     }
     return newsInfo;
   }
-  
 }
