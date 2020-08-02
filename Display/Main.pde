@@ -72,7 +72,7 @@ void updateGraphics(){
   } else {
     textSize(16);
     fill(0, 0, 0);
-    text("Select a button above to view a graph.", 275, 600);
+    text("Select a button above to view a graph.", 280, 600);
   }
   
 }

@@ -98,6 +98,7 @@ public class MainDisplay {
   void graph(int[] pI, int scale) {
     Graph graph = new Graph();
     graph.initialize(pI);
+    graph.organizeData(pI);
     graph.display(scale);
     textAlign(0);
     String[] fontList = PFont.list();
