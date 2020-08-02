@@ -4,6 +4,11 @@ Button posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
 Button deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
 Button hospitalizedButton = new Button("Hospitalized", 675, 120, 130, 30);
 Button totalRecoveredButton = new Button("Total Recovered", 675, 160, 130, 30);
+
+Button nextPage = new Button("->", 750, 425, 60, 30);
+Button previousPage = new Button("<-", 685, 425, 60, 30);
+int currentPage = 1;
+
 final int WIDTH = 1100;
 NewsDatum newsInfo;
 Map map = new Map();
@@ -44,6 +49,14 @@ void updateGraphics(){
   display.grid();
   display.headers();
   display.baseText();
+  
+  if (currentPage == 1){
+    textSize(25);
+    fill(179, 0, 0);
+    text("Map", 380, 35);
+    //don't forget to reset the color and textSize
+    nextPage.display(300, 300, 300);
+    previousPage.display(150, 150, 150);
   display.usMap();
   posIncreaseButton.display(232, 232, 232);
   deathIncreaseButton.display(232, 232, 232);
@@ -76,10 +89,31 @@ void updateGraphics(){
     textSize(16);
     fill(0, 0, 0);
     text("Select a button above to view a graph.", 280, 600);
+
   }
   
+  if (currentPage == 2){
+    nextPage.display(300, 300, 300);
+    previousPage.display(300, 300, 300);
+    //do something
+  }
+  
+  if (currentPage == 3){
+    nextPage.display(300, 300, 300);
+    previousPage.display(300, 300, 300);
+    //do something
+  }
+  
+  if (currentPage == 4){
+    nextPage.display(150, 150, 150);
+    previousPage.display(300, 300, 300);
+    //do something
+  }
+  
+  display.showNews();
+  
+  
 }
-
 
 void mousePressed() {
   if (mouseX >= WIDTH*3/4 && mouseX <= WIDTH && mouseY >= 51 && mouseY <= 134) {
@@ -101,8 +135,19 @@ void mousePressed() {
     catch(Exception e) {
     }
   }
+  if (nextPage.mouseIsOver()) {
+    if(currentPage!=4){
+      currentPage++;
+    }
+  }
+  if (previousPage.mouseIsOver()) {
+    if(currentPage!=1){
+      currentPage--;
+    }
+
   if(mouseX >= WIDTH*3/4 && mouseX <= WIDTH && mouseY > 300 && mouseY <= 400){
     link("https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html");
+
   }
   if (posIncreaseButton.mouseIsOver()) {
     buttons[0] = true;
