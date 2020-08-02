@@ -76,9 +76,12 @@ public class Map {
 
     apiData = gson.fromJson(apiJSON.toString(), Datum.class);
     savedData = gson.fromJson(savedJSON.toString(), Datum.class);
-
-    if (!apiData.getDate().equals(savedData.getDate())) {
-      pullAllStates();
+    try{
+      if (!apiData.getDate().equals(savedData.getDate())) {
+        pullAllStates();
+      }
+    } catch(NullPointerException e) {
+       pullAllStates();
     }
   } 
 
