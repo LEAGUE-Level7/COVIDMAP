@@ -22,8 +22,12 @@ public void settings() {
 
 void setup() {
   fill(0,0,0);
+  textAlign(0);
+  String[] fontList = PFont.list();
+  PFont font = createFont(fontList[168], 32);
+  textFont(font);
   textSize(24);
-  String fetchText = "Please wait ... Proccess may take up to 15 seconds";
+  String fetchText = "Please wait ... Process may take up to 15 seconds";
   text(fetchText, 300, 350);
 }
 
@@ -53,28 +57,39 @@ void updateGraphics(){
     //don't forget to reset the color and textSize
     nextPage.display(300, 300, 300);
     previousPage.display(150, 150, 150);
-    display.usMap();
-    posIncreaseButton.display(232, 232, 232);
-    deathIncreaseButton.display(232, 232, 232);
-    hospitalizedButton.display(232, 232, 232);
-    totalRecoveredButton.display(232, 232, 232);
-    if(buttons[0]){
-      int[] positiveIncreases = map.positiveIncreaseMap();
-      posIncreaseButton.display(255, 0, 0);
-      display.circles(positiveIncreases, 255, 0, 0);
-    }else if(buttons[1]){
-      int[] deathIncreases = map.deathIncreaseMap();
-      deathIncreaseButton.display(0, 0, 255);
-      display.circles(deathIncreases, 0, 0, 255);
-    }else if(buttons[2]){
-      int[] hospitalized = map.hospitalizedMap();
-      hospitalizedButton.display(0, 255, 0);
-      display.circles(hospitalized, 0, 255, 0);
-    }else if(buttons[3]){
-      int[] recovered = map.recoveredMap();
-      totalRecoveredButton.display(255, 255, 0);
-      display.circles(recovered, 255, 255, 0);
-    }
+  display.usMap();
+  posIncreaseButton.display(232, 232, 232);
+  deathIncreaseButton.display(232, 232, 232);
+  hospitalizedButton.display(232, 232, 232);
+  totalRecoveredButton.display(232, 232, 232);
+  display.showNews();
+  if(buttons[0]){
+    int[] positiveIncreases = map.positiveIncreaseMap();
+    posIncreaseButton.display(255, 0, 0);
+    display.circles(positiveIncreases, 255, 0, 0);
+    display.graph(positiveIncreases, 0);
+  }else if(buttons[1]){
+    int[] deathIncreases = map.deathIncreaseMap();
+    deathIncreaseButton.display(0, 0, 255);
+    display.circles(deathIncreases, 0, 0, 255);
+    display.graph(deathIncreases, 1);
+
+  }else if(buttons[2]){
+    int[] hospitalized = map.hospitalizedMap();
+    hospitalizedButton.display(0, 255, 0);
+    display.circles(hospitalized, 0, 255, 0);
+    display.graph(hospitalized, 2);
+  }else if(buttons[3]){
+    int[] recovered = map.recoveredMap();
+    totalRecoveredButton.display(255, 255, 0);
+    display.circles(recovered, 255, 255, 0);
+
+    display.graph(recovered, 3);
+  } else {
+    textSize(16);
+    fill(0, 0, 0);
+    text("Select a button above to view a graph.", 280, 600);
+
   }
   
   if (currentPage == 2){
@@ -129,6 +144,10 @@ void mousePressed() {
     if(currentPage!=1){
       currentPage--;
     }
+
+  if(mouseX >= WIDTH*3/4 && mouseX <= WIDTH && mouseY > 300 && mouseY <= 400){
+    link("https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html");
+
   }
   if (posIncreaseButton.mouseIsOver()) {
     buttons[0] = true;
