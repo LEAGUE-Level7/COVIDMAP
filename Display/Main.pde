@@ -1,3 +1,4 @@
+
 MainDisplay display = new MainDisplay(); ;
 Button posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
 Button deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
@@ -59,6 +60,7 @@ void updateGraphics(){
     deathIncreaseButton.display(0, 0, 255);
     display.circles(deathIncreases, 0, 0, 255);
     display.graph(deathIncreases, 1);
+
   }else if(buttons[2]){
     int[] hospitalized = map.hospitalizedMap();
     hospitalizedButton.display(0, 255, 0);
@@ -68,6 +70,7 @@ void updateGraphics(){
     int[] recovered = map.recoveredMap();
     totalRecoveredButton.display(255, 255, 0);
     display.circles(recovered, 255, 255, 0);
+
     display.graph(recovered, 3);
   } else {
     textSize(16);
@@ -77,8 +80,6 @@ void updateGraphics(){
   
 }
 
-void drawOver(){
-}
 
 void mousePressed() {
   if (mouseX >= WIDTH*3/4 && mouseX <= WIDTH && mouseY >= 51 && mouseY <= 134) {
