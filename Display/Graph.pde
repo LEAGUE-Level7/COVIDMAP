@@ -72,7 +72,7 @@ public class Graph {
     text((unsortedData[index]/2) + " -", 25, (rectY + rectHeight/2));
   }
 
-  void organizeData(int[] pI) { /
+  void organizeData(int[] pI) { 
     int highest = sort(pI);
     index = search(unsortedData, highest);
   }
