@@ -1,3 +1,5 @@
+import javax.swing.ImageIcon;
+
 public class MainDisplay {
   News news;
   NewsDatum newsInfo;

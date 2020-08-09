@@ -1,3 +1,15 @@
+import static javax.swing.JOptionPane.*;
+import javax.imageio.ImageIO;
+
+MainDisplay display;
+Button posIncreaseButton;
+Button deathIncreaseButton;
+Button hospitalizedButton;
+Button totalRecoveredButton;
+Button buy1;
+Button buy2;
+Button buy3;
+final String AMAZON = "https://www.amazon.com/s?k=";
 
 MainDisplay display = new MainDisplay(); ;
 Button posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
@@ -42,6 +54,13 @@ void draw() {
 void updateData(){
   map.checkSavedData();
   newsInfo = display.getCurrentNews();
+  posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
+  deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
+  hospitalizedButton = new Button("Hospitalized", 675, 120, 130, 30);
+  totalRecoveredButton = new Button("Total Recovered", 675, 160, 130, 30);
+  buy1 = new Button("Buy Masks", 675, 340, 130, 30);
+  buy2 = new Button("Buy Disinfectant", 675, 380, 130, 30);
+  buy3 = new Button("Buy Custom", 675, 420, 130, 30);
 }
 
 void updateGraphics(){
@@ -49,6 +68,14 @@ void updateGraphics(){
   display.grid();
   display.headers();
   display.baseText();
+  display.usMap();
+  posIncreaseButton.display(232, 232, 232);
+  deathIncreaseButton.display(232, 232, 232);
+  hospitalizedButton.display(232, 232, 232);
+  totalRecoveredButton.display(232, 232, 232);
+  buy1.display(232, 232, 232);
+  buy2.display(232, 232, 232);
+  buy3.display(232, 232, 232);
   
   if (currentPage == 1){
     textSize(25);
@@ -106,7 +133,6 @@ void updateGraphics(){
     previousPage.display(300, 300, 300);
     //do something
   }
-  
   display.showNews();
 }
   
@@ -168,6 +194,19 @@ void mousePressed() {
     buttons[2] = false;
     buttons[3] = true;
   } 
+  
+  //added stuff:
+  if(buy1.mouseIsOver()){
+    link(AMAZON + "masks");
+  } else if(buy2.mouseIsOver()){
+    link(AMAZON + "disinfectant");
+  } else if(buy3.mouseIsOver()){
+    String item = showInputDialog(null, "Please enter the item you want to buy: ", "Search for Supplies", INFORMATION_MESSAGE, new ImageIcon(ImageIO.read(new URL("https://upload.wikimedia.org/wikipedia/commons/d/de/Amazon_icon.png"))), null, "");
+    if(item != null && !item.replaceAll(" ", "").equals("")){
+      link(AMAZON + item.replace(' ', '+'));
+    }
+  }
+  //:added stuff
 
   if (display.feverButton.mouseIsOver()) {
     link("https://www.healthline.com/health/fever");
