@@ -86,7 +86,7 @@ public class Map {
     boolean indexAtComma = false;
     int commaIndex = 0;
     int positiveIndex = 0;
-
+  
     for (String c : lines) {
       for (int i = 0; i < c.length(); i++) {
         if (i <= c.length()-16) {
@@ -103,9 +103,11 @@ public class Map {
           }
         }
       }
+
     }
     return positiveIncreases;
   }
+
 
   int[] deathIncreaseMap() {
     boolean indexAtComma = false;

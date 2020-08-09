@@ -6,15 +6,26 @@ Button posIncreaseButton;
 Button deathIncreaseButton;
 Button hospitalizedButton;
 Button totalRecoveredButton;
-//added stuff:
 Button buy1;
 Button buy2;
 Button buy3;
 final String AMAZON = "https://www.amazon.com/s?k=";
-//:added stuff
+
+MainDisplay display = new MainDisplay(); ;
+Button posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
+Button deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
+Button hospitalizedButton = new Button("Hospitalized", 675, 120, 130, 30);
+Button totalRecoveredButton = new Button("Total Recovered", 675, 160, 130, 30);
+
+Button nextPage = new Button("->", 750, 425, 60, 30);
+Button previousPage = new Button("<-", 685, 425, 60, 30);
+int currentPage = 1;
+
 final int WIDTH = 1100;
 NewsDatum newsInfo;
-Map map;
+Map map = new Map();
+boolean hasGottenData = false;
+boolean [] buttons = {false,false,false,false};
 
 public void settings() {
   size(1100, 700);
@@ -23,26 +34,36 @@ public void settings() {
 
 void setup() {
   fill(0,0,0);
+  textAlign(0);
+  String[] fontList = PFont.list();
+  PFont font = createFont(fontList[168], 32);
+  textFont(font);
   textSize(24);
-  String fetchText = "Please wait ... Proccess may take up to 6 seconds";
+  String fetchText = "Please wait ... Process may take up to 15 seconds";
   text(fetchText, 300, 350);
-  
 }
 
-void draw() {
-  display = new MainDisplay();                                      
-  Map map= new Map();
+void draw() { 
+  if (hasGottenData){
+    updateGraphics();
+  }else{
+    updateData();
+    hasGottenData = true;
+  }
+}
+void updateData(){
   map.checkSavedData();
   newsInfo = display.getCurrentNews();
   posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
   deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
   hospitalizedButton = new Button("Hospitalized", 675, 120, 130, 30);
   totalRecoveredButton = new Button("Total Recovered", 675, 160, 130, 30);
-  //added stuff:
   buy1 = new Button("Buy Masks", 675, 340, 130, 30);
   buy2 = new Button("Buy Disinfectant", 675, 380, 130, 30);
   buy3 = new Button("Buy Custom", 675, 420, 130, 30);
-  //:added stuff
+}
+
+void updateGraphics(){
   background(#D6D6D6);
   display.grid();
   display.headers();
@@ -52,13 +73,69 @@ void draw() {
   deathIncreaseButton.display(232, 232, 232);
   hospitalizedButton.display(232, 232, 232);
   totalRecoveredButton.display(232, 232, 232);
-  //added stuff:
   buy1.display(232, 232, 232);
   buy2.display(232, 232, 232);
   buy3.display(232, 232, 232);
-  //:added stuff
+  
+  if (currentPage == 1){
+    textSize(25);
+    fill(179, 0, 0);
+    text("Map", 380, 35);
+    //don't forget to reset the color and textSize
+    nextPage.display(300, 300, 300);
+    previousPage.display(150, 150, 150);
+    display.usMap();
+    posIncreaseButton.display(232, 232, 232);
+    deathIncreaseButton.display(232, 232, 232);
+    hospitalizedButton.display(232, 232, 232);
+    totalRecoveredButton.display(232, 232, 232);
+    display.showNews();
+    if(buttons[0]){
+      int[] positiveIncreases = map.positiveIncreaseMap();
+      posIncreaseButton.display(255, 0, 0);
+      display.circles(positiveIncreases, 255, 0, 0);
+      display.graph(positiveIncreases, 0);
+    }else if(buttons[1]){
+      int[] deathIncreases = map.deathIncreaseMap();
+      deathIncreaseButton.display(0, 0, 255);
+      display.circles(deathIncreases, 0, 0, 255);
+      display.graph(deathIncreases, 1);
+    }else if(buttons[2]){
+      int[] hospitalized = map.hospitalizedMap();
+      hospitalizedButton.display(0, 255, 0);
+      display.circles(hospitalized, 0, 255, 0);
+      display.graph(hospitalized, 2);
+    }else if(buttons[3]){
+      int[] recovered = map.recoveredMap();
+      totalRecoveredButton.display(255, 255, 0);
+      display.circles(recovered, 255, 255, 0);   
+      display.graph(recovered, 3);
+    } else {
+      textSize(16);
+      fill(0, 0, 0);
+      text("Select a button above to view a graph.", 280, 600);
+    }
+  }
+  if (currentPage == 2){
+    nextPage.display(300, 300, 300);
+    previousPage.display(300, 300, 300);
+    //do something
+  }
+  
+  if (currentPage == 3){
+    nextPage.display(300, 300, 300);
+    previousPage.display(300, 300, 300);
+    //do something
+  }
+  
+  if (currentPage == 4){
+    nextPage.display(150, 150, 150);
+    previousPage.display(300, 300, 300);
+    //do something
+  }
   display.showNews();
 }
+  
 
 void mousePressed() {
   if (mouseX >= WIDTH*3/4 && mouseX <= WIDTH && mouseY >= 51 && mouseY <= 134) {
@@ -80,31 +157,42 @@ void mousePressed() {
     catch(Exception e) {
     }
   }
-  
-  if (mouseX >= WIDTH*3/4 && mouseX <= WIDTH && mouseY > 305 && mouseY < 400) {
-    link("https://www.osha.gov/SLTC/covid-19/");
+  if (nextPage.mouseIsOver()) {
+    if(currentPage!=4){
+      currentPage++;
+    }
   }
-  
+  if (previousPage.mouseIsOver()) {
+    if(currentPage!=1){
+      currentPage--;
+    }
+  }
+
+  if(mouseX >= WIDTH*3/4 && mouseX <= WIDTH && mouseY > 300 && mouseY <= 400){
+    link("https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html");
+
+  }
   if (posIncreaseButton.mouseIsOver()) {
-    int[] positiveIncreases = map.positiveIncreaseMap();
-    redraw();
-    posIncreaseButton.display(255, 0, 0);
-    display.circles(positiveIncreases, 255, 0, 0);
+    print("hello");
+    buttons[0] = true;
+    buttons[1] = false;
+    buttons[2] = false;
+    buttons[3] = false;
   } else if (deathIncreaseButton.mouseIsOver()) {
-    int[] deathIncreases = map.deathIncreaseMap();
-    redraw();
-    deathIncreaseButton.display(0, 0, 255);
-    display.circles(deathIncreases, 0, 0, 255);
+    buttons[0] = false;
+    buttons[1] = true;
+    buttons[2] = false;
+    buttons[3] = false;
   } else if (hospitalizedButton.mouseIsOver()) {
-    int[] hospitalized = map.hospitalizedMap();
-    redraw();
-    hospitalizedButton.display(0, 255, 0);
-    display.circles(hospitalized, 0, 255, 0);
+    buttons[0] = false;
+    buttons[1] = false;
+    buttons[2] = true;
+    buttons[3] = false;
   } else if (totalRecoveredButton.mouseIsOver()) {
-    int[] recovered = map.recoveredMap();
-    redraw();
-    totalRecoveredButton.display(255, 255, 0);
-    display.circles(recovered, 255, 255, 0);
+    buttons[0] = false;
+    buttons[1] = false;
+    buttons[2] = false;
+    buttons[3] = true;
   } 
   
   //added stuff:
