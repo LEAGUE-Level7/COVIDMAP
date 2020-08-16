@@ -19,10 +19,8 @@ public class Timeline{
     Integer[] dateArray = new Integer[365];
  
     
-    Timeline(String[] states)
-    {
-      for(int i = 0; i < states.length; i++)
-      {
+    Timeline(String[] states) {
+      for(int i = 0; i < states.length; i++) {
         stateIndex.put(states[i], i);
       }
     }
@@ -30,20 +28,16 @@ public class Timeline{
 
   void pullAllStatesAllDates(){
      JsonArray userJSON = pullData();
-     print(userJSON.size());
-     
      
      int index = 0;
        
-     while(true)
-     {
+     while(true) {
        JsonObject tmp = userJSON.getJsonObject(index);
        Integer date           = gson.fromJson(tmp.toString(), Datum.class).getDate();
        dateArray[numDays] = date;
        
        String[] dateData = new String[50];
-       while(true)
-       {
+       while(true) {
          JsonObject obj = userJSON.getJsonObject(index);
          Integer nextdate  = gson.fromJson(obj.toString(), Datum.class).getDate();
          String  state = gson.fromJson(obj.toString(), Datum.class).getState();
@@ -51,21 +45,17 @@ public class Timeline{
          if(!nextdate.equals(date))
            break;
          
-         if(stateIndex.get(state) == null)
-         {
+         if(stateIndex.get(state) == null) {
            index++;
-           if(index == userJSON.size())
-           {
+           if(index == userJSON.size()) {
              break;
            }
            continue;
          }
-         else
-         {
+         else {
            dateData[(int)stateIndex.get(state)] = obj.toString();
            index++;
-           if(index == userJSON.size())
-           {
+           if(index == userJSON.size()) {
              break;
            }
          }
@@ -73,8 +63,7 @@ public class Timeline{
        data.put(date, dateData);
        numDays++;
        
-       if(index == userJSON.size())
-       {
+       if(index == userJSON.size()) {
          break;
        }
      }
@@ -108,16 +97,14 @@ public class Timeline{
     return null;
   }
   
-  String[] getData(int date)
-  {
+  String[] getData(int date) {
     return ((String[])data.get(date));
   }
   
-  Integer getDate(int index)
-  {
+  Integer getDate(int index) {
     return dateArray[index];
   }
-  int getnumDays(){
+  int getnumDays() {
     return numDays;
   }
 }

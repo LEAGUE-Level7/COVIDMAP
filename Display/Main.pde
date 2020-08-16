@@ -9,6 +9,7 @@ Button previousPage = new Button("<-", 685, 425, 60, 30);
 int currentPage = 1;
 int value = 0;
 int savedX = 100;
+int formula = 0;
 boolean mouseDragged;
 final int WIDTH = 1100;
 NewsDatum newsInfo;
@@ -38,7 +39,7 @@ void setup() {
   text(fetchText, 300, 350);
 }
 
-void draw() { 
+void draw() {
   if (hasGottenData){
     updateGraphics();
   }else{
@@ -46,19 +47,27 @@ void draw() {
     hasGottenData = true;
   }
   fill(0);
-  rect(100, 450, 500, 1);
-    if(!mouseDragged){
-      rect(savedX,445,3, 10);
-    }
-    textSize(15);
-    String str = (timeline.getDate((savedX-100)/3)).toString();
-    text("Date: " + str.charAt(4) + str.charAt(5) + "/" + str.charAt(6) +str.charAt(7) + "/" + str.charAt(0) + str.charAt(1) + str.charAt(2) + str.charAt(3) , 600, 350);
-     
+  if(currentPage == 1){
+  rect(100, 450,  timeline.getnumDays() * 2 , 1);
+  
+  }
+  if(!mouseDragged  && savedX == 100 && currentPage == 1){
+    rect(timeline.getnumDays() * 2 + 100,445,3, 10);
+  }
+  else if (currentPage == 1){
+    rect(savedX ,445,3, 10);
+  }
+  if(currentPage == 1){
+  textSize(15);
+  String str = (timeline.getDate((formula))).toString();
+  text("Date: " + str.charAt(4) + str.charAt(5) + "/" + str.charAt(6) +str.charAt(7) + "/" + str.charAt(0) + str.charAt(1) + str.charAt(2) + str.charAt(3) , 600, 350);
+  }
 }
 void updateData(){
-  map.checkSavedData();
+  //map.checkSavedData();
   timeline.pullAllStatesAllDates();
   newsInfo = display.getCurrentNews();
+
 }
 
 void updateGraphics(){
@@ -84,25 +93,23 @@ void updateGraphics(){
     
     display.showNews();
     if(buttons[0]){
-       //int[] positiveIncreases = map.positiveIncreaseMap(map.getData());
-      int[] positiveIncreases = map.positiveIncreaseMap(timeline.getData(timeline.getDate(Math.abs((savedX-100)/3) - timeline.getnumDays)));
-     // int[] positiveIncreases = map.positiveIncreaseMap(timeline.getData(timeline.getDate((0))));
+      int[] positiveIncreases = map.positiveIncreaseMap(timeline.getData(timeline.getDate(formula)));
       posIncreaseButton.display(255, 0, 0);
       display.circles(positiveIncreases, 255, 0, 0);
       display.graph(positiveIncreases, 0);
     }else if(buttons[1]){
       //int[] deathIncreases = map.deathIncreaseMap();
-      int[] deathIncreases = map.deathIncreaseMap(timeline.getData(timeline.getDate((savedX-100)/3)));
+      int[] deathIncreases = map.deathIncreaseMap(timeline.getData(timeline.getDate((formula))));
       deathIncreaseButton.display(0, 0, 255);
       display.circles(deathIncreases, 0, 0, 255);
       display.graph(deathIncreases, 1);
     }else if(buttons[2]){
-      int[] hospitalized = map.hospitalizedMap(timeline.getData(timeline.getDate((savedX-100)/3)));
+      int[] hospitalized = map.hospitalizedMap(timeline.getData(timeline.getDate((formula))));
       hospitalizedButton.display(0, 255, 0);
       display.circles(hospitalized, 0, 255, 0);
       display.graph(hospitalized, 2);
     }else if(buttons[3]){
-      int[] recovered = map.recoveredMap(timeline.getData(timeline.getDate((savedX-100)/3)));
+      int[] recovered = map.recoveredMap(timeline.getData(timeline.getDate((formula))));
       totalRecoveredButton.display(255, 255, 0);
       display.circles(recovered, 255, 255, 0);   
       display.graph(recovered, 3);
@@ -136,6 +143,15 @@ void updateGraphics(){
   
 
 void mousePressed() {
+  if( 410 < mouseY && 480 > mouseY && 100 < mouseX && mouseX < 100 + timeline.getnumDays() * 2 ){
+     savedX = mouseX;
+       formula = Math.abs(((savedX - 100)/2) - (timeline.getnumDays()-1));
+      rect(mouseX,445,3, 10);
+        mouseDragged = true;
+  }
+  else{
+    mouseDragged = false;
+  }
   if (mouseX >= WIDTH*3/4 && mouseX <= WIDTH && mouseY >= 51 && mouseY <= 134) {
     try {
       link(newsInfo.getArticles().get(0).getURL());
@@ -171,7 +187,6 @@ void mousePressed() {
 
   }
   if (posIncreaseButton.mouseIsOver()) {
-    print("hello");
     buttons[0] = true;
     buttons[1] = false;
     buttons[2] = false;
@@ -220,16 +235,15 @@ void mousePressed() {
   }
 }
 void mouseDragged(){
-      if( 410 < mouseY && 480 > mouseY && 100 < mouseX && mouseX < 600 ){
-       
+    if( 410 < mouseY && 480 > mouseY && 100 < mouseX && mouseX < 100 + timeline.getnumDays() * 2 ){
+      formula = Math.abs(((savedX - 100)/2) - (timeline.getnumDays() - 1) );
       rect(mouseX,445,3, 10);
-        savedX = mouseX;
-        mouseDragged = true;
-      }
-      else{
-        mouseDragged = false;
+      savedX = mouseX;
+      mouseDragged = true;
+    }
+    else{
+      mouseDragged = false;
       
 }
-
 
 }
