@@ -1,3 +1,4 @@
+
 public class MainDisplay {
   News news;
   NewsDatum newsInfo;
@@ -27,7 +28,8 @@ public class MainDisplay {
    Button vomitingButton = new Button("Vomiting", 980, 610, 90, 30);
    Button diarrheaButton = new Button("Diarrhea", 980, 650, 90, 30);
    
-
+   
+ 
    
   public void grid() {
     strokeWeight(4);
@@ -73,6 +75,8 @@ public class MainDisplay {
     nauseaButton.display(232, 232, 232);
     vomitingButton.display(232, 232, 232);
     diarrheaButton.display(232, 232, 232);
+    
+    
     
     String symptoms = "~ Fever/chills\n~ Cough\n~ Difficulty breathing"
       + "\n~ Fatigue\n~ Muscle/body aches\n~ Headache\n~ "
