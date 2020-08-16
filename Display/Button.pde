@@ -21,7 +21,7 @@ class Button {
     rect(x, y, w, h, 10);
     textAlign(CENTER, CENTER);
     fill(0);
-    text(label, x + (w / 2), y + (h / 2));
+    text(label, x + (w / 2), y + (h / 2) - 3);
     popMatrix();
     textAlign(0);
   }

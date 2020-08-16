@@ -61,10 +61,32 @@ void updateData(){
 void updateGraphics(){
   background(#D6D6D6);
   display.grid();
+  display.showNews();
   display.headers();
   display.baseText();
-  display.usMap();
-  
+  noStroke();
+  if(buttons[0]){
+    fill(255, 0, 0);
+    int[] positiveIncreases = map.positiveIncreaseMap();
+    display.graph(positiveIncreases, 0);
+  }else if(buttons[1]){
+    fill(0, 0, 255);
+    int[] deathIncreases = map.deathIncreaseMap();
+    display.graph(deathIncreases, 1);
+  }else if(buttons[2]){
+    fill(0, 255, 0);
+    int[] hospitalized = map.hospitalizedMap();
+    display.graph(hospitalized, 2);
+  }else if(buttons[3]){
+    fill(255, 255, 0);
+    int[] recovered = map.recoveredMap();
+    display.graph(recovered, 3);
+  }else{
+    textSize(16);
+    fill(0, 0, 0);
+    text("Select an option from the map pane to view a graph.", 240, 600);
+  }
+
   if (currentPage == 1){
     textSize(25);
     fill(179, 0, 0);
@@ -77,53 +99,36 @@ void updateGraphics(){
     deathIncreaseButton.display(232, 232, 232);
     hospitalizedButton.display(232, 232, 232);
     totalRecoveredButton.display(232, 232, 232);
-    display.showNews();
     if(buttons[0]){
       int[] positiveIncreases = map.positiveIncreaseMap();
       posIncreaseButton.display(255, 0, 0);
       display.circles(positiveIncreases, 255, 0, 0);
-      display.graph(positiveIncreases, 0);
     }else if(buttons[1]){
       int[] deathIncreases = map.deathIncreaseMap();
       deathIncreaseButton.display(0, 0, 255);
       display.circles(deathIncreases, 0, 0, 255);
-      display.graph(deathIncreases, 1);
     }else if(buttons[2]){
       int[] hospitalized = map.hospitalizedMap();
       hospitalizedButton.display(0, 255, 0);
       display.circles(hospitalized, 0, 255, 0);
-      display.graph(hospitalized, 2);
     }else if(buttons[3]){
       int[] recovered = map.recoveredMap();
       totalRecoveredButton.display(255, 255, 0);
       display.circles(recovered, 255, 255, 0);   
-      display.graph(recovered, 3);
     } else {
       textSize(16);
       fill(0, 0, 0);
-      text("Select a button above to view a graph.", 280, 600);
+      text("Select an option from the map pane to view a graph.", 240, 600);
     }
   }
+  
   if (currentPage == 2){
-    nextPage.display(300, 300, 300);
+    nextPage.display(150, 150, 150);
     previousPage.display(300, 300, 300);
     buy1.display(232, 232, 232);
     buy2.display(232, 232, 232);
     buy3.display(232, 232, 232);
   }
-  
-  if (currentPage == 3){
-    nextPage.display(300, 300, 300);
-    previousPage.display(300, 300, 300);
-    //do something
-  }
-  
-  if (currentPage == 4){
-    nextPage.display(150, 150, 150);
-    previousPage.display(300, 300, 300);
-    //do something
-  }
-  display.showNews();
 }
   
 
@@ -148,7 +153,7 @@ void mousePressed() {
     }
   }
   if (nextPage.mouseIsOver()) {
-    if(currentPage!=4){
+    if(currentPage!=2){
       currentPage++;
     }
   }
