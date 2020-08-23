@@ -17,6 +17,7 @@ class Button {
     pushMatrix();
     textSize(14.5);
     fill(r, g, b, 150);
+    strokeWeight(1);
     stroke(141);
     rect(x, y, w, h, 10);
     textAlign(CENTER, CENTER);

@@ -92,7 +92,6 @@ public class Map {
     boolean indexAtComma = false;
     int commaIndex = 0;
     int positiveIndex = 0;
-  
     for (String c : inputLines) {
       if(c == null)
       {

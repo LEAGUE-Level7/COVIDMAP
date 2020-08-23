@@ -67,7 +67,7 @@ void draw() {
   if(currentPage == 1){
   textSize(15);
   String str = (timeline.getDate((formula))).toString();
-  text("Date: " + str.charAt(4) + str.charAt(5) + "/" + str.charAt(6) +str.charAt(7) + "/" + str.charAt(0) + str.charAt(1) + str.charAt(2) + str.charAt(3) , 600, 350);
+  text("Date: " + str.charAt(4) + str.charAt(5) + "/" + str.charAt(6) +str.charAt(7) + "/" + str.charAt(0) + str.charAt(1) + str.charAt(2) + str.charAt(3) , 545, 455);
   }
 }
 void updateData(){
@@ -92,19 +92,19 @@ void updateGraphics(){
   noStroke();
   if(buttons[0]){
     fill(255, 0, 0);
-    int[] positiveIncreases = map.positiveIncreaseMap();
+    int[] positiveIncreases = map.positiveIncreaseMap(timeline.getData(timeline.getDate(formula)));
     display.graph(positiveIncreases, 0);
   }else if(buttons[1]){
     fill(0, 0, 255);
-    int[] deathIncreases = map.deathIncreaseMap();
+    int[] deathIncreases = map.deathIncreaseMap(timeline.getData(timeline.getDate(formula)));
     display.graph(deathIncreases, 1);
   }else if(buttons[2]){
     fill(0, 255, 0);
-    int[] hospitalized = map.hospitalizedMap();
+    int[] hospitalized = map.hospitalizedMap(timeline.getData(timeline.getDate(formula)));
     display.graph(hospitalized, 2);
   }else if(buttons[3]){
     fill(255, 255, 0);
-    int[] recovered = map.recoveredMap();
+    int[] recovered = map.recoveredMap(timeline.getData(timeline.getDate(formula)));
     display.graph(recovered, 3);
   }else{
     textSize(16);
