@@ -8,7 +8,9 @@ public class Graph {
   int rectY = 0;
   int rectHeight = 0;
   PFont mono;
+  int sumTop5 = 1;
   int[] top5index = new int[5];
+  float[] top5scale = new float[5];
 
   void initialize(int[] pI) {
     this.unsortedData = pI;
@@ -59,6 +61,28 @@ public class Graph {
     text(unsortedData[index] + " -", 25, rectY);
     text((unsortedData[index]/2) + " -", 25, (rectY + rectHeight/2));
   }
+  
+  void displayTop5(int number) {
+    
+    rect(300, 660, 15, 15);
+    //highest
+    fill(250, 0, 0);
+    rect(300, 500, 15, 15);
+    arc(150f, 585f, 200f, 200f, 0, (2*PI*top5scale[0]), PIE);
+    //2nd highest
+    fill(250, 25, 25);
+    rect(300, 540, 15, 15);
+    arc(150f, 585f, 200f, 200f, (2*PI*top5scale[0]), (2*PI*top5scale[1] + 2*PI*top5scale[0]), PIE);
+    //3rd highest
+    fill(250, 50, 50);
+    rect(300, 580, 15, 15);
+    arc(150f, 585f, 200f, 200f, (2*PI*top5scale[1] + 2*PI*top5scale[0]), (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2]), PIE);
+    //4th highest
+    fill(250, 75, 75);
+    rect(300, 620, 15, 15);
+    arc(150f, 585f, 200f, 200f, (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2]), (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2] + 2*PI*top5scale[3]), PIE);
+    //5th highest
+  }
 
   void organizeData(int[] pI) {
     int[] temp = sort(pI);
@@ -70,7 +94,15 @@ public class Graph {
     top5index[2] = search(unsortedData, temp[temp.length-3]);
     top5index[3] = search(unsortedData, temp[temp.length-4]);
     top5index[4] = search(unsortedData, temp[temp.length-5]);
-    System.out.println(top5index[0] + ", " + top5index[1] + ", " + top5index[2] + ", " + top5index[3] + ", " + top5index[4]);
+    sumTop5 = temp[temp.length-1] + temp[temp.length-2] + temp[temp.length-3] + temp[temp.length-4] + temp[temp.length-5];
+    if (sumTop5 == 0) {
+      sumTop5 = 1;
+    }
+    top5scale[0] = ((float)temp[temp.length-1])/sumTop5;
+    top5scale[1] = ((float)temp[temp.length-2])/sumTop5;
+    top5scale[2] = ((float)temp[temp.length-3])/sumTop5;
+    top5scale[3] = ((float)temp[temp.length-4])/sumTop5;
+    top5scale[4] = ((float)temp[temp.length-5])/sumTop5;
 }
 
   int[] sort(int[] array) {

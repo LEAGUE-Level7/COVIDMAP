@@ -109,7 +109,8 @@ public class MainDisplay {
     Graph graph = new Graph();
     graph.initialize(pI);
     graph.organizeData(pI);
-    graph.display(scale);
+    //graph.displayBar(scale);
+    graph.displayTop5(scale);
     textAlign(0);
     String[] fontList = PFont.list();
     PFont font = createFont(fontList[168], 32);
