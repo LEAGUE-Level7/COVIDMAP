@@ -202,27 +202,30 @@ void mousePressed() {
     link("https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html");
 
   }
-  if (posIncreaseButton.mouseIsOver()) {
-    buttons[0] = true;
-    buttons[1] = false;
-    buttons[2] = false;
-    buttons[3] = false;
-  } else if (deathIncreaseButton.mouseIsOver()) {
-    buttons[0] = false;
-    buttons[1] = true;
-    buttons[2] = false;
-    buttons[3] = false;
-  } else if (hospitalizedButton.mouseIsOver()) {
-    buttons[0] = false;
-    buttons[1] = false;
-    buttons[2] = true;
-    buttons[3] = false;
-  } else if (totalRecoveredButton.mouseIsOver()) {
-    buttons[0] = false;
-    buttons[1] = false;
-    buttons[2] = false;
-    buttons[3] = true;
-  } 
+
+  if(currentPage == 1){
+    if (posIncreaseButton.mouseIsOver()) {
+      buttons[0] = true;
+      buttons[1] = false;
+      buttons[2] = false;
+      buttons[3] = false;
+    } else if (deathIncreaseButton.mouseIsOver()) {
+      buttons[0] = false;
+      buttons[1] = true;
+      buttons[2] = false;
+      buttons[3] = false;
+    } else if (hospitalizedButton.mouseIsOver()) {
+      buttons[0] = false;
+      buttons[1] = false;
+      buttons[2] = true;
+      buttons[3] = false;
+    } else if (totalRecoveredButton.mouseIsOver()) {
+      buttons[0] = false;
+      buttons[1] = false;
+      buttons[2] = false;
+      buttons[3] = true;
+    } 
+  }
   
   if(currentPage == 2){
     if(buy1.mouseIsOver()){
