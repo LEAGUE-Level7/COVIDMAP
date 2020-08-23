@@ -4,6 +4,7 @@ public class Graph {
   int[] unsortedData = new int[50];
   String[] states = new String[50];
   int index = 0;
+  int highest = 1;
   int rectY = 0;
   int rectHeight = 0;
   PFont mono;
@@ -27,43 +28,29 @@ public class Graph {
      */
     textAlign(CENTER);
     textFont(mono, 12);
+    float scale = 150.0/highest;
     for (int i = 0; i < 50; i++) {
       fill(0, 0, 0);
       text(states[i].toUpperCase(), 12 + 16.25*i, 670);
       switch (number) {
-      case 0:
-        fill(255, 0, 0);
-        rect((10 + (16.25*i)), (650 - (unsortedData[i]*0.013)), 5, (unsortedData[i]*0.013));
-        if (i == index) {
-          rectY = (int)(650 - (unsortedData[i]*0.013));
-          rectHeight = (int)(unsortedData[i]*0.013);
-        }
-        break;
-      case 1:
-        fill(0, 0, 255);
-        rect((10 + (16.25*i)), (650 - (unsortedData[i]*0.05)), 5, (unsortedData[i]*0.05));
-        if (i == index) {
-          rectY = (int)(650 - (unsortedData[i]*0.05));
-          rectHeight = (int)(unsortedData[i]*0.05);
-        }
-        break;
-      case 2:
-        fill(0, 200, 0);
-        rect((10 + (16.25*i)), (650 - (unsortedData[i]*0.015)), 5, (unsortedData[i]*0.015));
-        if (i == index) {
-          rectY = (int)(650 - (unsortedData[i]*0.015));
-          rectHeight = (int)(unsortedData[i]*0.015);
-        }
-        break;
-      case 3:
-        fill(200, 200, 0);
-        rect((10 + (16.25*i)), (650 - (unsortedData[i]*0.013)), 5, (unsortedData[i]*0.013));
-        if (i == index) {
-          rectY = (int)(650 - (unsortedData[i]*0.013));
-          rectHeight = (int)(unsortedData[i]*0.013);
-        }
-        break;
+        case 0:
+          fill(255, 0, 0);
+          break;
+        case 1:
+          fill(0, 0, 255);
+          break;
+        case 2:
+          fill(0, 200, 0);
+          break;
+        case 3:
+          fill(200, 200, 0);
+          break;
       }
+        rect((10 + (16.25*i)), (650 - (unsortedData[i]*scale)), 5, (unsortedData[i]*scale));
+        if (i == index) {
+          rectY = (int)(650 - (unsortedData[i]*scale));
+          rectHeight = (int)(unsortedData[i]*scale);
+        }
     }
     //y axis
     textFont(mono, 12);
@@ -73,7 +60,7 @@ public class Graph {
   }
 
   void organizeData(int[] pI) { 
-    int highest = sort(pI);
+    highest = sort(pI);
     index = search(unsortedData, highest);
   }
 
