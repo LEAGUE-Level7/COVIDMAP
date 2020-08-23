@@ -1,3 +1,4 @@
+import javax.swing.ImageIcon;
 
 public class MainDisplay {
   News news;
@@ -83,7 +84,7 @@ public class MainDisplay {
       + "New loss of taste or smell\n~ Sore throat"
       + "\n~ Congestion/runny nose\n~ Nausea/vomiting\n~ Diarrhea";
     String rules = "Wear a mask. Wash your hands. Keep your distance!";
-
+    
     textSize(9);
     fill(170, 170, 100);
     text("CLICK for more info", WIDTH*3/4 + 160, 395);
@@ -91,6 +92,7 @@ public class MainDisplay {
     fill(0, 0, 0);
     text(rules.substring(0, 29), 830, 345, WIDTH, 700);
     text(rules.substring(30), 830, 365, WIDTH, 700);
+   
   }
 
   void usMap() {

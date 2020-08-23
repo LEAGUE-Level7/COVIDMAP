@@ -1,3 +1,10 @@
+import static javax.swing.JOptionPane.*;
+import javax.imageio.ImageIO;
+
+Button buy1;
+Button buy2;
+Button buy3;
+final String AMAZON = "https://www.amazon.com/s?k=";
 
 MainDisplay display = new MainDisplay(); ;
 Button posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
@@ -67,15 +74,44 @@ void updateData(){
   //map.checkSavedData();
   timeline.pullAllStatesAllDates();
   newsInfo = display.getCurrentNews();
-
+  posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
+  deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
+  hospitalizedButton = new Button("Hospitalized", 675, 120, 130, 30);
+  totalRecoveredButton = new Button("Total Recovered", 675, 160, 130, 30);
+  buy1 = new Button("Buy Masks", 675, 40, 130, 30);
+  buy2 = new Button("Buy Disinfectant", 675, 80, 130, 30);
+  buy3 = new Button("Buy Custom", 675, 120, 130, 30);
 }
 
 void updateGraphics(){
   background(#D6D6D6);
   display.grid();
+  display.showNews();
   display.headers();
   display.baseText();
-  
+  noStroke();
+  if(buttons[0]){
+    fill(255, 0, 0);
+    int[] positiveIncreases = map.positiveIncreaseMap();
+    display.graph(positiveIncreases, 0);
+  }else if(buttons[1]){
+    fill(0, 0, 255);
+    int[] deathIncreases = map.deathIncreaseMap();
+    display.graph(deathIncreases, 1);
+  }else if(buttons[2]){
+    fill(0, 255, 0);
+    int[] hospitalized = map.hospitalizedMap();
+    display.graph(hospitalized, 2);
+  }else if(buttons[3]){
+    fill(255, 255, 0);
+    int[] recovered = map.recoveredMap();
+    display.graph(recovered, 3);
+  }else{
+    textSize(16);
+    fill(0, 0, 0);
+    text("Select an option from the map pane to view a graph.", 240, 600);
+  }
+
   if (currentPage == 1){
     textSize(25);
     fill(179, 0, 0);
@@ -88,57 +124,37 @@ void updateGraphics(){
     deathIncreaseButton.display(232, 232, 232);
     hospitalizedButton.display(232, 232, 232);
     totalRecoveredButton.display(232, 232, 232);
-    
-   
-    
-    display.showNews();
     if(buttons[0]){
       int[] positiveIncreases = map.positiveIncreaseMap(timeline.getData(timeline.getDate(formula)));
       posIncreaseButton.display(255, 0, 0);
       display.circles(positiveIncreases, 255, 0, 0);
-      display.graph(positiveIncreases, 0);
     }else if(buttons[1]){
       //int[] deathIncreases = map.deathIncreaseMap();
       int[] deathIncreases = map.deathIncreaseMap(timeline.getData(timeline.getDate((formula))));
       deathIncreaseButton.display(0, 0, 255);
       display.circles(deathIncreases, 0, 0, 255);
-      display.graph(deathIncreases, 1);
     }else if(buttons[2]){
       int[] hospitalized = map.hospitalizedMap(timeline.getData(timeline.getDate((formula))));
       hospitalizedButton.display(0, 255, 0);
       display.circles(hospitalized, 0, 255, 0);
-      display.graph(hospitalized, 2);
     }else if(buttons[3]){
       int[] recovered = map.recoveredMap(timeline.getData(timeline.getDate((formula))));
       totalRecoveredButton.display(255, 255, 0);
       display.circles(recovered, 255, 255, 0);   
-      display.graph(recovered, 3);
-    } 
-      else {
+    } else {
       textSize(16);
       fill(0, 0, 0);
-      text("Select a button above to view a graph.", 280, 600);
+      text("Select an option from the map pane to view a graph.", 240, 600);
     }
   }
+  
   if (currentPage == 2){
-    nextPage.display(300, 300, 300);
-    previousPage.display(300, 300, 300);
-    //do something
-  }
-  
-  if (currentPage == 3){
-    nextPage.display(300, 300, 300);
-    previousPage.display(300, 300, 300);
-    //do something
-  }
-  
-  if (currentPage == 4){
     nextPage.display(150, 150, 150);
     previousPage.display(300, 300, 300);
-    //do something
+    buy1.display(232, 232, 232);
+    buy2.display(232, 232, 232);
+    buy3.display(232, 232, 232);
   }
-  
-  display.showNews();
 }
   
 
@@ -172,7 +188,7 @@ void mousePressed() {
     }
   }
   if (nextPage.mouseIsOver()) {
-    if(currentPage!=4){
+    if(currentPage!=2){
       currentPage++;
     }
   }
@@ -207,6 +223,19 @@ void mousePressed() {
     buttons[2] = false;
     buttons[3] = true;
   } 
+  
+  if(currentPage == 2){
+    if(buy1.mouseIsOver()){
+      link(AMAZON + "masks");
+    } else if(buy2.mouseIsOver()){
+      link(AMAZON + "disinfectant");
+    } else if(buy3.mouseIsOver()){
+      String item = showInputDialog(null, "Please enter the item you want to buy: ", "Search for Supplies", INFORMATION_MESSAGE);
+      if(item != null && !item.replaceAll(" ", "").equals("")){
+        link(AMAZON + item.replace(' ', '+'));
+      }
+    }
+  }
 
   if (display.feverButton.mouseIsOver()) {
     link("https://www.healthline.com/health/fever");
