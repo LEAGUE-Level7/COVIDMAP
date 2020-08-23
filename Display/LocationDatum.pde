@@ -12,7 +12,11 @@ public class LocationDatum {
   @SerializedName("Tuesday")
     @Expose
     private String tue;
+<<<<<<< Updated upstream
   @SerializedName("Wedndsday")
+=======
+  @SerializedName("Wednesday")
+>>>>>>> Stashed changes
     @Expose
     private String wed;
   @SerializedName("Thursday")
