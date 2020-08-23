@@ -8,6 +8,7 @@ public class Graph {
   int rectY = 0;
   int rectHeight = 0;
   PFont mono;
+  int[] top5index = new int[5];
 
   void initialize(int[] pI) {
     this.unsortedData = pI;
@@ -15,7 +16,7 @@ public class Graph {
     mono = loadFont("Consolas-48.vlw");
   }
 
-  void display(int number) {
+  void displayBar(int number) {
     strokeWeight(5);
     fill(0, 0, 0);
     line(5, 700, 815, 650);
@@ -59,12 +60,20 @@ public class Graph {
     text((unsortedData[index]/2) + " -", 25, (rectY + rectHeight/2));
   }
 
-  void organizeData(int[] pI) { 
-    highest = sort(pI);
+  void organizeData(int[] pI) {
+    int[] temp = sort(pI);
+    highest = temp[temp.length-1];
     index = search(unsortedData, highest);
-  }
+    //fix...
+    top5index[0] = index;
+    top5index[1] = search(unsortedData, temp[temp.length-2]);
+    top5index[2] = search(unsortedData, temp[temp.length-3]);
+    top5index[3] = search(unsortedData, temp[temp.length-4]);
+    top5index[4] = search(unsortedData, temp[temp.length-5]);
+    System.out.println(top5index[0] + ", " + top5index[1] + ", " + top5index[2] + ", " + top5index[3] + ", " + top5index[4]);
+}
 
-  int sort(int[] array) {
+  int[] sort(int[] array) {
     int[] returnArray = new int[array.length];
     for (int f = 0; f < array.length; f++) {
       returnArray[f] = array[f];
@@ -81,7 +90,7 @@ public class Graph {
         }
       }
     }
-    return returnArray[returnArray.length-1];
+    return returnArray;
   }
   
   int search(int[] nums, int value) {
