@@ -15,23 +15,58 @@ public class MainDisplay {
     120, 207, 208, 141, 198, 301, 159, 270, 118, 211, 290, 141, 199, 168, 
     298, 162, 280, 344, 226, 134, 239, 97, 235, 163, 178};
 
-   Button feverButton = new Button("Fever/chills", 860, 450, 90, 30);
-   Button coughButton = new Button("Cough", 860, 490, 90, 30);
-   Button fatigueButton = new Button("Fatigue", 860, 530, 90, 30);
-   Button breathingButton = new Button("Short breath", 860, 570, 90, 30);
-   Button headacheButton = new Button("Headache", 860, 610, 90, 30);
-   Button lossOfTasteButton = new Button("Loss of taste", 860, 650, 90, 30);
-   
-   Button soreThroatButton = new Button("Sore throat", 980, 450, 90, 30);
-   Button congestionButton = new Button("Congestion", 980, 490, 90, 30);
-   Button runnyNoseButton = new Button("Runny nose", 980, 530, 90, 30);
-   Button nauseaButton = new Button("Nausea", 980, 570, 90, 30);
-   Button vomitingButton = new Button("Vomiting", 980, 610, 90, 30);
-   Button diarrheaButton = new Button("Diarrhea", 980, 650, 90, 30);
-   
-   
- 
-   
+  Button feverButton = new Button("Fever/chills", 860, 450, 90, 30);
+  Button coughButton = new Button("Cough", 860, 490, 90, 30);
+  Button fatigueButton = new Button("Fatigue", 860, 530, 90, 30);
+  Button breathingButton = new Button("Short breath", 860, 570, 90, 30);
+  Button headacheButton = new Button("Headache", 860, 610, 90, 30);
+  Button lossOfTasteButton = new Button("Loss of taste", 860, 650, 90, 30);
+  Button soreThroatButton = new Button("Sore throat", 980, 450, 90, 30);
+  Button congestionButton = new Button("Congestion", 980, 490, 90, 30);
+  Button runnyNoseButton = new Button("Runny nose", 980, 530, 90, 30);
+  Button nauseaButton = new Button("Nausea", 980, 570, 90, 30);
+  Button vomitingButton = new Button("Vomiting", 980, 610, 90, 30);
+  Button diarrheaButton = new Button("Diarrhea", 980, 650, 90, 30);
+
+  Button stAnthonyButton = new Button("St. Anthony's of Padua Parking Lot", 100, 70, 240, 30);
+  Button tubmanChavezButton = new Button("Tubman-Chavez Community Center", 100, 110, 240, 30);
+  Button aquaticaButton = new Button("Aquatica San Diego", 100, 150, 240, 30);
+  Button sycuanButton = new Button("Sycuan Market", 100, 190, 240, 30);
+  Button marVistaButton = new Button("Mar Vista High School", 100, 230, 240, 30);
+  Button northCoastalButton = new Button("North Coastal Live Well Health Center", 100, 270, 240, 30);
+  Button lgbtButton = new Button("The San Diego LGBT Community Center", 100, 310, 240, 30);
+  Button euclidButton = new Button("Euclid Health Center", 100, 350, 240, 30);
+  
+  Button sdStateButton = new Button("San Diego State University Parking Lot 17B", 400, 70, 240, 30);
+  Button usdLotButton = new Button("University of San Diego (USD) Parking Lot", 400, 110, 240, 30);
+  Button searsButton = new Button("Old Sears Building", 400, 150, 240, 30);
+  Button assessorRecorderButton = new Button("Assessor Recorder County Clerk Building", 400, 190, 240, 30);
+  Button escondidoTheaterButton = new Button("California Center for the Arts, Escondido Center Theater", 400, 230, 240, 30);
+  Button kimballButton = new Button("Kimball Senior Center", 400, 270, 240, 30);
+  Button sanYsidroButton = new Button("San Ysidro Civic Center", 400, 310, 240, 30);
+  Button miraMesaButton = new Button("Mira Mesa Senior Center", 400, 350, 240, 30);
+  
+
+  void testingLocations() {
+    stAnthonyButton.display(232, 232, 232);
+    tubmanChavezButton.display(232, 232, 232);
+    aquaticaButton.display(232, 232, 232);
+    sycuanButton.display(232, 232, 232);
+    marVistaButton.display(232, 232, 232);
+    northCoastalButton.display(232, 232, 232);
+    lgbtButton.display(232, 232, 232);
+    euclidButton.display(232, 232, 232);
+    
+    sdStateButton.display(232, 232, 232);
+    usdLotButton.display(232, 232, 232);
+    searsButton.display(232, 232, 232);
+    assessorRecorderButton.display(232, 232, 232);
+    escondidoTheaterButton.display(232, 232, 232);
+    kimballButton.display(232, 232, 232);
+    sanYsidroButton.display(232, 232, 232);
+    miraMesaButton.display(232, 232, 232);
+  }
+
   public void grid() {
     strokeWeight(4);
     stroke(0);
@@ -57,7 +92,7 @@ public class MainDisplay {
     breathingButton = new Button("Short breath", 850, 570, 100, 30);
     headacheButton = new Button("Headache", 850, 610, 100, 30);
     lossOfTasteButton = new Button("Loss of taste", 850, 650, 100, 30);
-   
+
     soreThroatButton = new Button("Sore throat", 980, 450, 100, 30);
     congestionButton = new Button("Congestion", 980, 490, 100, 30);
     runnyNoseButton = new Button("Runny nose", 980, 530, 100, 30);
@@ -76,15 +111,14 @@ public class MainDisplay {
     nauseaButton.display(232, 232, 232);
     vomitingButton.display(232, 232, 232);
     diarrheaButton.display(232, 232, 232);
-    
-    
-    
+
     String symptoms = "~ Fever/chills\n~ Cough\n~ Difficulty breathing"
       + "\n~ Fatigue\n~ Muscle/body aches\n~ Headache\n~ "
       + "New loss of taste or smell\n~ Sore throat"
       + "\n~ Congestion/runny nose\n~ Nausea/vomiting\n~ Diarrhea";
     String rules = "Wear a mask. Wash your hands. Keep your distance!";
-    
+
+
     textSize(9);
     fill(170, 170, 100);
     text("CLICK for more info", WIDTH*3/4 + 160, 395);
@@ -92,7 +126,6 @@ public class MainDisplay {
     fill(0, 0, 0);
     text(rules.substring(0, 29), 830, 345, WIDTH, 700);
     text(rules.substring(30), 830, 365, WIDTH, 700);
-   
   }
 
   void usMap() {
@@ -108,7 +141,7 @@ public class MainDisplay {
       ellipse(xValues[i], yValues[i], (float)(Math.sqrt(data[i])), (float)(Math.sqrt(data[i])));
     }
   }
-  
+
   void graph(int[] pI, int scale) {
     Graph graph = new Graph();
     graph.initialize(pI);
@@ -119,8 +152,9 @@ public class MainDisplay {
     PFont font = createFont(fontList[168], 32);
     textFont(font);
   }
-  
-   void showNews() {//51 //300 //83 spacing
+
+  void showNews() {//51 //300 //83 spacing
+
     strokeWeight(1);
     stroke(0);
     line(WIDTH*3/4, 51, WIDTH, 51);
@@ -173,7 +207,7 @@ public class MainDisplay {
   }
   NewsDatum getCurrentNews() {
     news = new News();
-    if (newsInfo == null){
+    if (newsInfo == null) {
       newsInfo = news.fetchTopNews();
     }
     return newsInfo;

@@ -67,7 +67,8 @@ void draw() {
   if(currentPage == 1){
   textSize(15);
   String str = (timeline.getDate((formula))).toString();
-  text("Date: " + str.charAt(4) + str.charAt(5) + "/" + str.charAt(6) +str.charAt(7) + "/" + str.charAt(0) + str.charAt(1) + str.charAt(2) + str.charAt(3) , 545, 455);
+  text("Date: " + str.charAt(4) + str.charAt(5) + "/" + str.charAt(6) +str.charAt(7) + "/" + str.charAt(0) + str.charAt(1) + str.charAt(2) + str.charAt(3) , 600, 350);
+
   }
 }
 void updateData(){
@@ -151,6 +152,8 @@ void updateGraphics(){
   if (currentPage == 2){
     nextPage.display(150, 150, 150);
     previousPage.display(300, 300, 300);
+    display.testingLocations();
+
     buy1.display(232, 232, 232);
     buy2.display(232, 232, 232);
     buy3.display(232, 232, 232);
@@ -202,6 +205,7 @@ void mousePressed() {
     link("https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html");
 
   }
+
 
   if(currentPage == 1){
     if (posIncreaseButton.mouseIsOver()) {
@@ -265,6 +269,54 @@ void mousePressed() {
   } else if (display.diarrheaButton.mouseIsOver()) {
     link("https://www.healthline.com/health/diarrhea");
   }
+  
+  if (display.stAnthonyButton.mouseIsOver()) {
+  showMessageDialog(null, "");
+  } else if (display.tubmanChavezButton.mouseIsOver()) {
+  
+  } else if (display.aquaticaButton.mouseIsOver()) {
+  
+  } else if (display.sycuanButton.mouseIsOver()) {
+  
+  } else if (display.marVistaButton.mouseIsOver()) {
+  
+  } else if (display.northCoastalButton.mouseIsOver()) {
+  
+  } else if (display.lgbtButton.mouseIsOver()) {
+  
+  } else if (display.euclidButton.mouseIsOver()) {
+  
+  } else if (display.sdStateButton.mouseIsOver()) {
+  
+  } else if (display.usdLotButton.mouseIsOver()) {
+  
+  } else if (display.searsButton.mouseIsOver()) {
+  
+  } else if (display.assessorRecorderButton.mouseIsOver()) {
+  
+  } else if (display.escondidoTheaterButton.mouseIsOver()) {
+  
+  } else if (display.kimballButton.mouseIsOver()) {
+  
+  } else if (display.sanYsidroButton.mouseIsOver()) {
+  
+  } else if (display.miraMesaButton.mouseIsOver()) {
+  
+  }
+  
+}
+void mouseDragged(){
+    if( 410 < mouseY && 480 > mouseY && 100 < mouseX && mouseX < 100 + timeline.getnumDays() * 2 ){
+      formula = Math.abs(((savedX - 100)/2) - (timeline.getnumDays() - 1) );
+      rect(mouseX,445,3, 10);
+      savedX = mouseX;
+      mouseDragged = true;
+    }
+    else{
+      mouseDragged = false;
+      
+}
+
 }
 void mouseDragged(){
     if( 410 < mouseY && 480 > mouseY && 100 < mouseX && mouseX < 100 + timeline.getnumDays() * 2 ){
