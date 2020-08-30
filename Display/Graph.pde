@@ -64,7 +64,8 @@ public class Graph {
   
   void displayTop5(int number) {
     
-    rect(300, 660, 15, 15);
+    ellipse(150, 600, 160, 160);
+    /*
     //highest
     fill(250, 0, 0);
     rect(300, 500, 15, 15);
@@ -82,6 +83,10 @@ public class Graph {
     rect(300, 620, 15, 15);
     arc(150f, 585f, 200f, 200f, (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2]), (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2] + 2*PI*top5scale[3]), PIE);
     //5th highest
+    fill(250, 100, 100);
+    rect(300, 660, 15, 15);
+    arc(150f, 585f, 200f, 200f, (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2] + 2*PI*top5scale[3]), (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2] + 2*PI*top5scale[3] + 2*PI*top5scale[4]), PIE);
+    */
   }
 
   void organizeData(int[] pI) {
