@@ -11,6 +11,7 @@ public class Graph {
   int sumTop5 = 1;
   int[] top5index = new int[5];
   float[] top5scale = new float[5];
+  int[][] colors = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
 
   void initialize(int[] pI) {
     this.unsortedData = pI;
@@ -63,30 +64,68 @@ public class Graph {
   }
   
   void displayTop5(int number) {
-    
-    ellipse(150, 600, 160, 160);
-    /*
+    //ellipse(150, 600, 160, 160);
+    String[] fontList = PFont.list();
+    PFont font = createFont(fontList[168], 16);
+    textFont(font);
+    fill(0, 0, 0);
+    text("Top 5 States", 60, 500);
+    pickColors(number);
     //highest
-    fill(250, 0, 0);
-    rect(300, 500, 15, 15);
-    arc(150f, 585f, 200f, 200f, 0, (2*PI*top5scale[0]), PIE);
+    fill(colors[0][0], colors[0][1], colors[0][2]);
+    stroke(colors[0][0], colors[0][1], colors[0][2]);
+    rect(225, 500, 15, 15);
+    noStroke();
+    arc(100f, 600f, 160f, 160f, 0, (2*PI*top5scale[0]), PIE);
     //2nd highest
-    fill(250, 25, 25);
-    rect(300, 540, 15, 15);
-    arc(150f, 585f, 200f, 200f, (2*PI*top5scale[0]), (2*PI*top5scale[1] + 2*PI*top5scale[0]), PIE);
+    fill(colors[1][0], colors[1][1], colors[1][2]);
+    stroke(colors[0][0], colors[0][1], colors[0][2]);
+    rect(225, 540, 15, 15);
+    noStroke();
+    arc(100f, 600f, 160f, 160f, (2*PI*top5scale[0]), (2*PI*top5scale[1] + 2*PI*top5scale[0]), PIE);
     //3rd highest
-    fill(250, 50, 50);
-    rect(300, 580, 15, 15);
-    arc(150f, 585f, 200f, 200f, (2*PI*top5scale[1] + 2*PI*top5scale[0]), (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2]), PIE);
+    fill(colors[2][0], colors[2][1], colors[2][2]);
+    stroke(colors[0][0], colors[0][1], colors[0][2]);
+    rect(225, 580, 15, 15);
+    noStroke();
+    arc(100f, 600f, 160f, 160f, (2*PI*top5scale[1] + 2*PI*top5scale[0]), (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2]), PIE);
     //4th highest
-    fill(250, 75, 75);
-    rect(300, 620, 15, 15);
-    arc(150f, 585f, 200f, 200f, (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2]), (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2] + 2*PI*top5scale[3]), PIE);
+    fill(colors[3][0], colors[3][1], colors[3][2]);
+    stroke(colors[0][0], colors[0][1], colors[0][2]);
+    rect(225, 620, 15, 15);
+    noStroke();
+    arc(100f, 600f, 160f, 160f, (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2]), (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2] + 2*PI*top5scale[3]), PIE);
     //5th highest
-    fill(250, 100, 100);
-    rect(300, 660, 15, 15);
-    arc(150f, 585f, 200f, 200f, (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2] + 2*PI*top5scale[3]), (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2] + 2*PI*top5scale[3] + 2*PI*top5scale[4]), PIE);
-    */
+    fill(colors[4][0], colors[4][1], colors[4][2]);
+    stroke(colors[0][0], colors[0][1], colors[0][2]);
+    rect(225, 660, 15, 15);
+    noStroke();
+    arc(100f, 600f, 160f, 160f, (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2] + 2*PI*top5scale[3]), (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2] + 2*PI*top5scale[3] + 2*PI*top5scale[4]), PIE);
+    //text
+    fill(0, 0, 0);
+    textFont(mono, 15);
+    text(states[top5index[0]].toUpperCase() + " - " + unsortedData[top5index[0]], 255, 513);
+    text(states[top5index[1]].toUpperCase() + " - " + unsortedData[top5index[1]], 255, 553);
+    text(states[top5index[2]].toUpperCase() + " - " + unsortedData[top5index[2]], 255, 593);
+    text(states[top5index[3]].toUpperCase() + " - " + unsortedData[top5index[3]], 255, 633);
+    text(states[top5index[4]].toUpperCase() + " - " + unsortedData[top5index[4]], 255, 673);
+  }
+  
+  void pickColors(int number) {
+    switch (number) {
+      case 0:
+        colors = new int [][]{{250, 0, 0}, {250, 25, 25}, {250, 50, 50}, {250, 75, 75}, {250, 100, 100}};
+        break;
+      case 1:
+        colors = new int [][]{{0, 0, 250}, {30, 30, 250}, {60, 60, 250}, {90, 90, 250}, {120, 120, 250}};
+        break;
+      case 2:
+        colors = new int [][]{{0, 200, 0}, {40, 200, 40}, {80, 200, 80}, {120, 200, 120}, {160, 200, 160}};
+        break;
+      case 3:
+        colors = new int [][]{{250, 180, 0}, {250, 185, 50}, {250, 190, 100}, {250, 195, 150}, {250, 200, 200}};
+        break;
+    }
   }
 
   void organizeData(int[] pI) {
