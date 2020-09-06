@@ -74,41 +74,41 @@ public class Graph {
     //highest
     fill(colors[0][0], colors[0][1], colors[0][2]);
     stroke(colors[0][0], colors[0][1], colors[0][2]);
-    rect(225, 500, 15, 15);
+    rect(215, 510, 15, 15);
     noStroke();
     arc(100f, 600f, 160f, 160f, 0, (2*PI*top5scale[0]), PIE);
     //2nd highest
     fill(colors[1][0], colors[1][1], colors[1][2]);
     stroke(colors[0][0], colors[0][1], colors[0][2]);
-    rect(225, 540, 15, 15);
+    rect(215, 550, 15, 15);
     noStroke();
     arc(100f, 600f, 160f, 160f, (2*PI*top5scale[0]), (2*PI*top5scale[1] + 2*PI*top5scale[0]), PIE);
     //3rd highest
     fill(colors[2][0], colors[2][1], colors[2][2]);
     stroke(colors[0][0], colors[0][1], colors[0][2]);
-    rect(225, 580, 15, 15);
+    rect(215, 590, 15, 15);
     noStroke();
     arc(100f, 600f, 160f, 160f, (2*PI*top5scale[1] + 2*PI*top5scale[0]), (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2]), PIE);
     //4th highest
     fill(colors[3][0], colors[3][1], colors[3][2]);
     stroke(colors[0][0], colors[0][1], colors[0][2]);
-    rect(225, 620, 15, 15);
+    rect(215, 630, 15, 15);
     noStroke();
     arc(100f, 600f, 160f, 160f, (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2]), (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2] + 2*PI*top5scale[3]), PIE);
     //5th highest
     fill(colors[4][0], colors[4][1], colors[4][2]);
     stroke(colors[0][0], colors[0][1], colors[0][2]);
-    rect(225, 660, 15, 15);
+    rect(215, 670, 15, 15);
     noStroke();
     arc(100f, 600f, 160f, 160f, (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2] + 2*PI*top5scale[3]), (2*PI*top5scale[0] + 2*PI*top5scale[1] + 2*PI*top5scale[2] + 2*PI*top5scale[3] + 2*PI*top5scale[4]), PIE);
     //text
     fill(0, 0, 0);
     textFont(mono, 15);
-    text(states[top5index[0]].toUpperCase() + " - " + unsortedData[top5index[0]], 255, 513);
-    text(states[top5index[1]].toUpperCase() + " - " + unsortedData[top5index[1]], 255, 553);
-    text(states[top5index[2]].toUpperCase() + " - " + unsortedData[top5index[2]], 255, 593);
-    text(states[top5index[3]].toUpperCase() + " - " + unsortedData[top5index[3]], 255, 633);
-    text(states[top5index[4]].toUpperCase() + " - " + unsortedData[top5index[4]], 255, 673);
+    text(states[top5index[0]].toUpperCase() + " - " + unsortedData[top5index[0]], 245, 523);
+    text(states[top5index[1]].toUpperCase() + " - " + unsortedData[top5index[1]], 245, 563);
+    text(states[top5index[2]].toUpperCase() + " - " + unsortedData[top5index[2]], 245, 603);
+    text(states[top5index[3]].toUpperCase() + " - " + unsortedData[top5index[3]], 245, 643);
+    text(states[top5index[4]].toUpperCase() + " - " + unsortedData[top5index[4]], 245, 683);
   }
   
   void pickColors(int number) {
