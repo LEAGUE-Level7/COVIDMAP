@@ -1,193 +1,193 @@
 public class SiteDatum {
   @SerializedName("St. Anthony's of Padua Parking Lot")
     @Expose
-    private List <LocationDatum> stAnthony;
+    private LocationDatum stAnthony;
 
   @SerializedName("Tubman-Chavez Community Center")
     @Expose
-    private List <LocationDatum> tubmanChavez;
+    private LocationDatum tubmanChavez;
 
   @SerializedName("Aquatica San Diego")
     @Expose
-    private List <LocationDatum> aquatica;
+    private LocationDatum aquatica;
 
   @SerializedName("Sycuan Market")
     @Expose
-    private List <LocationDatum> sycuan;
+    private LocationDatum sycuan;
 
   @SerializedName("Mar Vista High School")
     @Expose
-    private List <LocationDatum> marVista;
+    private LocationDatum marVista;
 
   @SerializedName("North Coastal Live Well Health Center")
     @Expose
-    private List <LocationDatum> northCoastal;
+    private LocationDatum northCoastal;
 
   @SerializedName("The San Diego LGBT Community Center")
     @Expose
-    private List <LocationDatum> lgbtCenter;
+    private LocationDatum lgbtCenter;
 
   @SerializedName("San Diego State University Parking Lot 17B")
     @Expose
-    private List <LocationDatum> sdState;
+    private LocationDatum sdState;
 
   @SerializedName("University of San Diego (USD) Parking Lot")
     @Expose
-    private List <LocationDatum> usdLot;
+    private LocationDatum usdLot;
 
   @SerializedName("Old Sears Building")
     @Expose
-    private List <LocationDatum> sears;
+    private LocationDatum sears;
 
   @SerializedName("Assessor Recorder County Clerk Building")
     @Expose
-    private List <LocationDatum> assessorRecorder;
+    private LocationDatum assessorRecorder;
 
   @SerializedName("California Center for the Arts, Escondido Center Theater")
     @Expose
-    private List <LocationDatum> artsCenter;
+    private LocationDatum artsCenter;
 
   @SerializedName("Kimball Senior Center")
     @Expose
-    private List <LocationDatum> kimballCenter;
+    private LocationDatum kimballCenter;
 
   @SerializedName("San Ysidro Civic Center")
     @Expose
-    private List <LocationDatum> sanYsidro;
+    private LocationDatum sanYsidro;
 
   @SerializedName("Mira Mesa Senior Center")
     @Expose
-    private List <LocationDatum> miraMesa;
+    private LocationDatum miraMesa;
 
   @SerializedName("Euclid Health Center")
     @Expose
-    private List <LocationDatum> euclidCenter;
+    private LocationDatum euclidCenter;
 
-  public List<LocationDatum> getStAnthony() {
+  public LocationDatum getStAnthony() {
     return stAnthony;
   }
 
-  public void setStAnthony(List<LocationDatum> stAnthony) {
+  public void setStAnthony(LocationDatum stAnthony) {
     this.stAnthony = stAnthony;
   }
   
-  public List<LocationDatum> getTubmanChavez() {
+  public LocationDatum getTubmanChavez() {
     return tubmanChavez;
   }
 
-  public void setTubmanChavez(List<LocationDatum> tubmanChavez) {
+  public void setTubmanChavez(LocationDatum tubmanChavez) {
     this.tubmanChavez = tubmanChavez;
   }
 
-  public List<LocationDatum> getAquatica() {
+  public LocationDatum getAquatica() {
     return aquatica;
   }
 
-  public void setAquatica(List<LocationDatum> aquatica) {
+  public void setAquatica(LocationDatum aquatica) {
     this.aquatica = aquatica;
   }
   
-  public List<LocationDatum> getSycuan() {
+  public LocationDatum getSycuan() {
     return sycuan;
   }
 
-  public void setSycuan(List<LocationDatum> sycuan) {
+  public void setSycuan(LocationDatum sycuan) {
     this.sycuan = sycuan;
   }
   
-  public List<LocationDatum> getMarVista() {
+  public LocationDatum getMarVista() {
     return marVista;
   }
 
-  public void setMarVista(List<LocationDatum> marVista) {
+  public void setMarVista(LocationDatum marVista) {
     this.marVista = marVista;
   }
   
-  public List<LocationDatum> getNorthCoastal() {
+  public LocationDatum getNorthCoastal() {
     return northCoastal;
   }
 
-  public void setNorthCoastal(List<LocationDatum> northCoastal) {
+  public void setNorthCoastal(LocationDatum northCoastal) {
     this.northCoastal = northCoastal;
   }
   
-  public List<LocationDatum> getLgbtCenter() {
+  public LocationDatum getLgbtCenter() {
     return lgbtCenter;
   }
 
-  public void setLgbtCenter(List<LocationDatum> lgbtCenter) {
+  public void setLgbtCenter(LocationDatum lgbtCenter) {
     this.lgbtCenter = lgbtCenter;
   }
   
-  public List<LocationDatum> getSdState() {
+  public LocationDatum getSdState() {
     return sdState;
   }
 
-  public void setSdState(List<LocationDatum> sdState) {
+  public void setSdState(LocationDatum sdState) {
     this.sdState = sdState;
   }
   
-  public List<LocationDatum> getUsdLot() {
+  public LocationDatum getUsdLot() {
     return usdLot;
   }
 
-  public void setUsdLot(List<LocationDatum> usdLot) {
+  public void setUsdLot(LocationDatum usdLot) {
     this.usdLot = usdLot;
   }
   
-  public List<LocationDatum> getSears() {
+  public LocationDatum getSears() {
     return sears;
   }
 
-  public void setSears(List<LocationDatum> sears) {
+  public void setSears(LocationDatum sears) {
     this.sears = sears;
   }
   
-  public List<LocationDatum> getAssessorRecorder() {
+  public LocationDatum getAssessorRecorder() {
     return sears;
   }
 
-  public void setAssessorRecorder(List<LocationDatum> assessorRecorder) {
+  public void setAssessorRecorder(LocationDatum assessorRecorder) {
     this.assessorRecorder = assessorRecorder;
   }
   
-  public List<LocationDatum> getArtsCenter() {
+  public LocationDatum getArtsCenter() {
     return sears;
   }
 
-  public void setArtsCenter(List<LocationDatum> artsCenter) {
+  public void setArtsCenter(LocationDatum artsCenter) {
     this.artsCenter = artsCenter;
   }
   
-  public List<LocationDatum> getKimballCenter() {
+  public LocationDatum getKimballCenter() {
     return sears;
   }
 
-  public void setKimballCenter(List<LocationDatum> kimballCenter) {
+  public void setKimballCenter(LocationDatum kimballCenter) {
     this.kimballCenter = kimballCenter;
   }
   
-  public List<LocationDatum> getSanYsidro() {
+  public LocationDatum getSanYsidro() {
     return sears;
   }
 
-  public void setSanYsidro(List<LocationDatum> sanYsidro) {
+  public void setSanYsidro(LocationDatum sanYsidro) {
     this.sanYsidro = sanYsidro;
   }
   
-  public List<LocationDatum> getMiraMesa() {
+  public LocationDatum getMiraMesa() {
     return sears;
   }
 
-  public void setMiraMesa(List<LocationDatum> miraMesa) {
+  public void setMiraMesa(LocationDatum miraMesa) {
     this.miraMesa = miraMesa;
   }
   
-  public List<LocationDatum> getEuclidCenter() {
+  public LocationDatum getEuclidCenter() {
     return sears;
   }
 
-  public void setEuclidCenter(List<LocationDatum> euclidCenter) {
+  public void setEuclidCenter(LocationDatum euclidCenter) {
     this.euclidCenter = euclidCenter;
   }
 }

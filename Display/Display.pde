@@ -66,6 +66,7 @@ public class MainDisplay {
     sanYsidroButton.display(232, 232, 232);
     miraMesaButton.display(232, 232, 232);
   }
+  
 
   public void grid() {
     strokeWeight(4);
