@@ -17,11 +17,12 @@ class Button {
     pushMatrix();
     textSize(14.5);
     fill(r, g, b, 150);
+    strokeWeight(1);
     stroke(141);
     rect(x, y, w, h, 10);
     textAlign(CENTER, CENTER);
     fill(0);
-    text(label, x + (w / 2), y + (h / 2));
+    text(label, x + (w / 2), y + (h / 2) - 3);
     popMatrix();
     textAlign(0);
   }

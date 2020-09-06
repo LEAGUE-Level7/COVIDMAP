@@ -11,14 +11,22 @@ Button posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
 Button deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
 Button hospitalizedButton = new Button("Hospitalized", 675, 120, 130, 30);
 Button totalRecoveredButton = new Button("Total Recovered", 675, 160, 130, 30);
-
 Button nextPage = new Button("->", 750, 425, 60, 30);
 Button previousPage = new Button("<-", 685, 425, 60, 30);
 int currentPage = 1;
-
+int value = 0;
+int savedX = 100;
+int formula = 0;
+boolean mouseDragged;
 final int WIDTH = 1100;
 NewsDatum newsInfo;
 Map map = new Map();
+String[] states = {"AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", 
+    "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", 
+    "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", 
+    "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", 
+    "VA", "WA", "WV", "WI", "WY"};
+Timeline timeline = new Timeline(states);
 boolean hasGottenData = false;
 boolean [] buttons = {false,false,false,false};
 
@@ -38,16 +46,33 @@ void setup() {
   text(fetchText, 300, 350);
 }
 
-void draw() { 
+void draw() {
   if (hasGottenData){
     updateGraphics();
   }else{
     updateData();
     hasGottenData = true;
   }
+  fill(0);
+  if(currentPage == 1){
+  rect(100, 450,  timeline.getnumDays() * 2 , 1);
+  
+  }
+  if(!mouseDragged  && savedX == 100 && currentPage == 1){
+    rect(timeline.getnumDays() * 2 + 100,445,3, 10);
+  }
+  else if (currentPage == 1){
+    rect(savedX ,445,3, 10);
+  }
+  if(currentPage == 1){
+  textSize(15);
+  String str = (timeline.getDate((formula))).toString();
+  text("Date: " + str.charAt(4) + str.charAt(5) + "/" + str.charAt(6) +str.charAt(7) + "/" + str.charAt(0) + str.charAt(1) + str.charAt(2) + str.charAt(3) , 545, 455);
+  }
 }
 void updateData(){
-  map.checkSavedData();
+  //map.checkSavedData();
+  timeline.pullAllStatesAllDates();
   newsInfo = display.getCurrentNews();
   posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
   deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
@@ -61,10 +86,32 @@ void updateData(){
 void updateGraphics(){
   background(#D6D6D6);
   display.grid();
+  display.showNews();
   display.headers();
   display.baseText();
-  display.usMap();
-  
+  noStroke();
+  if(buttons[0]){
+    fill(255, 0, 0);
+    int[] positiveIncreases = map.positiveIncreaseMap(timeline.getData(timeline.getDate(formula)));
+    display.graph(positiveIncreases, 0);
+  }else if(buttons[1]){
+    fill(0, 0, 255);
+    int[] deathIncreases = map.deathIncreaseMap(timeline.getData(timeline.getDate(formula)));
+    display.graph(deathIncreases, 1);
+  }else if(buttons[2]){
+    fill(0, 255, 0);
+    int[] hospitalized = map.hospitalizedMap(timeline.getData(timeline.getDate(formula)));
+    display.graph(hospitalized, 2);
+  }else if(buttons[3]){
+    fill(255, 255, 0);
+    int[] recovered = map.recoveredMap(timeline.getData(timeline.getDate(formula)));
+    display.graph(recovered, 3);
+  }else{
+    textSize(16);
+    fill(0, 0, 0);
+    text("Select an option from the map pane to view a graph.", 240, 600);
+  }
+
   if (currentPage == 1){
     textSize(25);
     fill(179, 0, 0);
@@ -77,57 +124,50 @@ void updateGraphics(){
     deathIncreaseButton.display(232, 232, 232);
     hospitalizedButton.display(232, 232, 232);
     totalRecoveredButton.display(232, 232, 232);
-    display.showNews();
     if(buttons[0]){
-      int[] positiveIncreases = map.positiveIncreaseMap();
+      int[] positiveIncreases = map.positiveIncreaseMap(timeline.getData(timeline.getDate(formula)));
       posIncreaseButton.display(255, 0, 0);
       display.circles(positiveIncreases, 255, 0, 0);
-      display.graph(positiveIncreases, 0);
     }else if(buttons[1]){
-      int[] deathIncreases = map.deathIncreaseMap();
+      //int[] deathIncreases = map.deathIncreaseMap();
+      int[] deathIncreases = map.deathIncreaseMap(timeline.getData(timeline.getDate((formula))));
       deathIncreaseButton.display(0, 0, 255);
       display.circles(deathIncreases, 0, 0, 255);
-      display.graph(deathIncreases, 1);
     }else if(buttons[2]){
-      int[] hospitalized = map.hospitalizedMap();
+      int[] hospitalized = map.hospitalizedMap(timeline.getData(timeline.getDate((formula))));
       hospitalizedButton.display(0, 255, 0);
       display.circles(hospitalized, 0, 255, 0);
-      display.graph(hospitalized, 2);
     }else if(buttons[3]){
-      int[] recovered = map.recoveredMap();
+      int[] recovered = map.recoveredMap(timeline.getData(timeline.getDate((formula))));
       totalRecoveredButton.display(255, 255, 0);
       display.circles(recovered, 255, 255, 0);   
-      display.graph(recovered, 3);
     } else {
       textSize(16);
       fill(0, 0, 0);
-      text("Select a button above to view a graph.", 280, 600);
+      text("Select an option from the map pane to view a graph.", 240, 600);
     }
   }
+  
   if (currentPage == 2){
-    nextPage.display(300, 300, 300);
+    nextPage.display(150, 150, 150);
     previousPage.display(300, 300, 300);
     buy1.display(232, 232, 232);
     buy2.display(232, 232, 232);
     buy3.display(232, 232, 232);
   }
-  
-  if (currentPage == 3){
-    nextPage.display(300, 300, 300);
-    previousPage.display(300, 300, 300);
-    //do something
-  }
-  
-  if (currentPage == 4){
-    nextPage.display(150, 150, 150);
-    previousPage.display(300, 300, 300);
-    //do something
-  }
-  display.showNews();
 }
   
 
 void mousePressed() {
+  if( 410 < mouseY && 480 > mouseY && 100 < mouseX && mouseX < 100 + timeline.getnumDays() * 2 ){
+     savedX = mouseX;
+       formula = Math.abs(((savedX - 100)/2) - (timeline.getnumDays()-1));
+      rect(mouseX,445,3, 10);
+        mouseDragged = true;
+  }
+  else{
+    mouseDragged = false;
+  }
   if (mouseX >= WIDTH*3/4 && mouseX <= WIDTH && mouseY >= 51 && mouseY <= 134) {
     try {
       link(newsInfo.getArticles().get(0).getURL());
@@ -148,7 +188,7 @@ void mousePressed() {
     }
   }
   if (nextPage.mouseIsOver()) {
-    if(currentPage!=4){
+    if(currentPage!=2){
       currentPage++;
     }
   }
@@ -162,28 +202,30 @@ void mousePressed() {
     link("https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html");
 
   }
-  if (posIncreaseButton.mouseIsOver()) {
-    print("hello");
-    buttons[0] = true;
-    buttons[1] = false;
-    buttons[2] = false;
-    buttons[3] = false;
-  } else if (deathIncreaseButton.mouseIsOver()) {
-    buttons[0] = false;
-    buttons[1] = true;
-    buttons[2] = false;
-    buttons[3] = false;
-  } else if (hospitalizedButton.mouseIsOver()) {
-    buttons[0] = false;
-    buttons[1] = false;
-    buttons[2] = true;
-    buttons[3] = false;
-  } else if (totalRecoveredButton.mouseIsOver()) {
-    buttons[0] = false;
-    buttons[1] = false;
-    buttons[2] = false;
-    buttons[3] = true;
-  } 
+
+  if(currentPage == 1){
+    if (posIncreaseButton.mouseIsOver()) {
+      buttons[0] = true;
+      buttons[1] = false;
+      buttons[2] = false;
+      buttons[3] = false;
+    } else if (deathIncreaseButton.mouseIsOver()) {
+      buttons[0] = false;
+      buttons[1] = true;
+      buttons[2] = false;
+      buttons[3] = false;
+    } else if (hospitalizedButton.mouseIsOver()) {
+      buttons[0] = false;
+      buttons[1] = false;
+      buttons[2] = true;
+      buttons[3] = false;
+    } else if (totalRecoveredButton.mouseIsOver()) {
+      buttons[0] = false;
+      buttons[1] = false;
+      buttons[2] = false;
+      buttons[3] = true;
+    } 
+  }
   
   if(currentPage == 2){
     if(buy1.mouseIsOver()){
@@ -223,4 +265,17 @@ void mousePressed() {
   } else if (display.diarrheaButton.mouseIsOver()) {
     link("https://www.healthline.com/health/diarrhea");
   }
+}
+void mouseDragged(){
+    if( 410 < mouseY && 480 > mouseY && 100 < mouseX && mouseX < 100 + timeline.getnumDays() * 2 ){
+      formula = Math.abs(((savedX - 100)/2) - (timeline.getnumDays() - 1) );
+      rect(mouseX,445,3, 10);
+      savedX = mouseX;
+      mouseDragged = true;
+    }
+    else{
+      mouseDragged = false;
+      
+}
+
 }

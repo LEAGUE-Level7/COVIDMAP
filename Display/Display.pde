@@ -29,7 +29,8 @@ public class MainDisplay {
    Button vomitingButton = new Button("Vomiting", 980, 610, 90, 30);
    Button diarrheaButton = new Button("Diarrhea", 980, 650, 90, 30);
    
-
+   
+ 
    
   public void grid() {
     strokeWeight(4);
@@ -76,12 +77,14 @@ public class MainDisplay {
     vomitingButton.display(232, 232, 232);
     diarrheaButton.display(232, 232, 232);
     
+    
+    
     String symptoms = "~ Fever/chills\n~ Cough\n~ Difficulty breathing"
       + "\n~ Fatigue\n~ Muscle/body aches\n~ Headache\n~ "
       + "New loss of taste or smell\n~ Sore throat"
       + "\n~ Congestion/runny nose\n~ Nausea/vomiting\n~ Diarrhea";
     String rules = "Wear a mask. Wash your hands. Keep your distance!";
-
+    
     textSize(9);
     fill(170, 170, 100);
     text("CLICK for more info", WIDTH*3/4 + 160, 395);
@@ -89,6 +92,7 @@ public class MainDisplay {
     fill(0, 0, 0);
     text(rules.substring(0, 29), 830, 345, WIDTH, 700);
     text(rules.substring(30), 830, 365, WIDTH, 700);
+   
   }
 
   void usMap() {
