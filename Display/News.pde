@@ -20,7 +20,6 @@ public class News {
 
       BufferedReader br = new BufferedReader(
         new InputStreamReader(conn.getInputStream()));
-
       String siteContents = "";
       String inputLine = br.readLine();
       while (inputLine != null) {

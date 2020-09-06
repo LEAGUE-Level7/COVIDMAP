@@ -68,6 +68,7 @@ void draw() {
   textSize(15);
   String str = (timeline.getDate((formula))).toString();
   text("Date: " + str.charAt(4) + str.charAt(5) + "/" + str.charAt(6) +str.charAt(7) + "/" + str.charAt(0) + str.charAt(1) + str.charAt(2) + str.charAt(3) , 600, 350);
+
   }
 }
 void updateData(){
@@ -152,6 +153,7 @@ void updateGraphics(){
     nextPage.display(150, 150, 150);
     previousPage.display(300, 300, 300);
     display.testingLocations();
+
     buy1.display(232, 232, 232);
     buy2.display(232, 232, 232);
     buy3.display(232, 232, 232);
@@ -203,27 +205,31 @@ void mousePressed() {
     link("https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html");
 
   }
-  if (posIncreaseButton.mouseIsOver()) {
-    buttons[0] = true;
-    buttons[1] = false;
-    buttons[2] = false;
-    buttons[3] = false;
-  } else if (deathIncreaseButton.mouseIsOver()) {
-    buttons[0] = false;
-    buttons[1] = true;
-    buttons[2] = false;
-    buttons[3] = false;
-  } else if (hospitalizedButton.mouseIsOver()) {
-    buttons[0] = false;
-    buttons[1] = false;
-    buttons[2] = true;
-    buttons[3] = false;
-  } else if (totalRecoveredButton.mouseIsOver()) {
-    buttons[0] = false;
-    buttons[1] = false;
-    buttons[2] = false;
-    buttons[3] = true;
-  } 
+
+
+  if(currentPage == 1){
+    if (posIncreaseButton.mouseIsOver()) {
+      buttons[0] = true;
+      buttons[1] = false;
+      buttons[2] = false;
+      buttons[3] = false;
+    } else if (deathIncreaseButton.mouseIsOver()) {
+      buttons[0] = false;
+      buttons[1] = true;
+      buttons[2] = false;
+      buttons[3] = false;
+    } else if (hospitalizedButton.mouseIsOver()) {
+      buttons[0] = false;
+      buttons[1] = false;
+      buttons[2] = true;
+      buttons[3] = false;
+    } else if (totalRecoveredButton.mouseIsOver()) {
+      buttons[0] = false;
+      buttons[1] = false;
+      buttons[2] = false;
+      buttons[3] = true;
+    } 
+  }
   
   if(currentPage == 2){
     if(buy1.mouseIsOver()){
@@ -298,6 +304,19 @@ void mousePressed() {
   
   }
   
+}
+void mouseDragged(){
+    if( 410 < mouseY && 480 > mouseY && 100 < mouseX && mouseX < 100 + timeline.getnumDays() * 2 ){
+      formula = Math.abs(((savedX - 100)/2) - (timeline.getnumDays() - 1) );
+      rect(mouseX,445,3, 10);
+      savedX = mouseX;
+      mouseDragged = true;
+    }
+    else{
+      mouseDragged = false;
+      
+}
+
 }
 void mouseDragged(){
     if( 410 < mouseY && 480 > mouseY && 100 < mouseX && mouseX < 100 + timeline.getnumDays() * 2 ){

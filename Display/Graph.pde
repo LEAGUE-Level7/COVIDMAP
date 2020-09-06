@@ -4,6 +4,8 @@ public class Graph {
   int[] unsortedData = new int[50];
   String[] states = new String[50];
   int index = 0;
+  int highest = 1;
+
   int rectY = 0;
   int rectHeight = 0;
   PFont mono;
@@ -27,6 +29,8 @@ public class Graph {
      */
     textAlign(CENTER);
     textFont(mono, 12);
+    float scale = 150.0/highest;
+
     for (int i = 0; i < 50; i++) {
       fill(0, 0, 0);
       text(states[i].toUpperCase(), 12 + 16.25*i, 670);
@@ -73,7 +77,7 @@ public class Graph {
   }
 
   void organizeData(int[] pI) { 
-    int highest = sort(pI);
+    highest = sort(pI);
     index = search(unsortedData, highest);
   }
 

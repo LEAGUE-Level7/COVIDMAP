@@ -32,13 +32,16 @@ public class Map {
       jsonData[i] = userJSON;
       stringJsonData[i] = jsonData[i].toString();
     }
-    saveStrings("data.txt", stringJsonData);
+    println(stringJsonData[0]);
+    saveStrings("data1.txt", stringJsonData);
+    lines = loadStrings("data1.txt");
   }
 
   JsonObject pullState(String state) {
     try {
-      String requestURL = "https://covidtracking.com/api/v1/states/" + state + "/current.json";
-      // System.out.println(requestURL);
+      String requestURL;
+      requestURL = "https://covidtracking.com/api/v1/states/" + state + "/current.json";
+         
       URL url = new URL(requestURL);
       HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
       con.setRequestMethod("GET");
@@ -76,20 +79,26 @@ public class Map {
 
     apiData = gson.fromJson(apiJSON.toString(), Datum.class);
     savedData = gson.fromJson(savedJSON.toString(), Datum.class);
-
-    if (!apiData.getDate().equals(savedData.getDate())) {
-      pullAllStates();
+    try{
+      if (!apiData.getDate().equals(savedData.getDate())) {
+        pullAllStates();
+      }
+    } catch(NullPointerException e) {
+       pullAllStates();
     }
   } 
 
-  int[] positiveIncreaseMap() {
+  int[] positiveIncreaseMap(String[] inputLines) {
     boolean indexAtComma = false;
     int commaIndex = 0;
     int positiveIndex = 0;
-  
-    for (String c : lines) {
-      if(c!=null){
-        System.out.println("Good:");
+    for (String c : inputLines) {
+      if(c == null)
+      {
+        positiveIncreases[positiveIndex] = 0;
+        positiveIndex++;
+        continue;
+      }
       for (int i = 0; i < c.length(); i++) {
         if (i <= c.length()-16) {
           if (c.substring(i, i+16).equals("positiveIncrease")) {
@@ -105,17 +114,24 @@ public class Map {
           }
         }
       }
-      }
+
     }
     return positiveIncreases;
   }
 
-  int[] deathIncreaseMap() {
+
+  int[] deathIncreaseMap(String[] inputLines) {
     boolean indexAtComma = false;
     int commaIndex = 0;
     int positiveIndex = 0;
 
-    for (String c : lines) {
+    for (String c : inputLines) {
+        if(c == null)
+      {
+        deathIncreases[positiveIndex] = 0;
+        positiveIndex++;
+        continue;
+      }
       for (int i = 0; i < c.length(); i++) {
         if (i <= c.length()-13) {
           if (c.substring(i, i+13).equals("deathIncrease")) {
@@ -136,12 +152,18 @@ public class Map {
     return deathIncreases;
   }
 
-  int[] hospitalizedMap() {
+  int[] hospitalizedMap(String[] inputLines) {
     boolean indexAtComma = false;
     int commaIndex = 0;
     int positiveIndex = 0;
 
-    for (String c : lines) {
+    for (String c : inputLines) {
+        if(c == null)
+      {
+        hospitalized[positiveIndex] = 0;
+        positiveIndex++;
+        continue;
+      }
       for (int i = 0; i < c.length(); i++) {
         if (i <= c.length()-21) {
           if (c.substring(i, i+21).equals("hospitalizedCurrently")) {
@@ -166,12 +188,18 @@ public class Map {
     return hospitalized;
   }
 
-  int[] recoveredMap() {
+  int[] recoveredMap(String[] inputLines) {
     boolean indexAtComma = false;
     int commaIndex = 0;
     int positiveIndex = 0;
 
-    for (String c : lines) {
+    for (String c : inputLines) {
+       if(c == null)
+      {
+        recovered[positiveIndex] = 0;
+        positiveIndex++;
+        continue;
+      }
       for (int i = 0; i < c.length(); i++) {
         if (i <= c.length()-9) {
           if (c.substring(i, i+9).equals("recovered")) {
@@ -193,5 +221,15 @@ public class Map {
       }
     }
     return recovered;
+  }
+  
+  String[] getData()
+  {
+    return lines;
+  }
+  
+  String[] getStates()
+  {
+    return states;
   }
 }
