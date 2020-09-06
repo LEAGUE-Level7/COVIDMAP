@@ -85,8 +85,8 @@ void updateData(){
   buy1 = new Button("Buy Masks", 675, 40, 130, 30);
   buy2 = new Button("Buy Disinfectant", 675, 80, 130, 30);
   buy3 = new Button("Buy Custom", 675, 120, 130, 30);
-  graph1 = new Button("Total", 300, 478, 60, 30);
-  graph2 = new Button("Top 5", 455, 477, 60, 30);
+  graph1 = new Button("Total", 302, 478, 60, 30);
+  graph2 = new Button("Top 5", 453, 477, 60, 30);
 }
 
 void updateGraphics(){
