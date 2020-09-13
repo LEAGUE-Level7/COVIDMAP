@@ -55,11 +55,11 @@ void draw() {
   }
   fill(0);
   if(currentPage == 1){
-  rect(100, 450,  timeline.getnumDays() * 2 , 1);
+  rect(100, 450,  timeline.getnumDays(), 1);
   
   }
   if(!mouseDragged  && savedX == 100 && currentPage == 1){
-    rect(timeline.getnumDays() * 2 + 100,445,3, 10);
+    rect(timeline.getnumDays() + 100,445,3, 10);
   }
   else if (currentPage == 1){
     rect(savedX ,445,3, 10);
@@ -161,7 +161,7 @@ void updateGraphics(){
 void mousePressed() {
   if( 410 < mouseY && 480 > mouseY && 100 < mouseX && mouseX < 100 + timeline.getnumDays() * 2 ){
      savedX = mouseX;
-       formula = Math.abs(((savedX - 100)/2) - (timeline.getnumDays()-1));
+       formula = Math.abs(((savedX - 100)) - (timeline.getnumDays()-1));
       rect(mouseX,445,3, 10);
         mouseDragged = true;
   }
@@ -267,8 +267,8 @@ void mousePressed() {
   }
 }
 void mouseDragged(){
-    if( 410 < mouseY && 480 > mouseY && 100 < mouseX && mouseX < 100 + timeline.getnumDays() * 2 ){
-      formula = Math.abs(((savedX - 100)/2) - (timeline.getnumDays() - 1) );
+    if( 410 < mouseY && 480 > mouseY && 100 < mouseX && mouseX < 100 + timeline.getnumDays()){
+      formula = Math.abs(((savedX - 100)) - (timeline.getnumDays() - 1) );
       rect(mouseX,445,3, 10);
       savedX = mouseX;
       mouseDragged = true;
