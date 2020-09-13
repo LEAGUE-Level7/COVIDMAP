@@ -21,79 +21,83 @@ public class Map {
     "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", "ny", "nc", 
     "nd", "oh", "ok", "or", "pa", "ri", "sc", "sd", "tn", "tx", "ut", "vt", 
     "va", "wa", "wv", "wi", "wy"};
-  void pullAllStates() {
-    //text("Retrieving data...", 530, 350);
-    String[] stringJsonData = new String[50];
-    for (int i = 0; i < states.length; i++) {
-      JsonObject userJSON = pullState(states[i]);
+  //void pullAllStates() {
+  //  gettingData = true;
+  //  String[] stringJsonData = new String[50];
+  //  for (int i = 0; i < states.length; i++) {
+  //    counter++;
 
-      Datum request = gson.fromJson(userJSON.toString(), Datum.class);
-      data[i] = request;
-      jsonData[i] = userJSON;
-      stringJsonData[i] = jsonData[i].toString();
-    }
-    println(stringJsonData[0]);
-    saveStrings("data1.txt", stringJsonData);
-    lines = loadStrings("data1.txt");
-  }
+  //    JsonObject userJSON = pullState(states[i]);
 
-  JsonObject pullState(String state) {
-    try {
-      String requestURL;
-      requestURL = "https://covidtracking.com/api/v1/states/" + state + "/current.json";
-         
-      URL url = new URL(requestURL);
-      HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-      con.setRequestMethod("GET");
-      JsonReader repoReader = Json.createReader(con.getInputStream());
-      JsonObject userJSON = ((JsonObject) repoReader.read());
-      con.disconnect();
+  //    Datum request = gson.fromJson(userJSON.toString(), Datum.class);
+  //    data[i] = request;
+  //    jsonData[i] = userJSON;
+  //    stringJsonData[i] = jsonData[i].toString();
+  //  }
+  //  println(stringJsonData[0]);
+  //  saveStrings("data1.txt", stringJsonData);
+  //  lines = loadStrings("data1.txt");
+  //  gettingData = false;
+  //}
 
-      return userJSON;
-    } 
-    catch (MalformedURLException e) {
-      e.printStackTrace();
-    } 
-    catch (ProtocolException e) {
-      e.printStackTrace();
-    } 
-    catch (IOException e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
+  //JsonObject pullState(String state) {
+  //  try {
+  //    String requestURL;
+  //    requestURL = "https://covidtracking.com/api/v1/states/" + state + "/current.json";
 
-  String loadState() {
-    lines = loadStrings("data.txt");
+  //    URL url = new URL(requestURL);
+  //    HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+  //    con.setRequestMethod("GET");
+  //    JsonReader repoReader = Json.createReader(con.getInputStream());
+  //    JsonObject userJSON = ((JsonObject) repoReader.read());
+  //    con.disconnect();
 
-    return lines[0];
-  }
-  void checkSavedData() {
-    Datum savedData;
-    Datum apiData;
-    String savedJSON;
-    JsonObject apiJSON;
+  //    return userJSON;
+  //  } 
+  //  catch (MalformedURLException e) {
+  //    e.printStackTrace();
+  //  } 
+  //  catch (ProtocolException e) {
+  //    e.printStackTrace();
+  //  } 
+  //  catch (IOException e) {
+  //    e.printStackTrace();
+  //  }
+  //  return null;
+  //}
 
-    apiJSON = pullState("al");
-    savedJSON = loadState();
+  //String loadState() {
+  //  lines = loadStrings("data.txt");
 
-    apiData = gson.fromJson(apiJSON.toString(), Datum.class);
-    savedData = gson.fromJson(savedJSON.toString(), Datum.class);
-    try{
-      if (!apiData.getDate().equals(savedData.getDate())) {
-        pullAllStates();
-      }
-    } catch(NullPointerException e) {
-       pullAllStates();
-    }
-  } 
+  //  return lines[0];
+  //}
+  //void checkSavedData() {
+  //  Datum savedData;
+  //  Datum apiData;
+  //  String savedJSON;
+  //  JsonObject apiJSON;
+
+  //  apiJSON = pullState("al");
+  //  savedJSON = loadState();
+
+  //  apiData = gson.fromJson(apiJSON.toString(), Datum.class);
+  //  savedData = gson.fromJson(savedJSON.toString(), Datum.class);
+  //  try {
+  //    if (!apiData.getDate().equals(savedData.getDate())) {
+  //      thread("pullAllStates");
+  //    }
+  //  } 
+  //  catch(NullPointerException e) {
+  //    thread("pullAllStates");
+  //  }
+  //} 
 
   int[] positiveIncreaseMap(String[] inputLines) {
     boolean indexAtComma = false;
     int commaIndex = 0;
     int positiveIndex = 0;
     for (String c : inputLines) {
-      if(c == null)
+      if (c == null)
       {
         positiveIncreases[positiveIndex] = 0;
         positiveIndex++;
@@ -114,7 +118,6 @@ public class Map {
           }
         }
       }
-
     }
     return positiveIncreases;
   }
@@ -126,7 +129,7 @@ public class Map {
     int positiveIndex = 0;
 
     for (String c : inputLines) {
-        if(c == null)
+      if (c == null)
       {
         deathIncreases[positiveIndex] = 0;
         positiveIndex++;
@@ -158,7 +161,7 @@ public class Map {
     int positiveIndex = 0;
 
     for (String c : inputLines) {
-        if(c == null)
+      if (c == null)
       {
         hospitalized[positiveIndex] = 0;
         positiveIndex++;
@@ -194,7 +197,7 @@ public class Map {
     int positiveIndex = 0;
 
     for (String c : inputLines) {
-       if(c == null)
+      if (c == null)
       {
         recovered[positiveIndex] = 0;
         positiveIndex++;
@@ -222,12 +225,12 @@ public class Map {
     }
     return recovered;
   }
-  
+
   String[] getData()
   {
     return lines;
   }
-  
+
   String[] getStates()
   {
     return states;

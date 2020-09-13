@@ -46,6 +46,13 @@ public class MainDisplay {
   Button sanYsidroButton = new Button("San Ysidro Civic Center", 400, 310, 240, 30);
   Button miraMesaButton = new Button("Mira Mesa Senior Center", 400, 350, 240, 30);
   
+  void threadAllStatesAsynch() {
+    thread("pullAllStatesAsynch");
+  }
+  
+  public void pullAllStatesAsynch() {
+    timeline.pullAllStatesAllDates();
+  }
 
   void testingLocations() {
     stAnthonyButton.display(232, 232, 232);

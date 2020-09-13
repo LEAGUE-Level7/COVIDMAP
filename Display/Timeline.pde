@@ -11,7 +11,10 @@ import java.util.*;
 
 
 public class Timeline{
+    boolean gettingData = false;
     final Gson gson = new Gson();
+    int index = 0;
+    JsonArray userJSON;
     
     HashMap data = new HashMap<Integer, String[]>();
     HashMap stateIndex = new HashMap<String, Integer>();
@@ -24,16 +27,16 @@ public class Timeline{
         stateIndex.put(states[i], i);
       }
     }
-    
+ 
 
   void pullAllStatesAllDates(){
      JsonArray userJSON = pullData();
-     
-     int index = 0;
+     gettingData = true;
+     index = 0;
        
      while(true) {
        JsonObject tmp = userJSON.getJsonObject(index);
-       Integer date           = gson.fromJson(tmp.toString(), Datum.class).getDate();
+       Integer date = gson.fromJson(tmp.toString(), Datum.class).getDate();
        dateArray[numDays] = date;
        
        String[] dateData = new String[50];
@@ -59,6 +62,7 @@ public class Timeline{
              break;
            }
          }
+        
        }
        data.put(date, dateData);
        numDays++;
@@ -67,6 +71,8 @@ public class Timeline{
          break;
        }
      }
+     gettingData = false;
+     hasGottenData = true;
   }
      
   JsonArray pullData() {

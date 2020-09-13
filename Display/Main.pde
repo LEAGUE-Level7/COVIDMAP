@@ -38,20 +38,23 @@ public void settings() {
 void setup() {
   fill(0, 0, 0);
   textAlign(0);
-  String[] fontList = PFont.list();
-  PFont font = createFont(fontList[168], 32);
-  textFont(font);
+  //String[] fontList = PFont.list();
+  //PFont font = createFont(fontList[168], 32);
+  //textFont(font);
   textSize(24);
   String fetchText = "Please wait ... Process may take up to 15 seconds";
   text(fetchText, 300, 350);
 }
 
 void draw() {
+  if (timeline.gettingData) {
+    text((timeline.index/timeline.userJSON.size()*100) + "%", 550, 350);
+  }
   if (hasGottenData) {
     updateGraphics();
   } else {
+
     updateData();
-    hasGottenData = true;
   }
   fill(0);
   if (currentPage == 1) {
@@ -62,15 +65,17 @@ void draw() {
   } else if (currentPage == 1) {
     rect(savedX, 445, 3, 10);
   }
-  if (currentPage == 1) {
+  if (currentPage == 1 && hasGottenData) {
     textSize(15);
     String str = (timeline.getDate((formula))).toString();
     text("Date: " + str.charAt(4) + str.charAt(5) + "/" + str.charAt(6) +str.charAt(7) + "/" + str.charAt(0) + str.charAt(1) + str.charAt(2) + str.charAt(3), 600, 350);
   }
 }
+
 void updateData() {
   //map.checkSavedData();
-  timeline.pullAllStatesAllDates();
+  display.threadAllStatesAsynch();
+  //timeline.pullAllStatesAllDates();
   newsInfo = display.getCurrentNews();
   posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
   deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
@@ -294,7 +299,7 @@ void mousePressed() {
     String sunday = siteData.getAquatica().getSunday();
     showMessageDialog(null, "Sunday: " + sunday + "\nMonday: " + monday + "\nTuesday: " + tuesday + "\nWednesday: " + wednesday + "\nThursday: " + thursday + "\nFriday: " + friday + "\nSaturday: " + saturday);
   } else if (display.sycuanButton.mouseIsOver()) {
-   String monday = siteData.getSycuan().getMonday();
+    String monday = siteData.getSycuan().getMonday();
     String tuesday = siteData.getSycuan().getTuesday();
     String wednesday = siteData.getSycuan().getWednesday();
     String thursday = siteData.getSycuan().getThursday();
@@ -302,7 +307,6 @@ void mousePressed() {
     String saturday = siteData.getSycuan().getSaturday();
     String sunday = siteData.getSycuan().getSunday();
     showMessageDialog(null, "Sunday: " + sunday + "\nMonday: " + monday + "\nTuesday: " + tuesday + "\nWednesday: " + wednesday + "\nThursday: " + thursday + "\nFriday: " + friday + "\nSaturday: " + saturday);
-  
   } else if (display.marVistaButton.mouseIsOver()) {
     String monday = siteData.getMarVista().getMonday();
     String tuesday = siteData.getMarVista().getTuesday();
@@ -312,7 +316,6 @@ void mousePressed() {
     String saturday = siteData.getMarVista().getSaturday();
     String sunday = siteData.getMarVista().getSunday();
     showMessageDialog(null, "Sunday: " + sunday + "\nMonday: " + monday + "\nTuesday: " + tuesday + "\nWednesday: " + wednesday + "\nThursday: " + thursday + "\nFriday: " + friday + "\nSaturday: " + saturday);
-  
   } else if (display.northCoastalButton.mouseIsOver()) {
     String monday = siteData.getNorthCoastal().getMonday();
     String tuesday = siteData.getNorthCoastal().getTuesday();
@@ -322,7 +325,6 @@ void mousePressed() {
     String saturday = siteData.getNorthCoastal().getSaturday();
     String sunday = siteData.getNorthCoastal().getSunday();
     showMessageDialog(null, "Sunday: " + sunday + "\nMonday: " + monday + "\nTuesday: " + tuesday + "\nWednesday: " + wednesday + "\nThursday: " + thursday + "\nFriday: " + friday + "\nSaturday: " + saturday);
-  
   } else if (display.lgbtButton.mouseIsOver()) {
     String monday = siteData.getLgbtCenter().getMonday();
     String tuesday = siteData.getLgbtCenter().getTuesday();
@@ -332,7 +334,6 @@ void mousePressed() {
     String saturday = siteData.getLgbtCenter().getSaturday();
     String sunday = siteData.getLgbtCenter().getSunday();
     showMessageDialog(null, "Sunday: " + sunday + "\nMonday: " + monday + "\nTuesday: " + tuesday + "\nWednesday: " + wednesday + "\nThursday: " + thursday + "\nFriday: " + friday + "\nSaturday: " + saturday);
-  
   } else if (display.euclidButton.mouseIsOver()) {
     String monday = siteData.getEuclidCenter().getMonday();
     String tuesday = siteData.getEuclidCenter().getTuesday();
@@ -342,7 +343,6 @@ void mousePressed() {
     String saturday = siteData.getEuclidCenter().getSaturday();
     String sunday = siteData.getEuclidCenter().getSunday();
     showMessageDialog(null, "Sunday: " + sunday + "\nMonday: " + monday + "\nTuesday: " + tuesday + "\nWednesday: " + wednesday + "\nThursday: " + thursday + "\nFriday: " + friday + "\nSaturday: " + saturday);
-  
   } else if (display.sdStateButton.mouseIsOver()) {
     String monday = siteData.getSdState().getMonday();
     String tuesday = siteData.getSdState().getTuesday();
@@ -352,7 +352,6 @@ void mousePressed() {
     String saturday = siteData.getSdState().getSaturday();
     String sunday = siteData.getSdState().getSunday();
     showMessageDialog(null, "Sunday: " + sunday + "\nMonday: " + monday + "\nTuesday: " + tuesday + "\nWednesday: " + wednesday + "\nThursday: " + thursday + "\nFriday: " + friday + "\nSaturday: " + saturday);
-  
   } else if (display.usdLotButton.mouseIsOver()) {
     String monday = siteData.getUsdLot().getMonday();
     String tuesday = siteData.getUsdLot().getTuesday();
@@ -362,7 +361,6 @@ void mousePressed() {
     String saturday = siteData.getUsdLot().getSaturday();
     String sunday = siteData.getUsdLot().getSunday();
     showMessageDialog(null, "Sunday: " + sunday + "\nMonday: " + monday + "\nTuesday: " + tuesday + "\nWednesday: " + wednesday + "\nThursday: " + thursday + "\nFriday: " + friday + "\nSaturday: " + saturday);
-  
   } else if (display.searsButton.mouseIsOver()) {
     String monday = siteData.getSears().getMonday();
     String tuesday = siteData.getSears().getTuesday();
@@ -372,7 +370,6 @@ void mousePressed() {
     String saturday = siteData.getSears().getSaturday();
     String sunday = siteData.getSears().getSunday();
     showMessageDialog(null, "Sunday: " + sunday + "\nMonday: " + monday + "\nTuesday: " + tuesday + "\nWednesday: " + wednesday + "\nThursday: " + thursday + "\nFriday: " + friday + "\nSaturday: " + saturday);
-  
   } else if (display.assessorRecorderButton.mouseIsOver()) {
     String monday = siteData.getAssessorRecorder().getMonday();
     String tuesday = siteData.getAssessorRecorder().getTuesday();
@@ -382,9 +379,8 @@ void mousePressed() {
     String saturday = siteData.getAssessorRecorder().getSaturday();
     String sunday = siteData.getAssessorRecorder().getSunday();
     showMessageDialog(null, "Sunday: " + sunday + "\nMonday: " + monday + "\nTuesday: " + tuesday + "\nWednesday: " + wednesday + "\nThursday: " + thursday + "\nFriday: " + friday + "\nSaturday: " + saturday);
-  
   } else if (display.escondidoTheaterButton.mouseIsOver()) {
-   String monday = siteData.getArtsCenter().getMonday();
+    String monday = siteData.getArtsCenter().getMonday();
     String tuesday = siteData.getArtsCenter().getTuesday();
     String wednesday = siteData.getArtsCenter().getWednesday();
     String thursday = siteData.getArtsCenter().getThursday();
@@ -392,7 +388,6 @@ void mousePressed() {
     String saturday = siteData.getArtsCenter().getSaturday();
     String sunday = siteData.getArtsCenter().getSunday();
     showMessageDialog(null, "Sunday: " + sunday + "\nMonday: " + monday + "\nTuesday: " + tuesday + "\nWednesday: " + wednesday + "\nThursday: " + thursday + "\nFriday: " + friday + "\nSaturday: " + saturday);
-  
   } else if (display.kimballButton.mouseIsOver()) {
     String monday = siteData.getKimballCenter().getMonday();
     String tuesday = siteData.getKimballCenter().getTuesday();
@@ -402,7 +397,6 @@ void mousePressed() {
     String saturday = siteData.getKimballCenter().getSaturday();
     String sunday = siteData.getKimballCenter().getSunday();
     showMessageDialog(null, "Sunday: " + sunday + "\nMonday: " + monday + "\nTuesday: " + tuesday + "\nWednesday: " + wednesday + "\nThursday: " + thursday + "\nFriday: " + friday + "\nSaturday: " + saturday);
-  
   } else if (display.sanYsidroButton.mouseIsOver()) {
     String monday = siteData.getSanYsidro().getMonday();
     String tuesday = siteData.getSanYsidro().getTuesday();
@@ -412,9 +406,8 @@ void mousePressed() {
     String saturday = siteData.getSanYsidro().getSaturday();
     String sunday = siteData.getSanYsidro().getSunday();
     showMessageDialog(null, "Sunday: " + sunday + "\nMonday: " + monday + "\nTuesday: " + tuesday + "\nWednesday: " + wednesday + "\nThursday: " + thursday + "\nFriday: " + friday + "\nSaturday: " + saturday);
-  
   } else if (display.miraMesaButton.mouseIsOver()) {
-   String monday = siteData.getMiraMesa().getMonday();
+    String monday = siteData.getMiraMesa().getMonday();
     String tuesday = siteData.getMiraMesa().getTuesday();
     String wednesday = siteData.getMiraMesa().getWednesday();
     String thursday = siteData.getMiraMesa().getThursday();
@@ -422,7 +415,6 @@ void mousePressed() {
     String saturday = siteData.getMiraMesa().getSaturday();
     String sunday = siteData.getMiraMesa().getSunday();
     showMessageDialog(null, "Sunday: " + sunday + "\nMonday: " + monday + "\nTuesday: " + tuesday + "\nWednesday: " + wednesday + "\nThursday: " + thursday + "\nFriday: " + friday + "\nSaturday: " + saturday);
-  
   }
 }
 
@@ -435,7 +427,7 @@ String arrayToString(String[] array) {
   for (String s : array) {
     finalString += s;
   }
-  
+
   return finalString;
 }
 
