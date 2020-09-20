@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 
 public class Graph {
   Map map = new Map();
@@ -5,7 +6,7 @@ public class Graph {
   String[] states = new String[50];
   int index = 0;
   int highest = 1;
-
+  int totalSum = 1;
   int rectY = 0;
   int rectHeight = 0;
   PFont mono;
@@ -71,6 +72,16 @@ public class Graph {
     textFont(font);
     fill(0, 0, 0);
     text("Top 5 States", 60, 500);
+    text("Percentage of Total", 540, 500);
+    //right display
+    textFont(mono, 15);
+    DecimalFormat df = new DecimalFormat("##.##");
+    text(states[top5index[0]].toUpperCase() + " - " + df.format((((float)unsortedData[top5index[0]])/totalSum)*100) + "% --> " + unsortedData[top5index[0]] + "/" + totalSum, 500, 535);
+    text(states[top5index[1]].toUpperCase() + " - " + df.format((((float)unsortedData[top5index[1]])/totalSum)*100) + "% --> " + unsortedData[top5index[1]] + "/" + totalSum, 500, 570);
+    text(states[top5index[2]].toUpperCase() + " - " + df.format((((float)unsortedData[top5index[2]])/totalSum)*100) + "% --> " + unsortedData[top5index[2]] + "/" + totalSum, 500, 605);
+    text(states[top5index[3]].toUpperCase() + " - " + df.format((((float)unsortedData[top5index[3]])/totalSum)*100) + "% --> " + unsortedData[top5index[3]] + "/" + totalSum, 500, 640);
+    text(states[top5index[4]].toUpperCase() + " - " + df.format((((float)unsortedData[top5index[4]])/totalSum)*100) + "% --> " + unsortedData[top5index[4]] + "/" + totalSum, 500, 675);
+    //left graph
     pickColors(number);
     //highest
     fill(colors[0][0], colors[0][1], colors[0][2]);
@@ -133,21 +144,24 @@ public class Graph {
     int[] temp = sort(pI);
     highest = temp[temp.length-1];
     index = search(unsortedData, highest);
-    //fix...
     top5index[0] = index;
-    top5index[1] = search(unsortedData, temp[temp.length-2]);
-    top5index[2] = search(unsortedData, temp[temp.length-3]);
-    top5index[3] = search(unsortedData, temp[temp.length-4]);
-    top5index[4] = search(unsortedData, temp[temp.length-5]);
+    for (int i = 1; i < 5; i++) {
+      top5index[i] = search(unsortedData, temp[temp.length-(i+1)]);
+    }
     sumTop5 = temp[temp.length-1] + temp[temp.length-2] + temp[temp.length-3] + temp[temp.length-4] + temp[temp.length-5];
     if (sumTop5 == 0) {
       sumTop5 = 1;
     }
-    top5scale[0] = ((float)temp[temp.length-1])/sumTop5;
-    top5scale[1] = ((float)temp[temp.length-2])/sumTop5;
-    top5scale[2] = ((float)temp[temp.length-3])/sumTop5;
-    top5scale[3] = ((float)temp[temp.length-4])/sumTop5;
-    top5scale[4] = ((float)temp[temp.length-5])/sumTop5;
+    for (int i = 0; i < 5; i++) {
+       top5scale[i] = ((float)temp[temp.length-(i+1)])/sumTop5;
+    }
+    totalSum = 0;
+    for (int i = 1; i < 51; i++) {
+      totalSum += temp[temp.length - i];
+    }
+    if (totalSum == 0) {
+      totalSum = 1;
+    }
 }
 
   int[] sort(int[] array) {
