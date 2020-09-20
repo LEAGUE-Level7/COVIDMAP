@@ -6,8 +6,13 @@ Button buy2;
 Button buy3;
 final String AMAZON = "https://www.amazon.com/s?k=";
 
-MainDisplay display = new MainDisplay(); 
+Button graph1;
+Button graph2;
+int graphType = 0;
+
+MainDisplay display = new MainDisplay(); ;
 SiteDatum siteData;
+
 Button posIncreaseButton = new Button("Positive Increase", 675, 40, 130, 30);
 Button deathIncreaseButton = new Button("Death Increase", 675, 80, 130, 30);
 Button hospitalizedButton = new Button("Hospitalized", 675, 120, 130, 30);
@@ -79,6 +84,8 @@ void updateData() {
   buy1 = new Button("Buy Masks", 675, 40, 130, 30);
   buy2 = new Button("Buy Disinfectant", 675, 80, 130, 30);
   buy3 = new Button("Buy Custom", 675, 120, 130, 30);
+  graph1 = new Button("Total", 302, 478, 60, 30);
+  graph2 = new Button("Top 5", 453, 477, 60, 30);
 }
 
 void updateGraphics() {
@@ -91,20 +98,20 @@ void updateGraphics() {
   if (buttons[0]) {
     fill(255, 0, 0);
     int[] positiveIncreases = map.positiveIncreaseMap(timeline.getData(timeline.getDate(formula)));
-    display.graph(positiveIncreases, 0);
-  } else if (buttons[1]) {
+    display.graph(positiveIncreases, 0, graphType);
+  }else if(buttons[1]){
     fill(0, 0, 255);
     int[] deathIncreases = map.deathIncreaseMap(timeline.getData(timeline.getDate(formula)));
-    display.graph(deathIncreases, 1);
-  } else if (buttons[2]) {
+    display.graph(deathIncreases, 1, graphType);
+  }else if(buttons[2]){
     fill(0, 255, 0);
     int[] hospitalized = map.hospitalizedMap(timeline.getData(timeline.getDate(formula)));
-    display.graph(hospitalized, 2);
-  } else if (buttons[3]) {
+    display.graph(hospitalized, 2, graphType);
+  }else if(buttons[3]){
     fill(255, 255, 0);
     int[] recovered = map.recoveredMap(timeline.getData(timeline.getDate(formula)));
-    display.graph(recovered, 3);
-  } else {
+    display.graph(recovered, 3, graphType);
+  }else{
     textSize(16);
     fill(0, 0, 0);
     text("Select an option from the map pane to view a graph.", 240, 600);
@@ -122,7 +129,9 @@ void updateGraphics() {
     deathIncreaseButton.display(232, 232, 232);
     hospitalizedButton.display(232, 232, 232);
     totalRecoveredButton.display(232, 232, 232);
-    if (buttons[0]) {
+    graph1.display(232, 232, 232);
+    graph2.display(232, 232, 232);
+    if(buttons[0]){
       int[] positiveIncreases = map.positiveIncreaseMap(timeline.getData(timeline.getDate(formula)));
       posIncreaseButton.display(255, 0, 0);
       display.circles(positiveIncreases, 255, 0, 0);
@@ -237,6 +246,18 @@ void mousePressed() {
         link(AMAZON + item.replace(' ', '+'));
       }
     }
+  }
+  
+  if(currentPage == 1) {
+     if(graph1.mouseIsOver()) {
+       graphType = 0;
+       graph1.display(300, 300, 300);
+       graph2.display(232, 232, 232);
+     } else if (graph2.mouseIsOver()) {
+       graphType = 1;
+       graph2.display(300, 300, 300);
+       graph1.display(232, 232, 232);
+     }
   }
 
   if (display.feverButton.mouseIsOver()) {
