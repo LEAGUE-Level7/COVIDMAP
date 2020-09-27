@@ -27,7 +27,7 @@ public class MainDisplay {
   Button nauseaButton = new Button("Nausea", 980, 570, 90, 30);
   Button vomitingButton = new Button("Vomiting", 980, 610, 90, 30);
   Button diarrheaButton = new Button("Diarrhea", 980, 650, 90, 30);
-
+  
   Button stAnthonyButton = new Button("St. Anthony's of Padua Parking Lot", 100, 70, 240, 30);
   Button tubmanChavezButton = new Button("Tubman-Chavez Community Center", 100, 110, 240, 30);
   Button aquaticaButton = new Button("Aquatica San Diego", 100, 150, 240, 30);
@@ -48,23 +48,24 @@ public class MainDisplay {
   
 
   void testingLocations() {
-    stAnthonyButton.display(232, 232, 232);
-    tubmanChavezButton.display(232, 232, 232);
-    aquaticaButton.display(232, 232, 232);
-    sycuanButton.display(232, 232, 232);
-    marVistaButton.display(232, 232, 232);
-    northCoastalButton.display(232, 232, 232);
-    lgbtButton.display(232, 232, 232);
-    euclidButton.display(232, 232, 232);
+    float fontSize = 13; 
+    stAnthonyButton.display(232, 232, 232, fontSize);
+    tubmanChavezButton.display(232, 232, 232, fontSize);
+    aquaticaButton.display(232, 232, 232, fontSize);
+    sycuanButton.display(232, 232, 232, fontSize);
+    marVistaButton.display(232, 232, 232, fontSize);
+    northCoastalButton.display(232, 232, 232, fontSize);
+    lgbtButton.display(232, 232, 232, fontSize);
+    euclidButton.display(232, 232, 232, fontSize);
     
-    sdStateButton.display(232, 232, 232);
-    usdLotButton.display(232, 232, 232);
-    searsButton.display(232, 232, 232);
-    assessorRecorderButton.display(232, 232, 232);
-    escondidoTheaterButton.display(232, 232, 232);
-    kimballButton.display(232, 232, 232);
-    sanYsidroButton.display(232, 232, 232);
-    miraMesaButton.display(232, 232, 232);
+    sdStateButton.display(232, 232, 232, 12);
+    usdLotButton.display(232, 232, 232, fontSize);
+    searsButton.display(232, 232, 232, fontSize);
+    assessorRecorderButton.display(232, 232, 232, fontSize);
+    escondidoTheaterButton.display(232, 232, 232, 9.8);
+    kimballButton.display(232, 232, 232, fontSize);
+    sanYsidroButton.display(232, 232, 232, fontSize);
+    miraMesaButton.display(232, 232, 232, fontSize);
   }
   
 
@@ -100,18 +101,18 @@ public class MainDisplay {
     nauseaButton = new Button("Nausea", 980, 570, 100, 30);
     vomitingButton = new Button("Vomiting", 980, 610, 100, 30);
     diarrheaButton = new Button("Diarrhea", 980, 650, 100, 30);
-    feverButton.display(232, 232, 232);
-    coughButton.display(232, 232, 232);
-    fatigueButton.display(232, 232, 232);
-    breathingButton.display(232, 232, 232);
-    headacheButton.display(232, 232, 232);
-    lossOfTasteButton.display(232, 232, 232);
-    soreThroatButton.display(232, 232, 232);
-    congestionButton.display(232, 232, 232);
-    runnyNoseButton.display(232, 232, 232);
-    nauseaButton.display(232, 232, 232);
-    vomitingButton.display(232, 232, 232);
-    diarrheaButton.display(232, 232, 232);
+    feverButton.display(232, 232, 232, 14.5);
+    coughButton.display(232, 232, 232, 14.5);
+    fatigueButton.display(232, 232, 232, 14.5);
+    breathingButton.display(232, 232, 232, 14.5);
+    headacheButton.display(232, 232, 232, 14.5);
+    lossOfTasteButton.display(232, 232, 232, 14.5);
+    soreThroatButton.display(232, 232, 232, 14.5);
+    congestionButton.display(232, 232, 232, 14.5);
+    runnyNoseButton.display(232, 232, 232, 14.5);
+    nauseaButton.display(232, 232, 232, 14.5);
+    vomitingButton.display(232, 232, 232, 14.5);
+    diarrheaButton.display(232, 232, 232, 14.5);
 
     String symptoms = "~ Fever/chills\n~ Cough\n~ Difficulty breathing"
       + "\n~ Fatigue\n~ Muscle/body aches\n~ Headache\n~ "

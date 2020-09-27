@@ -13,9 +13,9 @@ class Button {
     h = heightB;
   }
 
-  void display(int r, int g, int b) {
+  void display(int r, int g, int b, float fontSize) {
     pushMatrix();
-    textSize(14.5);
+    textSize(fontSize);
     fill(r, g, b, 150);
     strokeWeight(1);
     stroke(141);
