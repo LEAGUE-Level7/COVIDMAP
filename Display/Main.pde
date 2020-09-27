@@ -116,6 +116,8 @@ void updateGraphics() {
     fill(0, 0, 0);
     text("Select an option from the map pane to view a graph.", 240, 600);
   }
+  graph1.display(232, 232, 232);
+  graph2.display(232, 232, 232);
 
   if (currentPage == 1) {
     textSize(25);
@@ -129,8 +131,7 @@ void updateGraphics() {
     deathIncreaseButton.display(232, 232, 232);
     hospitalizedButton.display(232, 232, 232);
     totalRecoveredButton.display(232, 232, 232);
-    graph1.display(232, 232, 232);
-    graph2.display(232, 232, 232);
+    
     if(buttons[0]){
       int[] positiveIncreases = map.positiveIncreaseMap(timeline.getData(timeline.getDate(formula)));
       posIncreaseButton.display(255, 0, 0);
@@ -248,7 +249,7 @@ void mousePressed() {
     }
   }
   
-  if(currentPage == 1) {
+ 
      if(graph1.mouseIsOver()) {
        graphType = 0;
        graph1.display(300, 300, 300);
@@ -258,7 +259,7 @@ void mousePressed() {
        graph2.display(300, 300, 300);
        graph1.display(232, 232, 232);
      }
-  }
+  
 
   if (display.feverButton.mouseIsOver()) {
     link("https://www.healthline.com/health/fever");
