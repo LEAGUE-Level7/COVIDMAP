@@ -88,10 +88,10 @@ public class MainDisplay {
     text("Graph", 375, 500);
   }
   void baseText() {
-    feverButton = new Button("Fever/chills", 850, 450, 100, 30);
+    feverButton = new Button("Fever/Chills", 850, 450, 100, 30);
     coughButton = new Button("Cough", 850, 490, 100, 30);
     fatigueButton = new Button("Fatigue", 850, 530, 100, 30);
-    breathingButton = new Button("Short breath", 850, 570, 100, 30);
+    breathingButton = new Button("Short of breath", 850, 570, 100, 30);
     headacheButton = new Button("Headache", 850, 610, 100, 30);
     lossOfTasteButton = new Button("Loss of taste", 850, 650, 100, 30);
 
@@ -104,7 +104,7 @@ public class MainDisplay {
     feverButton.display(232, 232, 232, 14.5);
     coughButton.display(232, 232, 232, 14.5);
     fatigueButton.display(232, 232, 232, 14.5);
-    breathingButton.display(232, 232, 232, 14.5);
+    breathingButton.display(232, 232, 232, 14);
     headacheButton.display(232, 232, 232, 14.5);
     lossOfTasteButton.display(232, 232, 232, 14.5);
     soreThroatButton.display(232, 232, 232, 14.5);
@@ -114,12 +114,7 @@ public class MainDisplay {
     vomitingButton.display(232, 232, 232, 14.5);
     diarrheaButton.display(232, 232, 232, 14.5);
 
-    String symptoms = "~ Fever/chills\n~ Cough\n~ Difficulty breathing"
-      + "\n~ Fatigue\n~ Muscle/body aches\n~ Headache\n~ "
-      + "New loss of taste or smell\n~ Sore throat"
-      + "\n~ Congestion/runny nose\n~ Nausea/vomiting\n~ Diarrhea";
     String rules = "Wear a mask. Wash your hands. Keep your distance!";
-
 
     textSize(9);
     fill(170, 170, 100);
@@ -134,7 +129,6 @@ public class MainDisplay {
     californiaMap = loadImage("unitedStatesMap.png");
     image(californiaMap, 40, 60, 600, 400);
   }
-
 
   void circles(int[] data, int r, int g, int b) {
     noStroke();
@@ -160,7 +154,6 @@ public class MainDisplay {
   }
 
   void showNews() {//51 //300 //83 spacing
-
     strokeWeight(1);
     stroke(0);
     line(WIDTH*3/4, 51, WIDTH, 51);
@@ -176,6 +169,9 @@ public class MainDisplay {
       String title = newsInfo.getArticles().get(i).getTitle();
       String description = newsInfo.getArticles().get(i).getDescription();
       String author = newsInfo.getArticles().get(i).getAuthor();
+      if (author == null){
+        author = "Not specified";
+      }
       String publishedAt = newsInfo.getArticles().get(i).getPublishedAt();
       title = title.substring(0, 45) + "...";
       textSize(10);
@@ -211,6 +207,7 @@ public class MainDisplay {
     }
     strokeWeight(1);
   }
+  
   NewsDatum getCurrentNews() {
     news = new News();
     if (newsInfo == null) {
