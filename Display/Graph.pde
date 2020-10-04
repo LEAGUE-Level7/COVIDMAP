@@ -25,13 +25,6 @@ public class Graph {
     strokeWeight(5);
     fill(0, 0, 0);
     line(5, 700, 815, 650);
-    //old vertical axis...
-    /*textSize(15);
-     textAlign(RIGHT);
-     for (int i = 0; i < 5; i++) {
-     text(Integer.toString(200 - 50*i), 40, 510 + 28*(i+1));
-     }
-     */
     textAlign(CENTER);
     textFont(mono, 12);
     float scale = 150.0/highest;
