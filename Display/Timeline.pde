@@ -75,7 +75,6 @@ public class Timeline{
           
           requestURL = "https://api.covidtracking.com/v1/states/daily.json";
       
-      System.out.println(requestURL);
       URL url = new URL(requestURL);
       HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
       con.setRequestMethod("GET");
