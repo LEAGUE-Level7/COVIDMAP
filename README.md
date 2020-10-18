@@ -15,11 +15,21 @@ To create an app that gives a summarized display of the COVID-19 updates across 
 - Provides title, author, date, and link
 ### Regulations
 - Simple reminder of regulations that you should follow (linked)
+### Supplies
+- Links to helpful supplies like masks from Amazon
 ### Symptoms
 - List of possible symptoms of COVID-19 (each button linked)
+### Testing Sites
+- Buttons with availability of testings sites in San Diego
+### Website
+http://level7.jointheleague.org/COVIDMAP/
 ## Contributors
 Athena Hernandez
 
 Daxton Gutekunst
 
 Kayla Brewer
+
+Dhruv Wadhwa
+
+Alvin Wang
