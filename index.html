@@ -1,0 +1,472 @@
+<!--
+	Bootstrap I Assignment
+	Athena Hernández
+	10/04/20; Honors Comp Sci
+-->
+
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<title>COVID-19 App</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<style>
+	.empty-row {
+		padding-top: 0.5in;
+	}
+
+	.carousel-inner img {
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+<body>
+	<div class="container">
+		<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+			<a class="navbar-brand" href="#home">COVID-19 App</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="#map">Map</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#graph">Graph</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#news">News</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#timeline">Timeline</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#testing-sites">Testing Sites</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#supplies">Supplies</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#symptoms">Symptoms and Regulations</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#about-us">About Us</a>
+					</li>
+				</ul>
+			</div>
+
+		</nav>
+		<br />
+
+
+		<div class="content">
+
+			<div class="header">
+				<h1>COVID-19 App</h1>
+				<p class="card-body">
+					We, students at The LEAGUE for Amazing Programmers, programmed a COVID-19
+					app in Java to help our community during this pandemic. This app has
+					many features: concentration maps, bar and pie graphs,
+					current news, a timeline, the availability of nearby testing sites, links to
+					purchase supplies, and a symptom and regulation check-in. Scroll down
+					and/or click the navigation bar to learn more about the features and see how they
+					work.
+				</p>
+			</div>
+
+
+						<div id="app-images" class="carousel slide" data-ride="carousel">
+
+							<!-- Indicators -->
+							<ul class="carousel-indicators">
+								<li data-target="#app-images" data-slide-to="0" class="active"></li>
+								<li data-target="#app-images" data-slide-to="1"></li>
+								<li data-target="#app-images" data-slide-to="2"></li>
+								<li data-target="#app-images" data-slide-to="3"></li>
+								<li data-target="#app-images" data-slide-to="4"></li>
+							</ul>
+
+							<!-- The slideshow -->
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<img src="images/app-1.jpg" alt="IMAGE OF APP" width="1100" height="500" />
+								</div>
+								<div class="carousel-item">
+									<img src="images/app-2.jpg" alt="IMAGE OF APP" width="1100" height="500" />
+								</div>
+								<div class="carousel-item">
+									<img src="images/app-3.jpg" alt="IMAGE OF APP" width="1100" height="500" />
+								</div>
+								<div class="carousel-item">
+									<img src="images/app-4.jpg" alt="IMAGE OF APP" width="1100" height="500" />
+								</div>
+								<div class="carousel-item">
+									<img src="images/app-5.jpg" alt="IMAGE OF APP" width="1100" height="500" />
+								</div>
+
+								<!-- Left and right controls -->
+								<a class="carousel-control-prev" href="#app-images" data-slide="prev">
+									<span class="carousel-control-prev-icon"></span>
+								</a>
+								<a class="carousel-control-next" href="#app-images" data-slide="next">
+									<span class="carousel-control-next-icon"></span>
+								</a>
+							</div>
+						</div>
+
+			<!-- for each: include a screenshot(s), author, description, and how you made it-->
+			<h2 id="map"><br/>Map</h2>
+
+			<p class="card-body" data-toggle="tooltip" data-placement="bottom" title="by Athena Hernández">
+				The concentration map feature displays four major COVID-19 statistics — positive increase,
+				death increase, currently hospitalized, and total recovered — by calculating
+				the radii for the circle of each state. These statistics were gathered from the API at <code>api.covidtracking.com</code>.
+			</p>
+
+			<div id="map-images" class="carousel slide" data-ride="carousel">
+
+				<!-- Indicators -->
+				<ul class="carousel-indicators">
+					<li data-target="#map-images" data-slide-to="0" class="active"></li>
+					<li data-target="#map-images" data-slide-to="1"></li>
+					<li data-target="#map-images" data-slide-to="2"></li>
+					<li data-target="#map-images" data-slide-to="3"></li>
+				</ul>
+
+				<!-- The slideshow -->
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="images/map-1.jpg" alt="IMAGE OF MAP" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/map-2.jpg" alt="IMAGE OF MAP" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/map-3.jpg" alt="IMAGE OF MAP" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/map-4.jpg" alt="IMAGE OF MAP" width="1100" height="500" />
+					</div>
+
+					<!-- Left and right controls -->
+					<a class="carousel-control-prev" href="#map-images" data-slide="prev">
+						<span class="carousel-control-prev-icon"></span>
+					</a>
+					<a class="carousel-control-next" href="#map-images" data-slide="next">
+						<span class="carousel-control-next-icon"></span>
+					</a>
+				</div>
+			</div>
+
+			<h2 id="graph"><br />Graph</h2>
+			<p class="card-body" data-toggle="tooltip" data-placement="bottom" title="by Kayla Brewer">
+				The graph features works in unison with the map by displaying both
+				a bar and pie graphs. The bar graph contains a vertical bar for each state
+				while the pie graph displays the top five states.
+			</p>
+			<div id="graph-images" class="carousel slide" data-ride="carousel">
+
+				<!-- Indicators -->
+				<ul class="carousel-indicators">
+					<li data-target="#graph-images" data-slide-to="0" class="active"></li>
+					<li data-target="#graph-images" data-slide-to="1"></li>
+					<li data-target="#graph-images" data-slide-to="2"></li>
+					<li data-target="#graph-images" data-slide-to="3"></li>
+				</ul>
+
+				<!-- The slideshow -->
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="images/graph-1.jpg" alt="IMAGE OF GRAPH" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/graph-2.jpg" alt="IMAGE OF GRAPH" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/graph-3.jpg" alt="IMAGE OF GRAPH" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/graph-4.jpg" alt="IMAGE OF GRAPH" width="1100" height="500" />
+					</div>
+				</div>
+
+				<!-- Left and right controls -->
+				<a class="carousel-control-prev" href="#graph-images" data-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+				</a>
+				<a class="carousel-control-next" href="#graph-images" data-slide="next">
+					<span class="carousel-control-next-icon"></span>
+				</a>
+			</div>
+			<h2 id="news"><br />News</h2>
+			<p class="card-body" data-toggle="tooltip" data-placement="bottom" title="by Daxton Gutekunst">
+				The news feature retrieves current news concerning updates on the coronavirus
+				by using Google's News API. Then, it displays the title of the article, the
+				author, a small description, date, and time it was published. When clicked,
+				you will be brought to the webpage of the article.
+			</p>
+			<div id="news-images" class="carousel slide" data-ride="carousel">
+
+				<!-- Indicators -->
+				<ul class="carousel-indicators">
+					<li data-target="#news-images" data-slide-to="0" class="active"></li>
+					<li data-target="#news-images" data-slide-to="1"></li>
+					<li data-target="#news-images" data-slide-to="2"></li>
+				</ul>
+
+				<!-- The slideshow -->
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="images/news-1.jpg" alt="IMAGES OF NEWS" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/news-2.jpg" alt="IMAGE OF NEWS" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/news-3.jpg" alt="IMAGE OF NEWS" width="1100" height="500" />
+					</div>
+				</div>
+
+				<!-- Left and right controls -->
+				<a class="carousel-control-prev" href="#news-images" data-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+				</a>
+				<a class="carousel-control-next" href="#news-images" data-slide="next">
+					<span class="carousel-control-next-icon"></span>
+				</a>
+			</div>
+			<h2 id="timeline"><br />Timeline</h2>
+			<p class="card-body" data-toggle="tooltip" data-placement="bottom" title="by Dhruv Wadhwa">
+				The timeline feature works along with the map and graph features.
+				There is a slide bar that represents a timeline and whereever you move the
+				selector, the date is appropriately changed along with its data that is
+				displayed in the map and graphs.
+			</p>
+			<div id="timeline-images" class="carousel slide" data-ride="carousel">
+
+				<!-- Indicators -->
+				<ul class="carousel-indicators">
+					<li data-target="#timeline-images" data-slide-to="0" class="active"></li>
+					<li data-target="#timeline-images" data-slide-to="1"></li>
+					<li data-target="#timeline-images" data-slide-to="2"></li>
+				</ul>
+
+				<!-- The slideshow -->
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="images/timeline-1.jpg" alt="IMAGE OF TIMELINE" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/timeline-2.jpg" alt="IMAGE OF TIMELINE" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/timeline-3.jpg" alt="IMAGE OF TIMELINE" width="1100" height="500" />
+					</div>
+				</div>
+
+				<!-- Left and right controls -->
+				<a class="carousel-control-prev" href="#timeline-images" data-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+				</a>
+				<a class="carousel-control-next" href="#timeline-images" data-slide="next">
+					<span class="carousel-control-next-icon"></span>
+				</a>
+			</div>
+			<h2 id="testing-sites"><br />Testing Sites</h2>
+			<p class="card-body" data-toggle="tooltip" data-placement="bottom" title="by Athena Hernández">
+				As a local San Diegan, there's an additional feature for finding testing
+				sites throughout San Diego county. Each site includes it's available
+				hours throughout the week when clicked.
+			</p>
+			<div id="sites-images" class="carousel slide" data-ride="carousel">
+
+				<!-- Indicators -->
+				<ul class="carousel-indicators">
+					<li data-target="#sites-images" data-slide-to="0" class="active"></li>
+					<li data-target="#sites-images" data-slide-to="1"></li>
+				</ul>
+
+				<!-- The slideshow -->
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="images/sites-1.jpg" alt="IMAGE OF SITES" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/sites-2.jpg" alt="IMAGE OF SITES" width="1100" height="500" />
+					</div>
+				</div>
+
+				<!-- Left and right controls -->
+				<a class="carousel-control-prev" href="#sites-images" data-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+				</a>
+				<a class="carousel-control-next" href="#sites-images" data-slide="next">
+					<span class="carousel-control-next-icon"></span>
+				</a>
+			</div>
+			<h2 id="supplies"><br />Supplies</h2>
+			<p class="card-body" data-toggle="tooltip" data-placement="bottom" title="by Alvin Wang">
+				There are links to Amazon that provide protection from COVID-19. These include
+				masks and any other supply you would like to search for.
+			</p>
+			<div id="supplies-images" class="carousel slide" data-ride="carousel">
+
+				<!-- Indicators -->
+				<ul class="carousel-indicators">
+					<li data-target="#supplies-images" data-slide-to="0" class="active"></li>
+					<li data-target="#supplies-images" data-slide-to="1"></li>
+					<li data-target="#supplies-images" data-slide-to="2"></li>
+					<li data-target="#supplies-images" data-slide-to="3"></li>
+				</ul>
+
+				<!-- The slideshow -->
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="images/supplies-1.jpg" alt="IMAGE OF SUPPLIES" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/supplies-2.jpg" alt="IMAGE OF SUPPLIES" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/supplies-3.jpg" alt="IMAGE OF SUPPLIES" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/supplies-4.jpg" alt="IMAGE OF SUPPLIES" width="1100" height="500" />
+					</div>
+				</div>
+
+				<!-- Left and right controls -->
+				<a class="carousel-control-prev" href="#supplies-images" data-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+				</a>
+				<a class="carousel-control-next" href="#supplies-images" data-slide="next">
+					<span class="carousel-control-next-icon"></span>
+				</a>
+			</div>
+
+			<h2 id="symptoms"><br />Symptoms and Regulations</h2>
+			<p class="card-body" data-toggle="tooltip" data-placement="bottom" title="by Athena Hernández">
+				The symptoms feature contains clickable buttons that will bring you to
+				a medical wesbite to help check if you are experiencing any of the symptoms
+				including: fever/chills, sore throat, coughing, congestion, fatigue, runny nose,
+				short of breath, nausea, headache, vomiting, loss of taste, and diarrhea.
+				The regulations feature contains a short reminder about what you can do to
+				stay healthy during the pandemic; when clicked, it takes you to the California
+				regulations website.
+			</p>
+			<div id="symptom-images" class="carousel slide" data-ride="carousel">
+
+				<!-- Indicators -->
+				<ul class="carousel-indicators">
+					<li data-target="#symptom-images" data-slide-to="0" class="active"></li>
+					<li data-target="#symptom-images" data-slide-to="1"></li>
+					<li data-target="#symptom-images" data-slide-to="2"></li>
+				</ul>
+
+				<!-- The slideshow -->
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="images/symptoms-1.jpg" alt="IMAGE OF SYMPTOMS" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/symptoms-2.jpg" alt="IMAGE OF SYMPTOMS" width="1100" height="500" />
+					</div>
+					<div class="carousel-item">
+						<img src="images/symptoms-3.jpg" alt="IMAGE OF SYMPTOMS" width="1100" height="500" />
+					</div>
+				</div>
+
+				<!-- Left and right controls -->
+				<a class="carousel-control-prev" href="#symptom-images" data-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+				</a>
+				<a class="carousel-control-next" href="#symptom-images" data-slide="next">
+					<span class="carousel-control-next-icon"></span>
+				</a>
+			</div>
+
+			<!-- auto sizes -->
+			<h2 id="about-us"><br />About Us</h2>
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="row">
+						<div class="col-6">
+							<b>Athena Hern&aacutendez</b> — Ayo! I'm part of The Bishop's School's class of 2023. Besides programming,
+							I enjoy figure skating, playing the violin, tutoring, and playing basketball. In my free time,
+							I like to read and browse YouTube. I had fun making the website!
+						</div>
+						<div class="col-6">
+							<img src="images/athena-hernandez.jpg" />
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="row">
+						<div class="col-6">
+							<b>Daxton Gutekunst</b> — A sophomore at Bishop's who likes to tutor, play ping pong, and program.
+						</div>
+						<div class="col-6">
+							<img src="images/daxton-gutekunst.jpg" />
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row empty-row"></div>
+
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="row">
+						<div class="col-6">
+							<img src="images/kayla-brewer.jpg" />
+						</div>
+						<div class="col-6">
+							<b>Kayla Brewer</b> — A junior at CCA who likes playing video games and programming in Java. It was a fun challenge to figure out the pie chart graph.
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="row">
+						<div class="col-6">
+							<img src="images/dhruv-wadhwa.jpg" />
+						</div>
+						<div class="col-6">
+							<b>Dhruv Wadhwa</b> — A junior at SRHS who likes playing tennis and programming. My favorite part about working on the project was being able to collaborate with different people.
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row empty-row"></div>
+
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="row">
+						<div class="col-6">
+							<b>Alvin Wang</b> — A freshman at CCA who likes gaming, watching anime, and programming.
+						</div>
+						<div class="col-6">
+							<img src="images/alvin-wang.jpg" />
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<script>
+			$(document).ready(function() {
+				$('[data-toggle="tooltip"]').tooltip();
+			});
+		</script>
+</body>
+
+</html>

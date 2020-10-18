@@ -1,0 +1,97 @@
+
+body {
+  margin: 0;
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  background-color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+#navbar {
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 25px;
+}
+
+
+#navbar:link, #navbar a:hover, #navbar a:active {
+	background-color: red;
+	color: white;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+/* Three columns side by side */
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+/* Display the columns below each other instead of side by side on small screens */
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+/* Add some shadows to create a card effect */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Some left and right padding inside the container */
+.container {
+  padding: 0 16px;
+}
+
+/* Clear floats */
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
